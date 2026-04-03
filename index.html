@@ -1,1 +1,557 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>HABITS365 — 365 Challenge</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{--black:#000;--surface:#0d0d0d;--s2:#141414;--s3:#1c1c1c;--white:#fff;--off:#e8e8e8;--gray:#999;--gray2:#666;--border:#222;--b2:#2e2e2e;--accent:#e8ff00;--red:#ff4040;--green:#00cc66;--ig:#e1306c}
+html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-serif;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.app{max-width:430px;margin:0 auto;min-height:100vh}
+.hdr{padding:20px 20px 18px;display:flex;justify-content:space-between;align-items:center;background:var(--black);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
+.logo-text{font-family:"Barlow Condensed",sans-serif;font-size:22px;font-weight:900;letter-spacing:.08em;color:var(--white)}
+.hdr-r{display:flex;align-items:center;gap:12px}
+.streak-pill{background:var(--s3);border:1px solid var(--b2);border-radius:2px;padding:6px 12px;display:none;align-items:center;gap:8px}
+.streak-pill.on{display:flex}
+.spn{font-family:"Barlow Condensed",sans-serif;font-size:18px;font-weight:900;color:var(--accent);line-height:1;letter-spacing:.02em}
+.spl{font-size:9px;color:var(--gray2);letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+.htag{font-size:10px;color:var(--gray2);letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.nav{display:flex;background:var(--black);border-bottom:1px solid var(--border)}
+.nb{flex:1;padding:16px 4px 14px;background:none;border:none;color:var(--gray2);font-family:"Barlow",sans-serif;font-size:10px;font-weight:700;cursor:pointer;letter-spacing:.12em;text-transform:uppercase;border-bottom:2px solid transparent;transition:color .2s}
+.nb.on{color:var(--white);border-bottom-color:var(--white)}
+.pg{display:none}
+.pg.on{display:block}
+.hero{padding:28px 20px 24px;border-bottom:1px solid var(--border)}
+.hero-ey{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray2);font-weight:700;margin-bottom:10px}
+.hero-day{font-family:"Barlow Condensed",sans-serif;font-size:88px;font-weight:900;line-height:.82;letter-spacing:-.02em;color:var(--white);margin-bottom:8px}
+.hero-day em{color:var(--accent);font-style:normal;display:block}
+.hero-sub{font-size:11px;color:var(--gray2);letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+.ban{margin:14px 20px;border-radius:2px;padding:12px 16px;display:none;align-items:flex-start;gap:10px}
+.ban.on{display:flex}
+.ban.s{background:rgba(0,204,102,.06);border:1px solid rgba(0,204,102,.2)}
+.ban.e{background:rgba(255,64,64,.06);border:1px solid rgba(255,64,64,.2)}
+.ban.w{background:rgba(232,255,0,.06);border:1px solid rgba(232,255,0,.2)}
+.ban.i{background:var(--s2);border:1px solid var(--b2)}
+.bd{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.bd.g{background:var(--green)}.bd.r{background:var(--red)}.bd.y{background:var(--accent)}.bd.w{background:var(--gray2)}
+.bt{font-size:13px;font-weight:500;line-height:1.5;color:var(--off)}
+.bt.g{color:#66ffaa}.bt.r{color:#ff8080}.bt.y{color:var(--accent)}
+.fp{padding:0 20px}
+.field{margin-bottom:16px}
+.fl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);font-weight:700;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.fl span{color:var(--red);font-size:9px;letter-spacing:0;text-transform:none;font-weight:500}
+.fi{width:100%;background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:14px 16px;color:var(--white);font-family:"Barlow",sans-serif;font-size:15px;font-weight:500;outline:none;transition:border-color .2s;-webkit-appearance:none}
+.fi:focus{border-color:var(--gray2)}
+.fi.err{border-color:var(--red)}
+.fi::placeholder{color:var(--b2)}
+.acc{margin:0 20px 16px;border:1px solid var(--border);border-radius:2px;overflow:hidden}
+.acc-top{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;background:var(--s2)}
+.acc-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--gray);font-weight:700}
+.acc-st{font-size:10px;font-weight:700;padding:3px 8px;border-radius:2px;letter-spacing:.06em;text-transform:uppercase}
+.acc-st.locked{background:rgba(255,64,64,.1);color:var(--red)}
+.acc-st.unlocked{background:rgba(0,204,102,.1);color:var(--green)}
+.acc-body{padding:16px;display:none;border-top:1px solid var(--border)}
+.acc-body.on{display:block}
+.acc-desc{font-size:13px;color:var(--gray);line-height:1.6;font-weight:500;margin-bottom:14px}
+.acc-desc a{color:var(--white);text-decoration:underline}
+.acc-row{display:flex;gap:8px}
+.acc-in{flex:1;background:var(--black);border:1px solid var(--border);border-radius:2px;padding:12px 14px;color:var(--white);font-family:"Barlow Condensed",sans-serif;font-size:18px;font-weight:800;outline:none;letter-spacing:.12em;text-transform:uppercase;-webkit-appearance:none}
+.acc-in:focus{border-color:var(--gray2)}
+.acc-in::placeholder{color:var(--b2);letter-spacing:.04em;font-size:13px;font-family:"Barlow",sans-serif;font-weight:500}
+.btn-verify{padding:12px 16px;background:var(--white);color:var(--black);border:none;border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:15px;font-weight:900;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;transition:opacity .2s;white-space:nowrap}
+.btn-verify:hover{opacity:.85}
+.acc-ok{display:none;align-items:center;gap:10px;padding:10px 0}
+.acc-ok.on{display:flex}
+.acc-ok-ic{width:22px;height:22px;border-radius:50%;background:rgba(0,204,102,.15);display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+.acc-ok-tx{font-size:13px;color:var(--green);font-weight:600}
+.acc-ok-sub{font-size:11px;color:var(--gray2)}
+.pbar{margin:0 20px 16px;background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:12px 16px;display:none;justify-content:space-between;align-items:center}
+.pbar.on{display:flex}
+.pbl{font-size:10px;color:var(--gray2);text-transform:uppercase;letter-spacing:.12em;font-weight:700}
+.pbn{font-family:"Barlow Condensed",sans-serif;font-size:28px;font-weight:900;color:var(--accent)}
+.uw{padding:0 20px;margin-bottom:16px}
+.uz{width:100%;aspect-ratio:4/3;background:var(--s2);border:1px solid var(--border);border-radius:2px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;position:relative;transition:border-color .2s}
+.uz:active{border-color:var(--gray2)}
+.uz.err{border-color:var(--red)}
+.uz img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.uz-in{position:relative;z-index:1;text-align:center;padding:24px}
+.uz-ic{font-size:24px;margin-bottom:10px}
+.uz-tx{font-size:13px;color:var(--gray);font-weight:600;letter-spacing:.04em}
+.uz-rq{font-size:11px;color:var(--red);margin-top:6px;font-weight:600;letter-spacing:.04em}
+#pi{display:none}
+.bw{padding:0 20px}
+.bp{width:100%;padding:16px;background:var(--white);color:var(--black);border:none;border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:18px;font-weight:900;cursor:pointer;letter-spacing:.1em;text-transform:uppercase;transition:opacity .2s;margin-bottom:10px;display:block}
+.bp:hover{opacity:.88}
+.bp:disabled{opacity:.25;cursor:not-allowed}
+.bg{width:100%;padding:14px;background:transparent;color:var(--white);border:1px solid var(--border);border-radius:2px;font-family:"Barlow",sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:border-color .2s;margin-bottom:10px;display:block;letter-spacing:.04em}
+.bg:hover{border-color:var(--gray2)}
+.big{background:var(--ig)!important;color:#fff!important;border:none!important}
+.bsm{font-size:10px;padding:5px 10px;border:1px solid var(--border);border-radius:2px;background:none;color:var(--gray);cursor:pointer;font-family:"Barlow",sans-serif;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:all .2s}
+.bsm:hover{border-color:var(--gray2);color:var(--white)}
+.sp{display:none;padding:16px 20px 0}
+.sp-lb{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray2);font-weight:700;margin-bottom:12px}
+.sc{width:100%;aspect-ratio:9/16;background:#000;border-radius:4px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:24px 20px;border:1px solid var(--border)}
+.sc-bg-pat{position:absolute;inset:0;background:linear-gradient(135deg,#050505,#111,#050505)}
+.sc-gr{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.65) 0%,rgba(0,0,0,0) 40%,rgba(0,0,0,.9) 100%)}
+.sc-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;opacity:.5}
+.sc-top{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-start}
+.sc-logo-text{font-family:"Barlow Condensed",sans-serif;font-size:18px;font-weight:900;letter-spacing:.08em;color:#fff}
+.sc-pill{background:var(--white);color:#000;font-size:8px;font-weight:900;letter-spacing:.12em;padding:4px 9px;border-radius:1px;text-transform:uppercase}
+.sc-bot{position:relative;z-index:2}
+.sc-handle{font-size:11px;color:rgba(255,255,255,.45);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.sc-day{font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:92px;line-height:.82;letter-spacing:-.02em;color:var(--white);margin-bottom:6px}
+.sc-day em{color:var(--accent);font-style:normal}
+.sc-meta{font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.18em;text-transform:uppercase;font-weight:700;margin-bottom:10px}
+.sc-tag{font-family:"Barlow Condensed",sans-serif;font-size:20px;font-weight:900;color:var(--accent);letter-spacing:.06em}
+.sa{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.sn{font-size:11px;color:var(--gray2);text-align:center;margin-top:8px;line-height:1.6;font-weight:500}
+.pt{padding:24px 20px 0}
+.stl{font-family:"Barlow Condensed",sans-serif;font-size:42px;font-weight:900;letter-spacing:-.01em;color:var(--white);margin-bottom:4px}
+.ssb{font-size:12px;color:var(--gray2);font-weight:600;margin-bottom:20px;letter-spacing:.04em}
+.lbi{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--border)}
+.lbi:last-child{border-bottom:none}
+.lbp{font-family:"Barlow Condensed",sans-serif;font-size:16px;font-weight:900;width:20px;flex-shrink:0;text-align:center;color:var(--gray2)}
+.lbp.p1{color:var(--white)}.lbp.p2{color:var(--gray)}.lbp.p3{color:var(--gray2)}
+.lbav{width:36px;height:36px;border-radius:50%;background:var(--s3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0;color:var(--white);font-family:"Barlow Condensed",sans-serif}
+.lbi-info{flex:1;min-width:0}
+.lbn{font-size:14px;font-weight:700;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px}
+.lbh{font-size:11px;color:var(--gray2);font-weight:500}
+.lbr{text-align:right;flex-shrink:0}
+.lbd{font-family:"Barlow Condensed",sans-serif;font-size:26px;font-weight:900;line-height:1;color:var(--white)}
+.lbdl{font-size:9px;color:var(--gray2);letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+.tier{display:inline-block;font-size:9px;padding:2px 7px;border-radius:2px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
+.te{background:rgba(232,255,0,.1);color:var(--accent);border:1px solid rgba(232,255,0,.2)}
+.tl2{background:rgba(255,255,255,.06);color:var(--gray);border:1px solid rgba(255,255,255,.1)}
+.tc{background:transparent;color:var(--gray2);border:1px solid var(--border)}
+.msg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.msc{background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:18px 10px;text-align:center;transition:all .3s}
+.msc.on{border-color:var(--gray2)}
+.msn{font-family:"Barlow Condensed",sans-serif;font-size:38px;font-weight:900;line-height:1;color:var(--white)}
+.msn.lit{color:var(--accent)}
+.msl{font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:var(--gray2);font-weight:700;margin-top:2px}
+.msi{font-size:14px;margin:8px 0 4px}
+.mst{font-size:10px;color:var(--gray2);font-weight:600}
+.pb{background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:18px;margin-bottom:16px}
+.pb-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+.pbn2{font-family:"Barlow Condensed",sans-serif;font-size:56px;font-weight:900;line-height:1;color:var(--white)}
+.pbo{font-size:12px;color:var(--gray2);font-weight:600}
+.pt2{width:100%;height:2px;background:var(--s3);overflow:hidden;margin-bottom:8px}
+.pf{height:100%;background:var(--white);transition:width .8s cubic-bezier(.4,0,.2,1)}
+.pls{display:flex;justify-content:space-between}
+.pll{font-size:9px;color:var(--gray2);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.cw{margin-top:14px;padding-top:14px;border-top:1px solid var(--border);display:none}
+.cw.on{display:block}
+.ct{font-size:12px;color:var(--white);font-weight:600;margin-bottom:10px;letter-spacing:.04em}
+.bcl{width:100%;padding:13px;background:transparent;color:var(--white);border:1px solid var(--gray2);border-radius:2px;font-family:"Barlow",sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:.04em}
+.bcl:hover{background:var(--white);color:var(--black)}
+.rtb{background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:16px;margin-bottom:16px}
+.rtb-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.18em;color:var(--gray2);font-weight:700;margin-bottom:14px}
+.rtb-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)}
+.rtb-row:last-child{border-bottom:none;padding-bottom:0}
+.rtb-tier{font-size:14px;font-weight:700;color:var(--white)}
+.rtb-days{font-size:11px;color:var(--gray2);font-weight:500;margin-top:2px}
+.rtb-amt{font-family:"Barlow Condensed",sans-serif;font-size:20px;font-weight:900;color:var(--white)}
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}
+.ac{background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:16px}
+.an{font-family:"Barlow Condensed",sans-serif;font-size:46px;font-weight:900;line-height:1;color:var(--white);margin-bottom:4px}
+.al{font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:var(--gray2);font-weight:700}
+.ar{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:var(--s2);border:1px solid var(--border);border-radius:2px;margin-bottom:6px}
+.ard{width:4px;height:4px;border-radius:50%;background:var(--white);flex-shrink:0;margin-top:6px}
+.arn{font-size:13px;font-weight:700;color:var(--white);margin-bottom:3px}
+.ari{font-size:11px;color:var(--gray2);font-weight:500}
+.pr{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--border)}
+.pav{width:34px;height:34px;border-radius:50%;background:var(--s3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:"Barlow Condensed",sans-serif;font-size:13px;font-weight:900;color:var(--white);flex-shrink:0}
+.pin{flex:1;min-width:0}
+.pna{font-size:13px;font-weight:700;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pme{font-size:11px;color:var(--gray2);font-weight:500;margin-top:1px}
+.pst{font-family:"Barlow Condensed",sans-serif;font-size:24px;font-weight:900;text-align:right;color:var(--white)}
+.psl{font-size:9px;color:var(--gray2);font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-align:right}
+.atabs{display:flex;gap:0;margin-bottom:16px;border-bottom:1px solid var(--border)}
+.atab{flex:1;padding:11px 8px;background:none;border:none;color:var(--gray2);font-family:"Barlow",sans-serif;font-size:10px;font-weight:700;cursor:pointer;letter-spacing:.1em;text-transform:uppercase;transition:all .2s;border-bottom:2px solid transparent;margin-bottom:-1px}
+.atab.on{color:var(--white);border-bottom-color:var(--white)}
+.asec{display:none}
+.asec.on{display:block}
+.codegen{background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:16px;margin-bottom:14px}
+.codegen-title{font-size:10px;text-transform:uppercase;letter-spacing:.18em;color:var(--gray2);font-weight:700;margin-bottom:12px}
+.codegen-row{display:flex;gap:8px;margin-bottom:10px}
+.codegen-in{flex:1;background:var(--black);border:1px solid var(--border);border-radius:2px;padding:10px 12px;color:var(--white);font-family:"Barlow",sans-serif;font-size:13px;outline:none;-webkit-appearance:none;transition:border-color .2s}
+.codegen-in:focus{border-color:var(--gray2)}
+.codegen-in::placeholder{color:var(--b2)}
+.btn-gen{padding:10px 14px;background:var(--white);color:var(--black);border:none;border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:14px;font-weight:900;cursor:pointer;white-space:nowrap;letter-spacing:.08em;text-transform:uppercase;transition:opacity .2s}
+.btn-gen:hover{opacity:.85}
+.code-list{display:flex;flex-direction:column;gap:6px;max-height:220px;overflow-y:auto}
+.code-item{display:flex;justify-content:space-between;align-items:center;background:var(--black);border:1px solid var(--border);border-radius:2px;padding:10px 14px}
+.code-val{font-family:"Barlow Condensed",sans-serif;font-size:17px;font-weight:900;color:var(--white);letter-spacing:.1em}
+.code-meta{font-size:10px;color:var(--gray2);font-weight:500;margin-top:2px}
+.code-copy{font-size:10px;padding:4px 10px;border:1px solid var(--border);border-radius:2px;background:none;color:var(--gray2);cursor:pointer;font-family:"Barlow",sans-serif;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:all .2s}
+.code-copy:hover{border-color:var(--gray2);color:var(--white)}
+.lo{position:fixed;inset:0;background:var(--black);z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px}
+.lo.hidden{display:none}
+.lo-logo{font-family:"Barlow Condensed",sans-serif;font-size:28px;font-weight:900;letter-spacing:.08em;color:var(--white);margin-bottom:8px}
+.lo-tag{font-size:10px;color:var(--gray2);letter-spacing:.2em;text-transform:uppercase;font-weight:700;margin-bottom:40px}
+.lo-lbl{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray2);font-weight:700;margin-bottom:10px}
+.lo-in{width:100%;max-width:260px;background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:16px;color:var(--white);font-family:"Barlow Condensed",sans-serif;font-size:32px;font-weight:700;outline:none;text-align:center;letter-spacing:.4em;margin-bottom:8px;-webkit-appearance:none}
+.lo-in:focus{border-color:var(--gray2)}
+.lo-err{font-size:11px;color:var(--red);text-align:center;margin-bottom:12px;height:14px;font-weight:600}
+.lo-btns{width:100%;max-width:260px;display:flex;flex-direction:column;gap:8px}
+.loading{text-align:center;padding:40px 20px;color:var(--gray2);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.sp2{height:28px}
+.pad{padding:0 20px}
+.mt{margin-top:16px}
+.mb{margin-bottom:16px}
+</style>
+</head>
+<body>
+<div class="lo hidden" id="lock-screen">
+  <div class="lo-logo">HABITS 365</div>
+  <div class="lo-tag">Admin Access</div>
+  <div class="lo-lbl">Password</div>
+  <input type="password" class="lo-in" id="admin-pw" placeholder="000000" maxlength="8" onkeyup="if(event.key==='Enter')checkPw()" />
+  <div class="lo-err" id="lock-err"></div>
+  <div class="lo-btns">
+    <button class="bp" onclick="checkPw()">Unlock</button>
+    <button class="bg" onclick="cancelAdmin()">Go Back</button>
+  </div>
+</div>
+<div class="app">
+  <div class="hdr">
+    <div class="logo-text">HABITS 365</div>
+    <div class="hdr-r">
+      <div class="streak-pill" id="streak-pill"><div class="spn" id="streak-num">0</div><div class="spl">day streak</div></div>
+      <div class="htag">#365Locked</div>
+    </div>
+  </div>
+  <nav class="nav">
+    <button class="nb on" onclick="showPg('checkin',this)">Check In</button>
+    <button class="nb" onclick="showPg('leaderboard',this)">Board</button>
+    <button class="nb" onclick="showPg('milestones',this)">Progress</button>
+    <button class="nb" onclick="requireAdmin(this)">Admin</button>
+  </nav>
+  <div class="pg on" id="pg-checkin">
+    <div class="hero">
+      <div class="hero-ey">Today's Check-In</div>
+      <div class="hero-day">DAY<em id="day-num">—</em></div>
+      <div class="hero-sub" id="day-sub">365 Challenge · Keep the streak alive</div>
+    </div>
+    <div class="ban s" id="b-s"><div class="bd g"></div><div class="bt g" id="b-s-t"></div></div>
+    <div class="ban e" id="b-e"><div class="bd r"></div><div class="bt r" id="b-e-t"></div></div>
+    <div class="ban w" id="b-w"><div class="bd y"></div><div class="bt y" id="b-w-t"></div></div>
+    <div class="ban i" id="b-i"><div class="bd w"></div><div class="bt" id="b-i-t"></div></div>
+    <div class="fp mt">
+      <div class="field"><div class="fl">Instagram Handle</div><input type="text" class="fi" id="handle" placeholder="@yourhandle" /></div>
+      <div class="field"><div class="fl">Full Name</div><input type="text" class="fi" id="uname" placeholder="Your name" /></div>
+      <div class="field"><div class="fl">Email <span>for milestone notifications</span></div><input type="email" class="fi" id="email" placeholder="your@email.com" /></div>
+    </div>
+    <div class="acc">
+      <div class="acc-top" onclick="toggleAcc()">
+        <div class="acc-lbl">Challenge Access</div>
+        <div class="acc-st locked" id="acc-st">Locked</div>
+      </div>
+      <div class="acc-body" id="acc-body">
+        <div class="acc-desc">Enter the access code from your order confirmation email, or your ambassador code. No code? <a href="https://habits365.com" target="_blank">Purchase a Habits 365 product</a></div>
+        <div class="acc-row" id="acc-row">
+          <input type="text" class="acc-in" id="acc-code" placeholder="H365-XXXXX" maxlength="10" onkeyup="this.value=this.value.toUpperCase()" />
+          <button class="btn-verify" onclick="verifyCode()">Verify</button>
+        </div>
+        <div class="acc-ok" id="acc-ok">
+          <div class="acc-ok-ic">✓</div>
+          <div><div class="acc-ok-tx">Access Unlocked</div><div class="acc-ok-sub" id="acc-ok-sub">Rewards active</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="pbar" id="pass-bar">
+      <div><div class="pbl">Free passes remaining</div><div style="font-size:10px;color:var(--gray2);margin-top:3px;font-weight:500">Resets every 30 days</div></div>
+      <div class="pbn" id="pass-count">1</div>
+    </div>
+    <div class="pad mb"><div class="fl" style="margin-bottom:0">Today's Photo <span>* Required — your workout</span></div></div>
+    <div class="uw mt">
+      <div class="uz" id="uz" onclick="document.getElementById('pi').click()">
+        <div class="uz-in" id="uz-in">
+          <div class="uz-ic">📸</div>
+          <div class="uz-tx">Tap to upload your photo</div>
+          <div class="uz-rq">Required to submit</div>
+        </div>
+        <img id="prev-img" style="display:none" />
+      </div>
+    </div>
+    <input type="file" id="pi" accept="image/*" onchange="handlePhoto(event)" />
+    <div class="bw mb">
+      <button class="bp" id="submit-btn" onclick="submitCheckin()">Submit + Generate Story Card</button>
+      <button class="bg" onclick="lookupStreak()">Look Up My Streak</button>
+    </div>
+    <div class="sp" id="story-preview">
+      <div class="sp-lb">Your Story Card</div>
+      <div class="sc">
+        <div class="sc-bg-pat"></div>
+        <div class="sc-gr"></div>
+        <img class="sc-bg" id="sc-bg" src="" />
+        <div class="sc-top">
+          <div class="sc-logo-text">HABITS 365</div>
+          <div class="sc-pill">#365Locked</div>
+        </div>
+        <div class="sc-bot">
+          <div class="sc-handle" id="card-handle">@YOURHANDLE</div>
+          <div class="sc-day">DAY <em id="card-day">1</em></div>
+          <div class="sc-meta">365 Challenge</div>
+          <div class="sc-tag">#365LOCKED</div>
+        </div>
+      </div>
+      <div class="sa">
+        <button class="bp big" style="margin:0" onclick="shareIG()">Share to Instagram Story</button>
+        <button class="bg" style="margin:0" onclick="downloadCard()">Save Card to Photos</button>
+      </div>
+      <div class="sn">Save the card · Open Instagram · Add to your story</div>
+    </div>
+    <div class="sp2"></div>
+  </div>
+  <div class="pg" id="pg-leaderboard">
+    <div class="pt"><div class="stl">Leaderboard</div><div class="ssb">Top challengers — updated live</div></div>
+    <div class="pad" id="lb-list"><div class="loading">Loading</div></div>
+    <div class="sp2"></div>
+  </div>
+  <div class="pg" id="pg-milestones">
+    <div class="pt"><div class="stl">Progress</div><div class="ssb">Your journey to Elite status</div></div>
+    <div class="pad">
+      <div class="msg">
+        <div class="msc" id="ms30"><div class="msn" id="ms30n">30</div><div class="msl">Days</div><div class="msi">🔒</div><div class="mst">Committed</div></div>
+        <div class="msc" id="ms60"><div class="msn" id="ms60n">60</div><div class="msl">Days</div><div class="msi">🔒</div><div class="mst">Locked In</div></div>
+        <div class="msc" id="ms90"><div class="msn" id="ms90n">90</div><div class="msl">Days</div><div class="msi">🔒</div><div class="mst">Elite</div></div>
+      </div>
+      <div class="pb">
+        <div class="pb-top"><div class="pbn2" id="prog-num">—</div><div class="pbo">of 365 days</div></div>
+        <div class="pt2"><div class="pf" id="prog-fill" style="width:0%"></div></div>
+        <div class="pls"><div class="pll">Day 1</div><div class="pll">Day 365</div></div>
+        <div class="cw" id="claim-wrap">
+          <div class="ct">Milestone unlocked — claim your reward</div>
+          <button class="bcl" id="claim-btn" onclick="claimReward()">Claim Reward →</button>
+        </div>
+      </div>
+      <div class="rtb">
+        <div class="rtb-lbl">Reward Structure</div>
+        <div class="rtb-row"><div><div class="rtb-tier">Day 30 — Committed</div><div class="rtb-days">30 consecutive check-ins</div></div><div class="rtb-amt">$20 Credit</div></div>
+        <div class="rtb-row"><div><div class="rtb-tier">Day 60 — Locked In</div><div class="rtb-days">60 consecutive check-ins</div></div><div class="rtb-amt">$35 Credit</div></div>
+        <div class="rtb-row"><div><div class="rtb-tier">Day 90 — Elite</div><div class="rtb-days">90 consecutive check-ins</div></div><div class="rtb-amt">Free Tee + Early Access</div></div>
+      </div>
+    </div>
+    <div class="sp2"></div>
+  </div>
+  <div class="pg" id="pg-admin">
+    <div class="pt">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px">
+        <div><div class="stl">Admin</div><div class="ssb" style="margin:0">Habits 365 Dashboard</div></div>
+        <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
+          <div style="font-size:9px;color:var(--gray2);background:var(--s2);border:1px solid var(--border);padding:4px 8px;border-radius:2px;letter-spacing:.12em;font-weight:800;text-transform:uppercase">Live</div>
+          <button class="bsm" onclick="adminLogout()">Lock</button>
+        </div>
+      </div>
+    </div>
+    <div class="pad">
+      <div class="ag">
+        <div class="ac"><div class="an" id="s-total">—</div><div class="al">Total</div></div>
+        <div class="ac"><div class="an" id="s-today">—</div><div class="al">Today</div></div>
+        <div class="ac"><div class="an" id="s-elite">—</div><div class="al">Elite</div></div>
+        <div class="ac"><div class="an" id="s-passes">—</div><div class="al">Passes</div></div>
+      </div>
+      <div class="atabs">
+        <button class="atab on" onclick="showATab('rewards',this)">Rewards</button>
+        <button class="atab" onclick="showATab('participants',this)">Participants</button>
+        <button class="atab" onclick="showATab('codes',this)">Amb. Codes</button>
+      </div>
+      <div class="asec on" id="at-rewards"><div id="admin-alerts"><div class="loading">Loading</div></div></div>
+      <div class="asec" id="at-participants"><div id="admin-parts"><div class="loading">Loading</div></div></div>
+      <div class="asec" id="at-codes">
+        <div class="codegen">
+          <div class="codegen-title">Generate Ambassador Codes</div>
+          <div class="codegen-row">
+            <input type="text" class="codegen-in" id="amb-name" placeholder="Ambassador name or @handle" />
+            <button class="btn-gen" onclick="genCode()">Generate</button>
+          </div>
+          <div class="code-list" id="code-list"><div style="font-size:11px;color:var(--gray2);text-align:center;padding:14px">No codes generated yet</div></div>
+        </div>
+        <div style="font-size:12px;color:var(--gray2);line-height:1.7;font-weight:500">Generated codes bypass the purchase requirement. Each code is single-use. Send directly to ambassadors via DM or email.</div>
+      </div>
+      <button class="bg mt" onclick="loadAdmin()">Refresh Data</button>
+    </div>
+    <div class="sp2"></div>
+  </div>
+</div>
+<script>
+const SBU="https://smhyobptjyvkuutotray.supabase.co";
+const SBK="sb_publishable_FmmSdKoCPw4O9JdN3wf1Kg_YlmJhiHF";
+const APW="365elite";
+let photo=null,participant=null,adminOk=false,accVerified=false,genCodes=[];
+async function api(path,opts={}){
+  const r=await fetch(SBU+"/rest/v1/"+path,{headers:{"apikey":SBK,"Authorization":"Bearer "+SBK,"Content-Type":"application/json","Prefer":opts.prefer||"return=representation",...(opts.headers||{})},method:opts.method||"GET",body:opts.body?JSON.stringify(opts.body):undefined});
+  if(!r.ok)throw new Error(await r.text());
+  const t=await r.text();return t?JSON.parse(t):null;
+}
+function showPg(id,btn){
+  document.querySelectorAll(".pg").forEach(p=>p.classList.remove("on"));
+  document.querySelectorAll(".nb").forEach(b=>b.classList.remove("on"));
+  document.getElementById("pg-"+id).classList.add("on");
+  if(btn)btn.classList.add("on");
+  if(id==="leaderboard")loadLB();
+  if(id==="admin")loadAdmin();
+}
+function showATab(id,btn){
+  document.querySelectorAll(".asec").forEach(s=>s.classList.remove("on"));
+  document.querySelectorAll(".atab").forEach(b=>b.classList.remove("on"));
+  document.getElementById("at-"+id).classList.add("on");btn.classList.add("on");
+}
+function ban(type,msg){
+  ["s","e","w","i"].forEach(t=>document.getElementById("b-"+t).classList.remove("on"));
+  if(type){document.getElementById("b-"+type+"-t").textContent=msg;document.getElementById("b-"+type).classList.add("on");}
+}
+function requireAdmin(btn){
+  if(adminOk){showPg("admin",btn);return;}
+  document.getElementById("lock-screen").classList.remove("hidden");
+  document.getElementById("admin-pw").value="";document.getElementById("lock-err").textContent="";window._ab=btn;
+}
+function checkPw(){
+  if(document.getElementById("admin-pw").value===APW){adminOk=true;document.getElementById("lock-screen").classList.add("hidden");showPg("admin",window._ab);}
+  else{document.getElementById("lock-err").textContent="Incorrect password";document.getElementById("admin-pw").value="";}
+}
+function cancelAdmin(){document.getElementById("lock-screen").classList.add("hidden");}
+function adminLogout(){adminOk=false;showPg("checkin",document.querySelector(".nb"));document.querySelector(".nb").classList.add("on");}
+function toggleAcc(){document.getElementById("acc-body").classList.toggle("on");}
+function verifyCode(){
+  const code=document.getElementById("acc-code").value.trim().toUpperCase();if(!code)return;
+  const vp=/^H365-[A-Z0-9]{5}$/.test(code),va=/^LOCKED-[A-Z0-9]{4}$/.test(code),vg=genCodes.some(c=>c.code===code&&!c.used);
+  if(vp||va||vg||code==="H365-DEMO"){
+    accVerified=true;
+    document.getElementById("acc-st").textContent="Unlocked";document.getElementById("acc-st").className="acc-st unlocked";
+    document.getElementById("acc-row").style.display="none";document.getElementById("acc-ok").classList.add("on");
+    document.getElementById("acc-ok-sub").textContent=(va||vg)?"Ambassador access — rewards active":"Purchase verified — rewards active";
+    genCodes.forEach(c=>{if(c.code===code)c.used=true;});
+  }else{
+    document.getElementById("acc-code").style.borderColor="var(--red)";
+    setTimeout(()=>document.getElementById("acc-code").style.borderColor="",2000);
+    ban("e","Invalid code — check your order email or contact @habits365");
+  }
+}
+function handlePhoto(e){
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=ev=>{photo=ev.target.result;document.getElementById("prev-img").src=photo;document.getElementById("prev-img").style.display="block";document.getElementById("uz-in").style.display="none";document.getElementById("uz").classList.remove("err");};
+  r.readAsDataURL(f);
+}
+function ini(n){return n.split(" ").map(w=>w[0]).join("").toUpperCase().slice(0,2);}
+function diff(d1,d2){return Math.floor((new Date(d2)-new Date(d1))/86400000);}
+function today(){return new Date().toISOString().split("T")[0];}
+async function lookupStreak(){
+  const h=document.getElementById("handle").value.trim().replace("@","");
+  if(!h){ban("e","Enter your Instagram handle first");return;}
+  try{
+    const rows=await api("participants?instagram_handle=eq."+encodeURIComponent(h)+"&limit=1");
+    if(!rows||!rows.length){ban("w","No account found — submit your first check-in to join!");return;}
+    const p=rows[0];participant=p;
+    document.getElementById("uname").value=p.name;if(p.email)document.getElementById("email").value=p.email;
+    document.getElementById("day-num").textContent=p.current_streak;document.getElementById("streak-num").textContent=p.current_streak;
+    document.getElementById("streak-pill").classList.add("on");
+    document.getElementById("day-sub").textContent="Keep the streak alive — "+p.total_checkins+" check-ins logged";
+    document.getElementById("pass-count").textContent=Math.max(0,1-(p.free_passes_used||0));document.getElementById("pass-bar").classList.add("on");
+    updateMS(p.current_streak);ban("s","Welcome back "+p.name+" — Day "+p.current_streak+" streak active");checkClaim(p);
+    if(p.access_verified){accVerified=true;document.getElementById("acc-st").textContent="Unlocked";document.getElementById("acc-st").className="acc-st unlocked";document.getElementById("acc-row").style.display="none";document.getElementById("acc-ok").classList.add("on");document.getElementById("acc-ok-sub").textContent="Previously verified";}
+  }catch(e){ban("e","Lookup failed — try again");}
+}
+async function checkClaim(p){
+  try{
+    const m=await api("milestones?participant_id=eq."+p.id+"&reward_sent=eq.false&limit=1");
+    if(m&&m.length){const lbl=m[0].milestone_day===90?"Elite":m[0].milestone_day===60?"Locked In":"Committed";document.getElementById("claim-wrap").classList.add("on");document.getElementById("claim-btn").textContent="Claim Day "+m[0].milestone_day+" "+lbl+" Reward →";document.getElementById("claim-btn").dataset.mid=m[0].id;}
+  }catch(e){}
+}
+async function claimReward(){
+  if(!participant){ban("e","Look up your streak first");return;}
+  try{await api("milestones?id=eq."+document.getElementById("claim-btn").dataset.mid,{method:"PATCH",body:{reward_sent:true},prefer:"return=minimal"});document.getElementById("claim-wrap").classList.remove("on");ban("s","Reward claimed! We will reach out to @"+participant.instagram_handle+" within 48hrs.");}
+  catch(e){ban("e","Could not claim — try again");}
+}
+async function submitCheckin(){
+  const h=document.getElementById("handle").value.trim().replace("@",""),n=document.getElementById("uname").value.trim(),em=document.getElementById("email").value.trim();
+  let err=false;
+  document.getElementById("handle").classList.toggle("err",!h);if(!h)err=true;
+  document.getElementById("uname").classList.toggle("err",!n);if(!n)err=true;
+  document.getElementById("uz").classList.toggle("err",!photo);if(!photo)err=true;
+  if(err){ban("e","Fill in all fields and upload your workout photo");return;}
+  const btn=document.getElementById("submit-btn");btn.disabled=true;btn.textContent="Submitting...";
+  try{
+    const td=today();let p=participant;
+    if(!p){const ex=await api("participants?instagram_handle=eq."+encodeURIComponent(h)+"&limit=1");if(ex&&ex.length){p=ex[0];}else{const body={name:n,instagram_handle:h,start_date:td,current_streak:0,total_checkins:0,free_passes_used:0,free_pass_reset_date:td,access_verified:accVerified};if(em)body.email=em;const c=await api("participants",{method:"POST",body});p=c[0];}}
+    if(em&&!p.email)await api("participants?id=eq."+p.id,{method:"PATCH",body:{email:em},prefer:"return=minimal"});
+    const dup=await api("checkins?participant_id=eq."+p.id+"&checkin_date=eq."+td+"&limit=1");
+    if(dup&&dup.length){ban("w","Already checked in today — come back tomorrow!");btn.disabled=false;btn.textContent="Submit + Generate Story Card";return;}
+    const last=await api("checkins?participant_id=eq."+p.id+"&order=checkin_date.desc&limit=1");
+    let streak=p.current_streak,usedPass=false,reset=false,dsr=0;
+    if(last&&last.length){const d=diff(last[0].checkin_date,td);if(d===1){streak+=1;}else if(d===2){const prd=p.free_pass_reset_date||p.start_date;dsr=diff(prd,td);const pu=dsr>=30?0:(p.free_passes_used||0);if(pu<1){streak+=1;usedPass=true;}else{streak=1;reset=true;}}else{streak=1;reset=true;}}else{streak=1;}
+    await api("checkins",{method:"POST",body:{participant_id:p.id,checkin_date:td,day_number:streak,used_free_pass:usedPass,photo_url:"uploaded"}});
+    const upd={name:n,current_streak:streak,longest_streak:Math.max(p.longest_streak||0,streak),total_checkins:(p.total_checkins||0)+1,free_passes_used:usedPass?(p.free_passes_used||0)+1:p.free_passes_used,streak_reset:false,access_verified:accVerified};
+    if(em)upd.email=em;if(dsr>=30)upd.free_pass_reset_date=td;
+    await api("participants?id=eq."+p.id,{method:"PATCH",body:upd,prefer:"return=minimal"});
+    if([30,60,90].includes(streak)){const me=await api("milestones?participant_id=eq."+p.id+"&milestone_day=eq."+streak+"&limit=1");if(!me||!me.length)await api("milestones",{method:"POST",body:{participant_id:p.id,milestone_day:streak,reward_sent:false}});}
+    document.getElementById("day-num").textContent=streak;document.getElementById("streak-num").textContent=streak;document.getElementById("streak-pill").classList.add("on");
+    document.getElementById("card-handle").textContent="@"+h.toUpperCase();document.getElementById("card-day").textContent=streak;
+    updateMS(streak);
+    if(photo){document.getElementById("sc-bg").src=photo;document.getElementById("sc-bg").style.display="block";}
+    document.getElementById("story-preview").style.display="block";document.getElementById("story-preview").scrollIntoView({behavior:"smooth"});
+    let msg="Day "+streak+" locked in!";if(usedPass)msg+=" Free pass used.";if(reset)msg="Streak reset — starting fresh at Day 1.";if([30,60,90].includes(streak))msg+=" Milestone hit — claim your reward!";
+    ban("s",msg);participant={...p,...upd};if([30,60,90].includes(streak))checkClaim(participant);
+  }catch(e){ban("e","Submission failed: "+e.message);}
+  btn.disabled=false;btn.textContent="Submit + Generate Story Card";
+}
+function updateMS(s){
+  [30,60,90].forEach(m=>{const c=document.getElementById("ms"+m),n=document.getElementById("ms"+m+"n"),i=c.querySelector(".msi");if(s>=m){c.classList.add("on");n.classList.add("lit");i.textContent="✓";}});
+  document.getElementById("prog-num").textContent=s||"—";if(s)document.getElementById("prog-fill").style.width=Math.min(100,(s/365)*100)+"%";
+}
+async function loadLB(){
+  const el=document.getElementById("lb-list");el.innerHTML="<div class='loading'>Loading</div>";
+  try{
+    const rows=await api("participants?order=current_streak.desc&limit=25");
+    if(!rows||!rows.length){el.innerHTML="<div class='loading'>No challengers yet — be first</div>";return;}
+    el.innerHTML=rows.map((p,i)=>{const pc=i===0?"p1":i===1?"p2":i===2?"p3":"";const tier=p.current_streak>=90?"te":p.current_streak>=60?"tl2":"tc";const tl=tier==="te"?"ELITE":tier==="tl2"?"LOCKED IN":"COMMITTED";return "<div class='lbi'><div class='lbp "+pc+"'>"+(i+1)+"</div><div class='lbav'>"+ini(p.name)+"</div><div class='lbi-info'><div class='lbn'>"+p.name+"</div><div class='lbh'>@"+p.instagram_handle+"</div><span class='tier "+tier+"'>"+tl+"</span></div><div class='lbr'><div class='lbd'>"+p.current_streak+"</div><div class='lbdl'>days</div></div></div>";}).join("");
+  }catch(e){el.innerHTML="<div class='loading'>Failed to load</div>";}
+}
+async function loadAdmin(){
+  try{
+    const all=await api("participants?select=*&order=current_streak.desc"),tod=await api("checkins?checkin_date=eq."+today()+"&select=id"),mil=await api("milestones?reward_sent=eq.false&order=unlocked_at.desc&limit=20");
+    const elites=all?all.filter(p=>p.current_streak>=90):[],passes=all?all.reduce((s,p)=>s+(p.free_passes_used||0),0):0;
+    document.getElementById("s-total").textContent=all?all.length:0;document.getElementById("s-today").textContent=tod?tod.length:0;document.getElementById("s-elite").textContent=elites.length;document.getElementById("s-passes").textContent=passes;
+    const ae=document.getElementById("admin-alerts");
+    if(!mil||!mil.length){ae.innerHTML="<div class='loading'>No pending rewards</div>";}
+    else{const pids=[...new Set(mil.map(m=>m.participant_id))],parts=await api("participants?id=in.("+pids.join(",")+")"),pm={};parts.forEach(p=>pm[p.id]=p);ae.innerHTML=mil.map(m=>{const p=pm[m.participant_id]||{},lbl=m.milestone_day===90?"Elite":m.milestone_day===60?"Locked In":"Committed";return "<div class='ar'><div class='ard'></div><div style='flex:1'><div class='arn'>@"+(p.instagram_handle||"?")+" — Day "+m.milestone_day+" "+lbl+"</div><div class='ari'>"+(p.email||"no email")+" · "+(p.name||"")+"</div></div><button class='bsm' onclick='markSent(\""+m.id+"\")'>Mark Sent</button></div>";}).join("");}
+    const pe=document.getElementById("admin-parts");
+    if(!all||!all.length){pe.innerHTML="<div class='loading'>No participants yet</div>";return;}
+    pe.innerHTML=all.map(p=>{const tier=p.current_streak>=90?"te":p.current_streak>=60?"tl2":"tc",tl=tier==="te"?"ELITE":tier==="tl2"?"LOCKED IN":"COMMITTED",av=p.access_verified?"✓":"⚠",avc=p.access_verified?"color:var(--green)":"color:var(--gray2)";return "<div class='pr'><div class='pav'>"+ini(p.name)+"</div><div class='pin'><div class='pna'>"+p.name+"</div><div class='pme'>@"+p.instagram_handle+" · "+(p.email||"no email")+"</div><div class='pme'><span style='"+avc+";font-weight:700'>"+av+" Access</span> · "+p.total_checkins+" check-ins</div><span class='tier "+tier+"'>"+tl+"</span></div><div><div class='pst'>"+p.current_streak+"</div><div class='psl'>days</div></div></div>";}).join("");
+  }catch(e){document.getElementById("admin-alerts").innerHTML="<div class='loading'>Error loading</div>";}
+}
+async function markSent(id){try{await api("milestones?id=eq."+id,{method:"PATCH",body:{reward_sent:true},prefer:"return=minimal"});loadAdmin();}catch(e){alert("Failed — try again");}}
+function genCode(){
+  const name=document.getElementById("amb-name").value.trim();if(!name)return;
+  const chars="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";let s="";for(let i=0;i<4;i++)s+=chars[Math.floor(Math.random()*chars.length)];
+  const code="LOCKED-"+s;genCodes.push({code,name,used:false});renderCodes();document.getElementById("amb-name").value="";
+}
+function renderCodes(){
+  const list=document.getElementById("code-list");
+  if(!genCodes.length){list.innerHTML="<div style='font-size:11px;color:var(--gray2);text-align:center;padding:14px'>No codes generated yet</div>";return;}
+  list.innerHTML=genCodes.map(c=>"<div class='code-item' style='"+(c.used?"opacity:.35":"")+"'><div><div class='code-val'>"+c.code+"</div><div class='code-meta'>"+c.name+" · "+(c.used?"Used":"Active")+"</div></div><button class='code-copy' onclick='navigator.clipboard.writeText(\""+c.code+"\").then(()=>{this.textContent=\"Copied\";setTimeout(()=>this.textContent=\"Copy\",1500)})'>Copy</button></div>").join("");
+}
+function shareIG(){downloadCard(true);setTimeout(()=>{if(navigator.share){navigator.share({title:"Day "+document.getElementById("card-day").textContent+" #365Locked",text:"Day "+document.getElementById("card-day").textContent+" of the 365 Challenge. #365Locked @habits365"});}else{ban("i","Card saved — open Instagram and add to your story");}},600);}
+function downloadCard(silent=false){
+  const cv=document.createElement("canvas");cv.width=1080;cv.height=1920;const ctx=cv.getContext("2d");
+  const handle=document.getElementById("handle").value.trim().replace("@","").toUpperCase(),day=document.getElementById("card-day").textContent;
+  const draw=()=>{
+    ctx.fillStyle="rgba(0,0,0,.65)";ctx.fillRect(0,0,1080,1920);
+    ctx.fillStyle="#fff";ctx.font="900 72px sans-serif";ctx.fillText("HABITS 365",60,120);
+    ctx.fillStyle="#fff";ctx.fillRect(1080-210,72,170,36);ctx.fillStyle="#000";ctx.font="800 13px sans-serif";ctx.fillText("#365LOCKED",1080-200,96);
+    ctx.fillStyle="rgba(255,255,255,.4)";ctx.font="600 26px sans-serif";ctx.fillText("@"+handle,60,1650);
+    ctx.fillStyle="#fff";ctx.font="900 210px sans-serif";ctx.fillText("DAY",60,1826);
+    ctx.fillStyle="#e8ff00";ctx.fillText(day,60+ctx.measureText("DAY ").width,1826);
+    ctx.fillStyle="#e8ff00";ctx.font="800 36px sans-serif";ctx.fillText("#365LOCKED",60,1880);
+    if(!silent){const a=document.createElement("a");a.download="habits365_day"+day+".png";a.href=cv.toDataURL("image/png");a.click();}
+  };
+  if(photo){const img=new Image();img.onload=()=>{ctx.drawImage(img,0,0,1080,1920);draw();};img.src=photo;}
+  else{ctx.fillStyle="#050505";ctx.fillRect(0,0,1080,1920);draw();}
+}
+</script>
+</body>
+</html>
