@@ -24,23 +24,6 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .pg{display:none}
 .pg.on{display:block}
 
-/* PHOTO WALL */
-.wall-section{padding:0;overflow:hidden}
-.wall-top{padding:20px 20px 14px;display:flex;justify-content:space-between;align-items:flex-end}
-.wall-title{font-family:"Barlow Condensed",sans-serif;font-size:28px;font-weight:900;letter-spacing:-.01em;color:var(--white)}
-.wall-sub{font-size:10px;color:var(--gray2);font-weight:600;letter-spacing:.1em;text-transform:uppercase}
-.wall-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;padding:0 0 2px}
-.wall-item{position:relative;aspect-ratio:3/4;overflow:hidden;cursor:pointer}
-.wall-item img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
-.wall-item:active img{transform:scale(1.03)}
-.wall-item-wide{grid-column:span 2;aspect-ratio:2/1}
-.wall-badge{position:absolute;bottom:10px;left:10px;background:rgba(0,0,0,.75);backdrop-filter:blur(4px);border-radius:2px;padding:4px 8px;display:flex;flex-direction:column;gap:1px}
-.wall-badge-day{font-family:"Barlow Condensed",sans-serif;font-size:15px;font-weight:900;color:var(--accent);line-height:1;letter-spacing:.04em}
-.wall-badge-handle{font-size:9px;color:rgba(255,255,255,.6);font-weight:600;letter-spacing:.06em}
-.wall-cta{margin:12px 20px 0;padding:14px;background:var(--white);color:var(--black);border:none;border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:18px;font-weight:900;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;width:calc(100% - 40px);display:block;transition:opacity .2s;text-align:center}
-.wall-cta:hover{opacity:.88}
-.wall-divider{height:1px;background:var(--border);margin:20px 0 0}
-
 .hero{padding:28px 20px 24px;border-bottom:1px solid var(--border)}
 .hero-ey{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray2);font-weight:700;margin-bottom:10px}
 .hero-day{font-family:"Barlow Condensed",sans-serif;font-size:88px;font-weight:900;line-height:.82;letter-spacing:-.02em;color:var(--white);margin-bottom:8px}
