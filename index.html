@@ -23,7 +23,6 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .nb.on{color:var(--white);border-bottom-color:var(--white)}
 .pg{display:none}
 .pg.on{display:block}
-
 .hero{padding:28px 20px 24px;border-bottom:1px solid var(--border)}
 .hero-ey{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray2);font-weight:700;margin-bottom:10px}
 .hero-day{font-family:"Barlow Condensed",sans-serif;font-size:88px;font-weight:900;line-height:.82;letter-spacing:-.02em;color:var(--white);margin-bottom:8px}
@@ -230,45 +229,8 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
     <button class="nb" onclick="showPg('milestones',this)">Progress</button>
     <button class="nb" onclick="requireAdmin(this)">Admin</button>
   </nav>
-
-  <!-- CHECK IN PAGE -->
   <div class="pg on" id="pg-checkin">
-
-    <!-- PHOTO WALL — shown first -->
-    <div class="wall-section" id="wall-section">
-      <div class="wall-top">
-        <div>
-          <div class="wall-title">THE WALL</div>
-          <div class="wall-sub">#365Locked · People showing up daily</div>
-        </div>
-      </div>
-      <div class="wall-grid">
-        <div class="wall-item">
-          <img src="https://smhyobptjyvkuutotray.supabase.co/storage/v1/object/public/H365/D72CAE04-BB4A-448D-8011-7F0EFFB1290F.JPG" loading="lazy" />
-          <div class="wall-badge"><div class="wall-badge-day">DAY 14</div><div class="wall-badge-handle">@bybss</div></div>
-        </div>
-        <div class="wall-item">
-          <img src="https://smhyobptjyvkuutotray.supabase.co/storage/v1/object/public/H365/IMG_7087.PNG" loading="lazy" />
-          <div class="wall-badge"><div class="wall-badge-day">DAY 7</div><div class="wall-badge-handle">@bybss</div></div>
-        </div>
-        <div class="wall-item wall-item-wide">
-          <img src="https://smhyobptjyvkuutotray.supabase.co/storage/v1/object/public/H365/IMG_7114.PNG" loading="lazy" style="object-position:center 20%" />
-          <div class="wall-badge"><div class="wall-badge-day">DAY 21</div><div class="wall-badge-handle">@savianolivero</div></div>
-        </div>
-        <div class="wall-item">
-          <img src="https://smhyobptjyvkuutotray.supabase.co/storage/v1/object/public/H365/IMG_7115.PNG" loading="lazy" />
-          <div class="wall-badge"><div class="wall-badge-day">DAY 18</div><div class="wall-badge-handle">@melanin_maki</div></div>
-        </div>
-        <div class="wall-item">
-          <img src="https://smhyobptjyvkuutotray.supabase.co/storage/v1/object/public/H365/IMG_7117.PNG" loading="lazy" />
-          <div class="wall-badge"><div class="wall-badge-day">DAY 31</div><div class="wall-badge-handle">@ginomessineo_</div></div>
-        </div>
-      </div>
-      <button class="wall-cta" onclick="scrollToCheckin()">Join the Challenge — Start Day 1</button>
-      <div class="wall-divider"></div>
-    </div>
-
-    <div class="hero" id="checkin-form">
+    <div class="hero">
       <div class="hero-ey">Today's Check-In</div>
       <div class="hero-day">DAY<em id="day-num">—</em></div>
       <div class="hero-sub" id="day-sub">365 Challenge · Keep the streak alive</div>
@@ -344,7 +306,6 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
     </div>
     <div class="sp2"></div>
   </div>
-
   <div class="pg" id="pg-leaderboard">
     <div class="pt"><div class="stl">Leaderboard</div><div class="ssb">Top challengers — updated live</div></div>
     <div class="pad" id="lb-list"><div class="loading">Loading</div></div>
@@ -434,9 +395,6 @@ function showPg(id,btn){
   if(id==="leaderboard")loadLB();
   if(id==="admin")loadAdmin();
 }
-function scrollToCheckin(){
-  document.getElementById("checkin-form").scrollIntoView({behavior:"smooth"});
-}
 function showATab(id,btn){
   document.querySelectorAll(".asec").forEach(s=>s.classList.remove("on"));
   document.querySelectorAll(".atab").forEach(b=>b.classList.remove("on"));
@@ -466,7 +424,6 @@ function verifyCode(){
     document.getElementById("acc-st").textContent="Unlocked";document.getElementById("acc-st").className="acc-st unlocked";
     document.getElementById("acc-row").style.display="none";document.getElementById("acc-ok").classList.add("on");
     document.getElementById("acc-ok-sub").textContent=(va||vg)?"Ambassador access — rewards active":"Purchase verified — rewards active";
-    document.getElementById("submit-btn").textContent="Lock In Day 1";
     genCodes.forEach(c=>{if(c.code===code)c.used=true;});
   }else{
     document.getElementById("acc-code").style.borderColor="var(--red)";
@@ -495,7 +452,7 @@ async function lookupStreak(){
     document.getElementById("streak-pill").classList.add("on");
     document.getElementById("day-sub").textContent="Keep the streak alive — "+p.total_checkins+" check-ins logged";
     document.getElementById("pass-count").textContent=Math.max(0,1-(p.free_passes_used||0));document.getElementById("pass-bar").classList.add("on");
-    document.getElementById("submit-btn").textContent="Lock In Day "+p.current_streak;
+    document.getElementById("submit-btn").textContent="Lock In Day "+(p.current_streak+1);
     updateMS(p.current_streak);ban("s","Welcome back "+p.name+" — Day "+p.current_streak+" streak active");checkClaim(p);
     if(p.access_verified){accVerified=true;document.getElementById("acc-st").textContent="Unlocked";document.getElementById("acc-st").className="acc-st unlocked";document.getElementById("acc-row").style.display="none";document.getElementById("acc-ok").classList.add("on");document.getElementById("acc-ok-sub").textContent="Previously verified";}
   }catch(e){ban("e","Lookup failed — try again");}
@@ -540,7 +497,7 @@ async function submitCheckin(){
     document.getElementById("story-preview").style.display="block";document.getElementById("story-preview").scrollIntoView({behavior:"smooth"});
     let msg="Day "+streak+" locked in!";if(usedPass)msg+=" Free pass used.";if(reset)msg="Streak reset — starting fresh at Day 1.";if([30,60,90].includes(streak))msg+=" Milestone hit — claim your reward!";
     ban("s",msg);participant={...p,...upd};
-    document.getElementById("submit-btn").textContent="Lock In Day "+(streak+1);
+    btn.textContent="Lock In Day "+(streak+1);
     if([30,60,90].includes(streak))checkClaim(participant);
   }catch(e){ban("e","Submission failed: "+e.message);}
   btn.disabled=false;
@@ -581,23 +538,4 @@ function renderCodes(){
   if(!genCodes.length){list.innerHTML="<div style='font-size:11px;color:var(--gray2);text-align:center;padding:14px'>No codes generated yet</div>";return;}
   list.innerHTML=genCodes.map(c=>"<div class='code-item' style='"+(c.used?"opacity:.35":"")+"'><div><div class='code-val'>"+c.code+"</div><div class='code-meta'>"+c.name+" · "+(c.used?"Used":"Active")+"</div></div><button class='code-copy' onclick='navigator.clipboard.writeText(\""+c.code+"\").then(()=>{this.textContent=\"Copied\";setTimeout(()=>this.textContent=\"Copy\",1500)})'>Copy</button></div>").join("");
 }
-function shareIG(){downloadCard(true);setTimeout(()=>{if(navigator.share){navigator.share({title:"Day "+document.getElementById("card-day").textContent+" #365Locked",text:"Day "+document.getElementById("card-day").textContent+" of the 365 Challenge. #365Locked @habits365"});}else{ban("i","Card saved — open Instagram and add to your story");}},600);}
-function downloadCard(silent=false){
-  const cv=document.createElement("canvas");cv.width=1080;cv.height=1920;const ctx=cv.getContext("2d");
-  const handle=document.getElementById("handle").value.trim().replace("@","").toUpperCase(),day=document.getElementById("card-day").textContent;
-  const draw=()=>{
-    ctx.fillStyle="rgba(0,0,0,.65)";ctx.fillRect(0,0,1080,1920);
-    ctx.fillStyle="#fff";ctx.font="900 72px sans-serif";ctx.fillText("HABITS 365",60,120);
-    ctx.fillStyle="#fff";ctx.fillRect(1080-210,72,170,36);ctx.fillStyle="#000";ctx.font="800 13px sans-serif";ctx.fillText("#365LOCKED",1080-200,96);
-    ctx.fillStyle="rgba(255,255,255,.4)";ctx.font="600 26px sans-serif";ctx.fillText("@"+handle,60,1650);
-    ctx.fillStyle="#fff";ctx.font="900 210px sans-serif";ctx.fillText("DAY",60,1826);
-    ctx.fillStyle="#e8ff00";ctx.fillText(day,60+ctx.measureText("DAY ").width,1826);
-    ctx.fillStyle="#e8ff00";ctx.font="800 36px sans-serif";ctx.fillText("#365LOCKED",60,1880);
-    if(!silent){const a=document.createElement("a");a.download="habits365_day"+day+".png";a.href=cv.toDataURL("image/png");a.click();}
-  };
-  if(photo){const img=new Image();img.onload=()=>{ctx.drawImage(img,0,0,1080,1920);draw();};img.src=photo;}
-  else{ctx.fillStyle="#050505";ctx.fillRect(0,0,1080,1920);draw();}
-}
-</script>
-</body>
-</html>
+function shareIG(){downloadCard(true);setTimeout(()=>{if(navigator.share){navigator.share({title:"Day "+document.ge
