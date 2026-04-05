@@ -49,6 +49,20 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .bd.g{background:var(--green)}.bd.r{background:var(--red)}.bd.y{background:var(--accent)}.bd.w{background:var(--gray2)}
 .bt{font-size:13px;font-weight:500;line-height:1.5;color:var(--off)}
 .bt.g{color:#66ffaa}.bt.r{color:#ff8080}.bt.y{color:var(--accent)}
+
+/* NOTIFICATION SETUP CARD */
+.notif-setup{margin:16px 20px 0;background:var(--s2);border:1px solid rgba(232,255,0,.25);border-radius:2px;padding:14px 16px}
+.notif-setup-title{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.notif-setup-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.notif-setup-lbl{font-family:"Barlow Condensed",sans-serif;font-size:16px;font-weight:900;color:var(--white);letter-spacing:.04em}
+.notif-setup-body{font-size:12px;color:var(--gray2);line-height:1.8;font-weight:500}
+.notif-setup-body strong{color:var(--white);font-weight:700}
+.notif-setup-steps{margin-top:8px;display:flex;flex-direction:column;gap:6px}
+.notif-step{display:flex;align-items:flex-start;gap:8px}
+.notif-step-num{font-family:"Barlow Condensed",sans-serif;font-size:14px;font-weight:900;color:var(--accent);flex-shrink:0;width:16px}
+.notif-step-text{font-size:12px;color:var(--gray2);font-weight:500;line-height:1.5}
+.notif-step-text strong{color:var(--white);font-weight:700}
+
 .fp{padding:0 20px}
 .field{margin-bottom:14px}
 .fl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);font-weight:700;display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
@@ -101,11 +115,19 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .sc-inst-title{font-family:"Barlow Condensed",sans-serif;font-size:17px;font-weight:900;color:var(--white);margin-bottom:4px;letter-spacing:.04em}
 .sc-inst-body{font-size:12px;color:var(--gray2);line-height:1.7;font-weight:500}
 .sc-inst-body strong{color:var(--white);font-weight:700}
-.not-banner{margin:12px 20px 0;background:var(--s2);border:1px solid rgba(232,255,0,.15);border-radius:2px;padding:14px 16px}
-.nb-title{font-size:13px;font-weight:700;color:var(--white);margin-bottom:6px}
-.nb-body{font-size:12px;color:var(--gray2);line-height:1.7;font-weight:500}
-.nb-body strong{color:var(--white);font-weight:700}
-.nb-btn{margin-top:10px;width:100%;padding:12px;background:var(--accent);color:var(--black);border:none;border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:16px;font-weight:900;cursor:pointer;letter-spacing:.06em;text-transform:uppercase}
+
+/* POST-CHECKIN NOTIFICATION BANNER */
+.notif-banner-big{margin:16px 20px 0;background:var(--black);border:1px solid var(--accent);border-radius:2px;padding:18px 16px}
+.nbb-top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.nbb-icon{width:36px;height:36px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.nbb-title{font-family:"Barlow Condensed",sans-serif;font-size:20px;font-weight:900;color:var(--white);letter-spacing:.04em;line-height:1.1}
+.nbb-steps{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+.nbb-step{display:flex;align-items:flex-start;gap:10px}
+.nbb-step-badge{font-family:"Barlow Condensed",sans-serif;font-size:12px;font-weight:900;color:var(--black);background:var(--accent);padding:2px 8px;border-radius:2px;flex-shrink:0;margin-top:1px;letter-spacing:.04em}
+.nbb-step-text{font-size:13px;color:var(--gray2);font-weight:500;line-height:1.5}
+.nbb-step-text strong{color:var(--white);font-weight:700}
+.nbb-btn{width:100%;padding:14px;background:var(--accent);color:var(--black);border:none;border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:18px;font-weight:900;cursor:pointer;letter-spacing:.06em;text-transform:uppercase}
+
 .prog-hero{padding:22px 20px 16px;border-bottom:1px solid var(--border)}
 .prog-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:14px}
 .prog-big{font-family:"Barlow Condensed",sans-serif;font-size:76px;font-weight:900;line-height:.82;color:var(--white)}
@@ -190,6 +212,14 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .te{background:rgba(232,255,0,.1);color:var(--accent);border:1px solid rgba(232,255,0,.2)}
 .tl2{background:rgba(255,255,255,.05);color:var(--gray);border:1px solid rgba(255,255,255,.08)}
 .tc{background:transparent;color:var(--gray2);border:1px solid var(--border)}
+.alert-block{margin-bottom:14px}
+.alert-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.16em;color:var(--accent);font-weight:700;margin-bottom:8px;padding:0 2px}
+.alert-item{display:flex;align-items:center;gap:12px;padding:10px 14px;background:rgba(232,255,0,.04);border:1px solid rgba(232,255,0,.15);border-radius:2px;margin-bottom:6px}
+.alert-days{font-family:"Barlow Condensed",sans-serif;font-size:22px;font-weight:900;color:var(--accent);min-width:36px}
+.alert-info{flex:1}
+.alert-name{font-size:13px;font-weight:700;color:var(--white)}
+.alert-sub{font-size:10px;color:var(--gray2);margin-top:1px}
+.alert-ms{font-size:10px;font-weight:800;color:var(--accent);text-align:right;white-space:nowrap}
 .codegen{background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:14px;margin-bottom:12px}
 .codegen-title{font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:var(--gray2);font-weight:700;margin-bottom:10px}
 .codegen-row{display:flex;gap:8px;margin-bottom:10px}
@@ -299,17 +329,6 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
         <button class="bp" id="submit-btn-r" onclick="submitCheckinReturning()">Lock In Today</button>
         <button class="bg" style="font-size:12px;padding:10px" onclick="switchToNewUser()">Not you? Switch account</button>
       </div>
-      <div class="not-banner" id="notif-banner" style="display:none">
-        <div class="nb-title">Get daily streak reminders</div>
-        <div class="nb-body">
-          Add this app to your home screen to never miss a day.<br><br>
-          <strong>iPhone:</strong> Tap the Share button at the bottom of Safari → tap <strong>"Add to Home Screen"</strong> → tap Add.<br><br>
-          <strong>Android:</strong> Tap the three dots menu → tap <strong>"Add to Home Screen"</strong> → tap Add.<br><br>
-          Once added, open it from your home screen and allow notifications when asked.
-        </div>
-        <button class="nb-btn" onclick="requestNotifications()">Enable Notifications</button>
-      </div>
-      <div style="padding:12px 20px;font-size:11px;color:var(--gray2);text-align:center;line-height:1.6">One free pass per 30 days if you miss a day.</div>
     </div>
 
     <!-- NEW USER -->
@@ -319,6 +338,29 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
         <div style="font-family:'Barlow Condensed',sans-serif;font-size:52px;font-weight:900;line-height:.86;color:var(--white);margin-bottom:6px">START<em style="color:var(--accent);font-style:normal;display:block">DAY 1.</em></div>
         <div style="font-size:11px;color:var(--gray2);letter-spacing:.1em;text-transform:uppercase;font-weight:600">One time setup · 30 seconds</div>
       </div>
+
+      <!-- NOTIFICATION SETUP — shown to new users at top -->
+      <div class="notif-setup">
+        <div class="notif-setup-title">
+          <div class="notif-setup-dot"></div>
+          <div class="notif-setup-lbl">Get daily reminders — add to home screen</div>
+        </div>
+        <div class="notif-setup-steps">
+          <div class="notif-step">
+            <div class="notif-step-num">1</div>
+            <div class="notif-step-text"><strong>iPhone:</strong> Tap the Share button in Safari → <strong>Add to Home Screen</strong> → Add</div>
+          </div>
+          <div class="notif-step">
+            <div class="notif-step-num">2</div>
+            <div class="notif-step-text"><strong>Android:</strong> Tap the 3-dot menu in Chrome → <strong>Add to Home Screen</strong> → Add</div>
+          </div>
+          <div class="notif-step">
+            <div class="notif-step-num">3</div>
+            <div class="notif-step-text">Open from your <strong>home screen icon</strong> and allow notifications when asked</div>
+          </div>
+        </div>
+      </div>
+
       <div class="ban s" id="b-s2"><div class="bd g"></div><div class="bt g" id="b-s2-t"></div></div>
       <div class="ban e" id="b-e2"><div class="bd r"></div><div class="bt r" id="b-e2-t"></div></div>
       <div class="fp mt">
@@ -364,6 +406,31 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
         <button class="bp" style="margin-bottom:0" onclick="downloadCard()">Save Card to Photos</button>
       </div>
     </div>
+
+    <!-- POST CHECKIN NOTIFICATION BANNER -->
+    <div class="notif-banner-big" id="notif-banner" style="display:none">
+      <div class="nbb-top">
+        <div class="nbb-icon">🔔</div>
+        <div class="nbb-title">Never miss a day — turn on notifications</div>
+      </div>
+      <div class="nbb-steps">
+        <div class="nbb-step">
+          <div class="nbb-step-badge">iPhone</div>
+          <div class="nbb-step-text">In Safari tap the <strong>Share button</strong> → <strong>Add to Home Screen</strong> → Add. Then open from your home screen icon.</div>
+        </div>
+        <div class="nbb-step">
+          <div class="nbb-step-badge">Android</div>
+          <div class="nbb-step-text">In Chrome tap the <strong>3-dot menu</strong> → <strong>Add to Home Screen</strong> → Add. Then open from your home screen icon.</div>
+        </div>
+        <div class="nbb-step">
+          <div class="nbb-step-badge">Then</div>
+          <div class="nbb-step-text">Tap the button below and <strong>allow notifications</strong> when your phone asks.</div>
+        </div>
+      </div>
+      <button class="nbb-btn" onclick="requestNotifications()">Enable Daily Reminders</button>
+    </div>
+
+    <div style="padding:12px 20px;font-size:11px;color:var(--gray2);text-align:center;line-height:1.6">One free pass per 30 days if you miss a day.</div>
     <div class="sp2"></div>
   </div>
 
@@ -440,12 +507,19 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
         <div class="ac"><div class="an" id="s-pending">—</div><div class="al">To Review</div></div>
       </div>
       <div class="atabs">
-        <button class="atab on" onclick="showATab('photos',this)">Photos</button>
+        <button class="atab on" onclick="showATab('alerts',this)">Alerts</button>
+        <button class="atab" onclick="showATab('photos',this)">Photos</button>
         <button class="atab" onclick="showATab('rewards',this)">Rewards</button>
         <button class="atab" onclick="showATab('people',this)">People</button>
         <button class="atab" onclick="showATab('codes',this)">Codes</button>
       </div>
-      <div class="asec on" id="at-photos"><div id="photo-review-list"><div class="loading">Loading</div></div></div>
+
+      <!-- ALERTS TAB — milestone alerts -->
+      <div class="asec on" id="at-alerts">
+        <div id="milestone-alerts"><div class="loading">Loading</div></div>
+      </div>
+
+      <div class="asec" id="at-photos"><div id="photo-review-list"><div class="loading">Loading</div></div></div>
       <div class="asec" id="at-rewards"><div id="admin-alerts"><div class="loading">Loading</div></div></div>
       <div class="asec" id="at-people"><div id="admin-parts"><div class="loading">Loading</div></div></div>
       <div class="asec" id="at-codes">
@@ -496,10 +570,7 @@ window.addEventListener("load",async()=>{
   if("serviceWorker" in navigator){try{await navigator.serviceWorker.register("/sw.js");}catch(e){}}
   if(localStorage.getItem("h365_seen"))document.getElementById("splash").style.display="none";
   const u=saved.get();
-  if(u&&u.handle){
-    showReturningUser(u);
-    await refreshParticipant(u.handle);
-  }
+  if(u&&u.handle){showReturningUser(u);await refreshParticipant(u.handle);}
 });
 
 function startChallenge(){
@@ -560,8 +631,7 @@ function ban(type,msg){
   ["s","e","w","i","s2","e2"].forEach(t=>{const el=document.getElementById("b-"+t);if(el)el.classList.remove("on");});
   if(type){
     ["b-"+type,"b-"+type+"2"].forEach(id=>{
-      const el=document.getElementById(id);
-      const tel=document.getElementById(id+"-t");
+      const el=document.getElementById(id);const tel=document.getElementById(id+"-t");
       if(el&&tel){tel.textContent=msg;el.classList.add("on");}
     });
   }
@@ -637,6 +707,7 @@ async function doSubmit(h,n,em,btn,mode){
     document.getElementById("ru-name").textContent=n;
     document.getElementById("ru-handle").textContent="@"+h;
     document.getElementById("ru-streak").textContent=streak;
+    // Show big notification banner after story card
     document.getElementById("notif-banner").style.display="block";
     let msg="Day "+streak+" locked in!";
     if(usedPass)msg+=" Free pass used.";
@@ -715,14 +786,14 @@ async function loadHistory(pid){
 
 async function requestNotifications(){
   if(!("Notification" in window)){
-    document.getElementById("notif-banner").innerHTML='<div class="nb-title">Add to home screen first</div><div class="nb-body">Open this app from your home screen icon, then try again.</div>';return;
+    document.getElementById("notif-banner").innerHTML='<div class="nb-title" style="font-family:\'Barlow Condensed\',sans-serif;font-size:18px;font-weight:900;color:var(--white);margin-bottom:6px">Add to home screen first</div><div style="font-size:12px;color:var(--gray2)">Open this app from your home screen icon, then tap Enable again.</div>';return;
   }
   const perm=await Notification.requestPermission();
   if(perm==="granted"){
-    document.getElementById("notif-banner").innerHTML='<div class="nb-title">Notifications enabled</div><div class="nb-body" style="color:var(--green)">You will get a daily reminder at 9am. Never break the streak.</div>';
+    document.getElementById("notif-banner").innerHTML='<div style="display:flex;align-items:center;gap:10px"><div style="width:36px;height:36px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">✓</div><div><div style="font-family:\'Barlow Condensed\',sans-serif;font-size:18px;font-weight:900;color:var(--white)">Notifications enabled</div><div style="font-size:12px;color:var(--gray2);margin-top:2px">Daily reminder set for 9am. Never break the streak.</div></div></div>';
     scheduleNotification();
   }else{
-    document.getElementById("notif-banner").innerHTML='<div class="nb-title">Allow notifications</div><div class="nb-body">Go to Settings on your phone → find your browser → turn on notifications. Then come back here.</div>';
+    document.getElementById("notif-banner").innerHTML='<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:18px;font-weight:900;color:var(--white);margin-bottom:6px">Notifications blocked</div><div style="font-size:12px;color:var(--gray2);line-height:1.7">Go to your phone <strong style="color:var(--white)">Settings</strong> → find your browser → turn on notifications. Then come back and try again.</div>';
   }
 }
 
@@ -783,6 +854,34 @@ async function loadAdmin(){
     document.getElementById("s-today").textContent=tod?tod.length:0;
     document.getElementById("s-elite").textContent=legends.length;
     document.getElementById("s-pending").textContent=pending?pending.length:0;
+
+    // MILESTONE ALERTS — who's close
+    const ma=document.getElementById("milestone-alerts");
+    if(!all||!all.length){ma.innerHTML='<div class="loading">No participants yet</div>';}
+    else{
+      const close=[];
+      all.forEach(p=>{
+        MS.forEach(m=>{
+          const daysLeft=m-p.current_streak;
+          if(daysLeft>0&&daysLeft<=5){
+            close.push({p,m,daysLeft});
+          }
+        });
+      });
+      if(!close.length){
+        ma.innerHTML='<div style="font-size:11px;color:var(--gray2);text-align:center;padding:20px;letter-spacing:.06em">No one within 5 days of a milestone</div>';
+      }else{
+        const sorted=close.sort((a,b)=>a.daysLeft-b.daysLeft);
+        const md=MS_DATA;
+        ma.innerHTML='<div class="alert-lbl">Close to milestone</div>'+sorted.map(({p,m,daysLeft})=>{
+          const mLabel=md[m]?md[m].tier:"Day "+m;
+          const mReward=md[m]?md[m].reward:"";
+          return '<div class="alert-item"><div class="alert-days">'+daysLeft+'<div style="font-size:9px;color:var(--gray2);font-weight:600;letter-spacing:.06em;text-transform:uppercase">days</div></div><div class="alert-info"><div class="alert-name">'+p.name+'</div><div class="alert-sub">@'+p.instagram_handle+' · Day '+p.current_streak+' streak</div></div><div class="alert-ms">Day '+m+'<br>'+mReward+'</div></div>';
+        }).join("")+'<div style="margin-top:10px;font-size:11px;color:var(--gray2);line-height:1.6;font-weight:500">Prepare their reward now — create a Shopify discount code, draft the IG feature post, have the DM ready.</div>';
+      }
+    }
+
+    // PHOTO REVIEW
     const pr=document.getElementById("photo-review-list");
     if(!pending||!pending.length){pr.innerHTML='<div class="loading">No photos pending review</div>';}
     else{
@@ -794,6 +893,8 @@ async function loadAdmin(){
         return '<div class="photo-card">'+(c.photo_data?'<img class="photo-card-img" src="'+c.photo_data+'" />':`<div class="photo-card-img" style="display:flex;align-items:center;justify-content:center;color:var(--gray2);font-size:11px">NO PHOTO</div>`)+'<div class="photo-card-body"><div class="photo-card-name">'+p.name+' — Day '+c.day_number+'</div><div class="photo-card-meta">@'+(p.instagram_handle||"?")+" · "+fmtDate(c.checkin_date)+'</div><div class="photo-card-actions"><button class="btn-approve" onclick="reviewPhoto(\''+c.id+'\',\'approved\')">✓ Approve</button><button class="btn-flag" onclick="reviewPhoto(\''+c.id+'\',\'flagged\')">✕ Flag</button></div></div></div>';
       }).join("");
     }
+
+    // REWARDS
     const ae=document.getElementById("admin-alerts");
     if(!mil||!mil.length){ae.innerHTML='<div class="loading">No pending rewards</div>';}
     else{
@@ -806,16 +907,21 @@ async function loadAdmin(){
         return '<div class="ar"><div class="ard"></div><div style="flex:1"><div class="arn">@'+(p.instagram_handle||"?")+" — "+md.label+'</div><div class="ari">'+(p.email||"no email")+" · "+md.rec+'</div></div><button class="bsm" onclick="markSent(\''+m.id+'\')">Mark Sent</button></div>';
       }).join("");
     }
+
+    // PEOPLE
     const pe=document.getElementById("admin-parts");
     if(!all||!all.length){pe.innerHTML='<div class="loading">No participants yet</div>';return;}
     pe.innerHTML=all.map(p=>{
       const tier=p.current_streak>=365?"te":p.current_streak>=60?"tl2":"tc";
       const tl=tier==="te"?"LEGEND":tier==="tl2"?"LOCKED IN":"COMMITTED";
       const flagged=p.flagged?' <span style="color:var(--red);font-weight:700">· Flagged</span>':"";
-      return '<div class="pr"><div class="pav">'+ini(p.name)+'</div><div class="pin"><div class="pna">'+p.name+'</div><div class="pme">@'+p.instagram_handle+" · "+(p.email||"no email")+'</div><div class="pme">'+p.total_checkins+' check-ins'+flagged+'</div><span class="tier '+tier+'">'+tl+'</span></div><div><div class="pst">'+p.current_streak+'</div><div class="psl">days</div></div></div>';
+      const daysToNext=p.current_streak<30?30-p.current_streak:p.current_streak<60?60-p.current_streak:p.current_streak<365?365-p.current_streak:0;
+      const closeAlert=daysToNext>0&&daysToNext<=5?'<span style="color:var(--accent);font-weight:700;font-size:10px"> · '+daysToNext+'d to next milestone</span>':"";
+      return '<div class="pr"><div class="pav">'+ini(p.name)+'</div><div class="pin"><div class="pna">'+p.name+'</div><div class="pme">@'+p.instagram_handle+" · "+(p.email||"no email")+'</div><div class="pme">'+p.total_checkins+' check-ins'+flagged+closeAlert+'</div><span class="tier '+tier+'">'+tl+'</span></div><div><div class="pst">'+p.current_streak+'</div><div class="psl">days</div></div></div>';
     }).join("");
-  }catch(e){document.getElementById("photo-review-list").innerHTML='<div class="loading">Error loading</div>';}
+  }catch(e){document.getElementById("milestone-alerts").innerHTML='<div class="loading">Error loading</div>';}
 }
+
 async function reviewPhoto(id,status){
   try{
     await api("checkins?id=eq."+id,{method:"PATCH",body:{photo_status:status},prefer:"return=minimal"});
@@ -853,13 +959,8 @@ function downloadCard(silent=false){
     ctx.fillText(String(day),day<10?160:day<100?60:40,1900);
     if(!silent){const a=document.createElement("a");a.download="habits365_day"+day+".png";a.href=cv.toDataURL("image/png",1.0);a.click();}
   };
-  if(photo){
-    const img=new Image();
-    img.onload=()=>{ctx.drawImage(img,0,0,1080,1920);finish();};
-    img.src=photo;
-  }else{
-    ctx.fillStyle="#080808";ctx.fillRect(0,0,1080,1920);finish();
-  }
+  if(photo){const img=new Image();img.onload=()=>{ctx.drawImage(img,0,0,1080,1920);finish();};img.src=photo;}
+  else{ctx.fillStyle="#080808";ctx.fillRect(0,0,1080,1920);finish();}
 }
 </script>
 </body>
