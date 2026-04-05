@@ -49,20 +49,6 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .bd.g{background:var(--green)}.bd.r{background:var(--red)}.bd.y{background:var(--accent)}.bd.w{background:var(--gray2)}
 .bt{font-size:13px;font-weight:500;line-height:1.5;color:var(--off)}
 .bt.g{color:#66ffaa}.bt.r{color:#ff8080}.bt.y{color:var(--accent)}
-
-/* NOTIFICATION SETUP CARD */
-.notif-setup{margin:16px 20px 0;background:var(--s2);border:1px solid rgba(232,255,0,.25);border-radius:2px;padding:14px 16px}
-.notif-setup-title{display:flex;align-items:center;gap:8px;margin-bottom:8px}
-.notif-setup-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0}
-.notif-setup-lbl{font-family:"Barlow Condensed",sans-serif;font-size:16px;font-weight:900;color:var(--white);letter-spacing:.04em}
-.notif-setup-body{font-size:12px;color:var(--gray2);line-height:1.8;font-weight:500}
-.notif-setup-body strong{color:var(--white);font-weight:700}
-.notif-setup-steps{margin-top:8px;display:flex;flex-direction:column;gap:6px}
-.notif-step{display:flex;align-items:flex-start;gap:8px}
-.notif-step-num{font-family:"Barlow Condensed",sans-serif;font-size:14px;font-weight:900;color:var(--accent);flex-shrink:0;width:16px}
-.notif-step-text{font-size:12px;color:var(--gray2);font-weight:500;line-height:1.5}
-.notif-step-text strong{color:var(--white);font-weight:700}
-
 .fp{padding:0 20px}
 .field{margin-bottom:14px}
 .fl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);font-weight:700;display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
@@ -115,19 +101,6 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .sc-inst-title{font-family:"Barlow Condensed",sans-serif;font-size:17px;font-weight:900;color:var(--white);margin-bottom:4px;letter-spacing:.04em}
 .sc-inst-body{font-size:12px;color:var(--gray2);line-height:1.7;font-weight:500}
 .sc-inst-body strong{color:var(--white);font-weight:700}
-
-/* POST-CHECKIN NOTIFICATION BANNER */
-.notif-banner-big{margin:16px 20px 0;background:var(--black);border:1px solid var(--accent);border-radius:2px;padding:18px 16px}
-.nbb-top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.nbb-icon{width:36px;height:36px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.nbb-title{font-family:"Barlow Condensed",sans-serif;font-size:20px;font-weight:900;color:var(--white);letter-spacing:.04em;line-height:1.1}
-.nbb-steps{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
-.nbb-step{display:flex;align-items:flex-start;gap:10px}
-.nbb-step-badge{font-family:"Barlow Condensed",sans-serif;font-size:12px;font-weight:900;color:var(--black);background:var(--accent);padding:2px 8px;border-radius:2px;flex-shrink:0;margin-top:1px;letter-spacing:.04em}
-.nbb-step-text{font-size:13px;color:var(--gray2);font-weight:500;line-height:1.5}
-.nbb-step-text strong{color:var(--white);font-weight:700}
-.nbb-btn{width:100%;padding:14px;background:var(--accent);color:var(--black);border:none;border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:18px;font-weight:900;cursor:pointer;letter-spacing:.06em;text-transform:uppercase}
-
 .prog-hero{padding:22px 20px 16px;border-bottom:1px solid var(--border)}
 .prog-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:14px}
 .prog-big{font-family:"Barlow Condensed",sans-serif;font-size:76px;font-weight:900;line-height:.82;color:var(--white)}
@@ -255,18 +228,9 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
   <div class="splash-headline">YOU SAID<em>YOU WOULD.</em></div>
   <div class="splash-sub">One check-in. Every day. Wear the brand. Build the streak.</div>
   <div class="splash-tiers">
-    <div class="splash-tier">
-      <div><div class="splash-tier-day">Day 30</div><div class="splash-tier-name">Committed</div></div>
-      <div class="splash-tier-reward">$75 Credit</div>
-    </div>
-    <div class="splash-tier">
-      <div><div class="splash-tier-day">Day 60</div><div class="splash-tier-name">Locked In</div></div>
-      <div class="splash-tier-reward">$150 Credit</div>
-    </div>
-    <div class="splash-tier" style="border-color:rgba(232,255,0,.2)">
-      <div><div class="splash-tier-day">Day 365</div><div class="splash-tier-name">Legend</div></div>
-      <div class="splash-tier-reward">$500 Box</div>
-    </div>
+    <div class="splash-tier"><div><div class="splash-tier-day">Day 30</div><div class="splash-tier-name">Committed</div></div><div class="splash-tier-reward">$75 Credit</div></div>
+    <div class="splash-tier"><div><div class="splash-tier-day">Day 60</div><div class="splash-tier-name">Locked In</div></div><div class="splash-tier-reward">$150 Credit</div></div>
+    <div class="splash-tier" style="border-color:rgba(232,255,0,.2)"><div><div class="splash-tier-day">Day 365</div><div class="splash-tier-name">Legend</div></div><div class="splash-tier-reward">$500 Box</div></div>
   </div>
   <button class="splash-cta" onclick="startChallenge()">Start Your 365 →</button>
   <div class="splash-note">Free to join · No purchase required</div>
@@ -297,6 +261,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
     <button class="nb" onclick="showPg('progress',this)">My Progress</button>
   </nav>
 
+  <!-- CHECK IN PAGE -->
   <div class="pg on" id="pg-checkin">
 
     <!-- RETURNING USER -->
@@ -317,11 +282,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
       <div class="photo-zone mt">
         <div class="pz-label">Today's Photo <span>* Wear your Habits 365 gear</span></div>
         <div class="uz" id="uz-r" onclick="document.getElementById('pi').click()">
-          <div class="uz-in" id="uz-in-r">
-            <div class="uz-ic">📸</div>
-            <div class="uz-tx">Tap to upload</div>
-            <div class="uz-hint">Show your workout in Habits 365 gear</div>
-          </div>
+          <div class="uz-in" id="uz-in-r"><div class="uz-ic">📸</div><div class="uz-tx">Tap to upload</div><div class="uz-hint">Show your workout in Habits 365 gear</div></div>
           <img id="prev-img-r" style="display:none" />
         </div>
       </div>
@@ -338,29 +299,6 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
         <div style="font-family:'Barlow Condensed',sans-serif;font-size:52px;font-weight:900;line-height:.86;color:var(--white);margin-bottom:6px">START<em style="color:var(--accent);font-style:normal;display:block">DAY 1.</em></div>
         <div style="font-size:11px;color:var(--gray2);letter-spacing:.1em;text-transform:uppercase;font-weight:600">One time setup · 30 seconds</div>
       </div>
-
-      <!-- NOTIFICATION SETUP — shown to new users at top -->
-      <div class="notif-setup">
-        <div class="notif-setup-title">
-          <div class="notif-setup-dot"></div>
-          <div class="notif-setup-lbl">Get daily reminders — add to home screen</div>
-        </div>
-        <div class="notif-setup-steps">
-          <div class="notif-step">
-            <div class="notif-step-num">1</div>
-            <div class="notif-step-text"><strong>iPhone:</strong> Tap the Share button in Safari → <strong>Add to Home Screen</strong> → Add</div>
-          </div>
-          <div class="notif-step">
-            <div class="notif-step-num">2</div>
-            <div class="notif-step-text"><strong>Android:</strong> Tap the 3-dot menu in Chrome → <strong>Add to Home Screen</strong> → Add</div>
-          </div>
-          <div class="notif-step">
-            <div class="notif-step-num">3</div>
-            <div class="notif-step-text">Open from your <strong>home screen icon</strong> and allow notifications when asked</div>
-          </div>
-        </div>
-      </div>
-
       <div class="ban s" id="b-s2"><div class="bd g"></div><div class="bt g" id="b-s2-t"></div></div>
       <div class="ban e" id="b-e2"><div class="bd r"></div><div class="bt r" id="b-e2-t"></div></div>
       <div class="fp mt">
@@ -371,11 +309,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
       <div class="photo-zone">
         <div class="pz-label">Today's Photo <span>* Wear your Habits 365 gear</span></div>
         <div class="uz" id="uz" onclick="document.getElementById('pi').click()">
-          <div class="uz-in" id="uz-in">
-            <div class="uz-ic">📸</div>
-            <div class="uz-tx">Tap to upload your photo</div>
-            <div class="uz-hint">Show your workout in Habits 365 gear</div>
-          </div>
+          <div class="uz-in" id="uz-in"><div class="uz-ic">📸</div><div class="uz-tx">Tap to upload your photo</div><div class="uz-hint">Show your workout in Habits 365 gear</div></div>
           <img id="prev-img" style="display:none" />
         </div>
       </div>
@@ -386,7 +320,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 
     <input type="file" id="pi" accept="image/*" onchange="handlePhoto(event)" />
 
-    <!-- STORY CARD -->
+    <!-- STORY CARD — shown after submit -->
     <div class="sp" id="story-preview">
       <div class="sp-lb">Your Story Card</div>
       <div class="sc">
@@ -402,56 +336,30 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
         <div class="sc-inst-title">Save to your phone</div>
         <div class="sc-inst-body">Then open Instagram → add to your story → tag <strong>@habits_365</strong></div>
       </div>
-    <div class="bw mt">
-  <button class="bp" style="margin-bottom:10px" onclick="downloadCard()">Save Card to Photos</button>
-  <div style="background:var(--s2);border:1px solid rgba(232,255,0,.2);border-radius:2px;padding:14px 16px;margin-bottom:14px">
-    <div style="font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:900;color:var(--accent);letter-spacing:.06em;margin-bottom:6px">GET DAILY REMINDERS</div>
-    <div style="font-size:12px;color:var(--gray2);line-height:1.8;font-weight:500">
-      <strong style="color:var(--white)">iPhone:</strong> Tap Share in Safari → <strong style="color:var(--white)">Add to Home Screen</strong><br>
-      <strong style="color:var(--white)">Android:</strong> Tap 3-dot menu → <strong style="color:var(--white)">Add to Home Screen</strong><br>
-      Then open from your home screen icon and allow notifications.
-    </div>
-  </div>
-</div>
-      </div>
-    </div>
-
-    <!-- POST CHECKIN NOTIFICATION BANNER -->
-    <div class="notif-banner-big" id="notif-banner" style="display:none">
-      <div class="nbb-top">
-        <div class="nbb-icon">🔔</div>
-        <div class="nbb-title">Never miss a day — turn on notifications</div>
-      </div>
-      <div class="nbb-steps">
-        <div class="nbb-step">
-          <div class="nbb-step-badge">iPhone</div>
-          <div class="nbb-step-text">In Safari tap the <strong>Share button</strong> → <strong>Add to Home Screen</strong> → Add. Then open from your home screen icon.</div>
-        </div>
-        <div class="nbb-step">
-          <div class="nbb-step-badge">Android</div>
-          <div class="nbb-step-text">In Chrome tap the <strong>3-dot menu</strong> → <strong>Add to Home Screen</strong> → Add. Then open from your home screen icon.</div>
-        </div>
-        <div class="nbb-step">
-          <div class="nbb-step-badge">Then</div>
-          <div class="nbb-step-text">Tap the button below and <strong>allow notifications</strong> when your phone asks.</div>
+      <div class="bw mt">
+        <button class="bp" style="margin-bottom:10px" onclick="downloadCard()">Save Card to Photos</button>
+        <!-- NOTIFICATION REMINDER — right below save button on page 1 after submit -->
+        <div style="background:var(--s2);border:1px solid rgba(232,255,0,.2);border-radius:2px;padding:14px 16px;margin-bottom:14px">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:900;color:var(--accent);letter-spacing:.06em;margin-bottom:6px">GET DAILY REMINDERS</div>
+          <div style="font-size:12px;color:var(--gray2);line-height:1.8;font-weight:500">
+            <strong style="color:var(--white)">iPhone:</strong> Tap Share in Safari → <strong style="color:var(--white)">Add to Home Screen</strong><br>
+            <strong style="color:var(--white)">Android:</strong> Tap 3-dot menu → <strong style="color:var(--white)">Add to Home Screen</strong><br>
+            Open from your home screen icon and allow notifications.
+          </div>
+          <button style="margin-top:10px;width:100%;padding:12px;background:var(--accent);color:var(--black);border:none;border-radius:2px;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;cursor:pointer;letter-spacing:.06em;text-transform:uppercase" onclick="requestNotifications()">Enable Notifications</button>
         </div>
       </div>
-      <button class="nbb-btn" onclick="requestNotifications()">Enable Daily Reminders</button>
     </div>
-
-    <div style="padding:12px 20px;font-size:11px;color:var(--gray2);text-align:center;line-height:1.6">One free pass per 30 days if you miss a day.</div>
+    <div style="padding:10px 20px;font-size:11px;color:var(--gray2);text-align:center;line-height:1.6">One free pass per 30 days if you miss a day.</div>
     <div class="sp2"></div>
   </div>
 
-  <!-- PROGRESS -->
+  <!-- MY PROGRESS PAGE -->
   <div class="pg" id="pg-progress">
     <div class="prog-hero">
       <div class="prog-top">
         <div class="prog-big"><em>Day Streak</em><span id="prog-streak">—</span></div>
-        <div class="prog-right">
-          <div class="prog-stat" id="prog-total">—</div>
-          <div class="prog-stat-l">Check-ins</div>
-        </div>
+        <div class="prog-right"><div class="prog-stat" id="prog-total">—</div><div class="prog-stat-l">Check-ins</div></div>
       </div>
       <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
     </div>
@@ -462,31 +370,15 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
     </div>
     <div class="seg-block">
       <div class="seg-label" id="seg-label">Next milestone</div>
-      <div class="seg-next-row">
-        <div class="seg-tier" id="seg-tier">Committed — Day 30</div>
-        <div class="seg-reward" id="seg-reward">$75</div>
-      </div>
+      <div class="seg-next-row"><div class="seg-tier" id="seg-tier">Committed — Day 30</div><div class="seg-reward" id="seg-reward">$75</div></div>
       <div class="seg-track"><div class="seg-fill" id="seg-fill" style="width:0%"></div></div>
-      <div class="seg-info">
-        <div class="seg-pct" id="seg-from">Day 1</div>
-        <div class="seg-days" id="seg-days-left">— days to go</div>
-        <div class="seg-pct" id="seg-to">Day 30</div>
-      </div>
+      <div class="seg-info"><div class="seg-pct" id="seg-from">Day 1</div><div class="seg-days" id="seg-days-left">— days to go</div><div class="seg-pct" id="seg-to">Day 30</div></div>
     </div>
     <div class="reward-block">
       <div class="reward-lbl">Reward Structure</div>
-      <div class="reward-row">
-        <div><div class="reward-tier">Day 30 — Committed</div><div class="reward-detail">Featured on @habits_365</div></div>
-        <div><div class="reward-val">$75</div><div class="reward-bonus">store credit</div></div>
-      </div>
-      <div class="reward-row">
-        <div><div class="reward-tier">Day 60 — Locked In</div><div class="reward-detail">Hall of Fame on habits365.com</div></div>
-        <div><div class="reward-val">$150</div><div class="reward-bonus">store credit</div></div>
-      </div>
-      <div class="reward-row">
-        <div><div class="reward-tier">Day 365 — Legend</div><div class="reward-detail">Legacy status · habits365.com</div></div>
-        <div><div class="reward-val">$500</div><div class="reward-bonus hot">Mystery Box</div></div>
-      </div>
+      <div class="reward-row"><div><div class="reward-tier">Day 30 — Committed</div><div class="reward-detail">Featured on @habits_365</div></div><div><div class="reward-val">$75</div><div class="reward-bonus">store credit</div></div></div>
+      <div class="reward-row"><div><div class="reward-tier">Day 60 — Locked In</div><div class="reward-detail">Hall of Fame on habits365.com</div></div><div><div class="reward-val">$150</div><div class="reward-bonus">store credit</div></div></div>
+      <div class="reward-row"><div><div class="reward-tier">Day 365 — Legend</div><div class="reward-detail">Legacy status · habits365.com</div></div><div><div class="reward-val">$500</div><div class="reward-bonus hot">Mystery Box</div></div></div>
       <div class="claim-block" id="claim-wrap">
         <div class="claim-text" id="claim-text">Milestone reached — claim your reward</div>
         <button class="bcl" id="claim-btn" onclick="claimReward()">Claim Reward →</button>
@@ -522,12 +414,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
         <button class="atab" onclick="showATab('people',this)">People</button>
         <button class="atab" onclick="showATab('codes',this)">Codes</button>
       </div>
-
-      <!-- ALERTS TAB — milestone alerts -->
-      <div class="asec on" id="at-alerts">
-        <div id="milestone-alerts"><div class="loading">Loading</div></div>
-      </div>
-
+      <div class="asec on" id="at-alerts"><div id="milestone-alerts"><div class="loading">Loading</div></div></div>
       <div class="asec" id="at-photos"><div id="photo-review-list"><div class="loading">Loading</div></div></div>
       <div class="asec" id="at-rewards"><div id="admin-alerts"><div class="loading">Loading</div></div></div>
       <div class="asec" id="at-people"><div id="admin-parts"><div class="loading">Loading</div></div></div>
@@ -716,8 +603,6 @@ async function doSubmit(h,n,em,btn,mode){
     document.getElementById("ru-name").textContent=n;
     document.getElementById("ru-handle").textContent="@"+h;
     document.getElementById("ru-streak").textContent=streak;
-    // Show big notification banner after story card
-    document.getElementById("notif-banner").style.display="block";
     let msg="Day "+streak+" locked in!";
     if(usedPass)msg+=" Free pass used.";
     if(reset)msg="Streak reset — Day 1. Keep going.";
@@ -794,15 +679,13 @@ async function loadHistory(pid){
 }
 
 async function requestNotifications(){
-  if(!("Notification" in window)){
-    document.getElementById("notif-banner").innerHTML='<div class="nb-title" style="font-family:\'Barlow Condensed\',sans-serif;font-size:18px;font-weight:900;color:var(--white);margin-bottom:6px">Add to home screen first</div><div style="font-size:12px;color:var(--gray2)">Open this app from your home screen icon, then tap Enable again.</div>';return;
-  }
+  if(!("Notification" in window)){alert("Add this app to your home screen first, then try again.");return;}
   const perm=await Notification.requestPermission();
   if(perm==="granted"){
-    document.getElementById("notif-banner").innerHTML='<div style="display:flex;align-items:center;gap:10px"><div style="width:36px;height:36px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">✓</div><div><div style="font-family:\'Barlow Condensed\',sans-serif;font-size:18px;font-weight:900;color:var(--white)">Notifications enabled</div><div style="font-size:12px;color:var(--gray2);margin-top:2px">Daily reminder set for 9am. Never break the streak.</div></div></div>';
     scheduleNotification();
+    alert("Notifications enabled! You will get a daily reminder at 9am.");
   }else{
-    document.getElementById("notif-banner").innerHTML='<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:18px;font-weight:900;color:var(--white);margin-bottom:6px">Notifications blocked</div><div style="font-size:12px;color:var(--gray2);line-height:1.7">Go to your phone <strong style="color:var(--white)">Settings</strong> → find your browser → turn on notifications. Then come back and try again.</div>';
+    alert("To enable notifications: go to Settings on your phone → find your browser → turn on notifications.");
   }
 }
 
@@ -864,7 +747,6 @@ async function loadAdmin(){
     document.getElementById("s-elite").textContent=legends.length;
     document.getElementById("s-pending").textContent=pending?pending.length:0;
 
-    // MILESTONE ALERTS — who's close
     const ma=document.getElementById("milestone-alerts");
     if(!all||!all.length){ma.innerHTML='<div class="loading">No participants yet</div>';}
     else{
@@ -872,25 +754,19 @@ async function loadAdmin(){
       all.forEach(p=>{
         MS.forEach(m=>{
           const daysLeft=m-p.current_streak;
-          if(daysLeft>0&&daysLeft<=5){
-            close.push({p,m,daysLeft});
-          }
+          if(daysLeft>0&&daysLeft<=5)close.push({p,m,daysLeft});
         });
       });
-      if(!close.length){
-        ma.innerHTML='<div style="font-size:11px;color:var(--gray2);text-align:center;padding:20px;letter-spacing:.06em">No one within 5 days of a milestone</div>';
-      }else{
+      if(!close.length){ma.innerHTML='<div style="font-size:11px;color:var(--gray2);text-align:center;padding:20px">No one within 5 days of a milestone</div>';}
+      else{
         const sorted=close.sort((a,b)=>a.daysLeft-b.daysLeft);
-        const md=MS_DATA;
         ma.innerHTML='<div class="alert-lbl">Close to milestone</div>'+sorted.map(({p,m,daysLeft})=>{
-          const mLabel=md[m]?md[m].tier:"Day "+m;
-          const mReward=md[m]?md[m].reward:"";
-          return '<div class="alert-item"><div class="alert-days">'+daysLeft+'<div style="font-size:9px;color:var(--gray2);font-weight:600;letter-spacing:.06em;text-transform:uppercase">days</div></div><div class="alert-info"><div class="alert-name">'+p.name+'</div><div class="alert-sub">@'+p.instagram_handle+' · Day '+p.current_streak+' streak</div></div><div class="alert-ms">Day '+m+'<br>'+mReward+'</div></div>';
-        }).join("")+'<div style="margin-top:10px;font-size:11px;color:var(--gray2);line-height:1.6;font-weight:500">Prepare their reward now — create a Shopify discount code, draft the IG feature post, have the DM ready.</div>';
+          const md=MS_DATA[m]||{tier:"Day "+m,reward:""};
+          return '<div class="alert-item"><div class="alert-days">'+daysLeft+'<div style="font-size:9px;color:var(--gray2);font-weight:600;letter-spacing:.06em;text-transform:uppercase">days</div></div><div class="alert-info"><div class="alert-name">'+p.name+'</div><div class="alert-sub">@'+p.instagram_handle+' · Day '+p.current_streak+' streak</div></div><div class="alert-ms">Day '+m+'<br>'+md.reward+'</div></div>';
+        }).join("")+'<div style="margin-top:10px;font-size:11px;color:var(--gray2);line-height:1.6;font-weight:500">Prepare their reward now — create a Shopify discount code and have the IG feature post ready.</div>';
       }
     }
 
-    // PHOTO REVIEW
     const pr=document.getElementById("photo-review-list");
     if(!pending||!pending.length){pr.innerHTML='<div class="loading">No photos pending review</div>';}
     else{
@@ -903,7 +779,6 @@ async function loadAdmin(){
       }).join("");
     }
 
-    // REWARDS
     const ae=document.getElementById("admin-alerts");
     if(!mil||!mil.length){ae.innerHTML='<div class="loading">No pending rewards</div>';}
     else{
@@ -917,7 +792,6 @@ async function loadAdmin(){
       }).join("");
     }
 
-    // PEOPLE
     const pe=document.getElementById("admin-parts");
     if(!all||!all.length){pe.innerHTML='<div class="loading">No participants yet</div>';return;}
     pe.innerHTML=all.map(p=>{
@@ -925,7 +799,7 @@ async function loadAdmin(){
       const tl=tier==="te"?"LEGEND":tier==="tl2"?"LOCKED IN":"COMMITTED";
       const flagged=p.flagged?' <span style="color:var(--red);font-weight:700">· Flagged</span>':"";
       const daysToNext=p.current_streak<30?30-p.current_streak:p.current_streak<60?60-p.current_streak:p.current_streak<365?365-p.current_streak:0;
-      const closeAlert=daysToNext>0&&daysToNext<=5?'<span style="color:var(--accent);font-weight:700;font-size:10px"> · '+daysToNext+'d to next milestone</span>':"";
+      const closeAlert=daysToNext>0&&daysToNext<=5?' <span style="color:var(--accent);font-weight:700">· '+daysToNext+'d to milestone</span>':"";
       return '<div class="pr"><div class="pav">'+ini(p.name)+'</div><div class="pin"><div class="pna">'+p.name+'</div><div class="pme">@'+p.instagram_handle+" · "+(p.email||"no email")+'</div><div class="pme">'+p.total_checkins+' check-ins'+flagged+closeAlert+'</div><span class="tier '+tier+'">'+tl+'</span></div><div><div class="pst">'+p.current_streak+'</div><div class="psl">days</div></div></div>';
     }).join("");
   }catch(e){document.getElementById("milestone-alerts").innerHTML='<div class="loading">Error loading</div>';}
@@ -960,10 +834,8 @@ function downloadCard(silent=false){
   const ctx=cv.getContext("2d");
   const finish=()=>{
     ctx.fillStyle="rgba(0,0,0,.18)";ctx.fillRect(0,0,1080,1920);
-    ctx.fillStyle="#fff";ctx.font="800 40px sans-serif";ctx.letterSpacing="8px";
-    ctx.fillText("#365LOCKED",60,100);
-    ctx.fillStyle="rgba(255,255,255,.28)";ctx.font="700 90px sans-serif";ctx.letterSpacing="4px";
-    ctx.fillText("DAY",60,1720);
+    ctx.fillStyle="#fff";ctx.font="800 40px sans-serif";ctx.letterSpacing="8px";ctx.fillText("#365LOCKED",60,100);
+    ctx.fillStyle="rgba(255,255,255,.28)";ctx.font="700 90px sans-serif";ctx.letterSpacing="4px";ctx.fillText("DAY",60,1720);
     ctx.fillStyle="#e8ff00";ctx.font="900 480px sans-serif";ctx.letterSpacing="-20px";
     ctx.fillText(String(day),day<10?160:day<100?60:40,1900);
     if(!silent){const a=document.createElement("a");a.download="habits365_day"+day+".png";a.href=cv.toDataURL("image/png",1.0);a.click();}
