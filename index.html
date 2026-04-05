@@ -269,8 +269,6 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 
   <!-- CHECK IN -->
   <div class="pg on" id="pg-checkin">
-
-    <!-- RETURNING USER -->
     <div id="returning-view" style="display:none">
       <div class="ru-hero">
         <div class="ru-greeting">Welcome back</div>
@@ -298,7 +296,6 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
       </div>
     </div>
 
-    <!-- NEW USER -->
     <div id="new-user-view">
       <div style="padding:24px 20px 20px;border-bottom:1px solid var(--border)">
         <div style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray2);font-weight:700;margin-bottom:8px">Join the Challenge</div>
@@ -326,7 +323,6 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 
     <input type="file" id="pi" accept="image/*" onchange="handlePhoto(event)" />
 
-    <!-- STORY CARD -->
     <div class="sp" id="story-preview">
       <div class="sp-lb">Your Story Card</div>
       <div class="sc">
@@ -346,18 +342,9 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
         <button class="bp" style="margin-bottom:10px" onclick="downloadCard()">Save Card to Photos</button>
         <div class="notif-card">
           <div class="notif-card-title">GET DAILY REMINDERS</div>
-          <div class="notif-step">
-            <div class="notif-step-num">1</div>
-            <div class="notif-step-text"><strong>iPhone:</strong> Tap the Share button in Safari → <strong>Add to Home Screen</strong> → Add</div>
-          </div>
-          <div class="notif-step">
-            <div class="notif-step-num">2</div>
-            <div class="notif-step-text"><strong>Android:</strong> Tap the 3-dot menu in Chrome → <strong>Add to Home Screen</strong> → Add</div>
-          </div>
-          <div class="notif-step">
-            <div class="notif-step-num">3</div>
-            <div class="notif-step-text">Open from your <strong>home screen icon</strong> then tap the button below</div>
-          </div>
+          <div class="notif-step"><div class="notif-step-num">1</div><div class="notif-step-text"><strong>iPhone:</strong> Tap Share in Safari → <strong>Add to Home Screen</strong> → Add</div></div>
+          <div class="notif-step"><div class="notif-step-num">2</div><div class="notif-step-text"><strong>Android:</strong> Tap 3-dot menu in Chrome → <strong>Add to Home Screen</strong> → Add</div></div>
+          <div class="notif-step"><div class="notif-step-num">3</div><div class="notif-step-text">Open from your <strong>home screen icon</strong> then tap below</div></div>
           <button class="notif-btn" onclick="requestNotifications()">Enable Daily Reminders</button>
         </div>
       </div>
@@ -417,7 +404,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
         <div class="ac"><div class="an" id="s-total">—</div><div class="al">Total</div></div>
         <div class="ac"><div class="an" id="s-today">—</div><div class="al">Today</div></div>
         <div class="ac"><div class="an" id="s-elite">—</div><div class="al">Legend</div></div>
-        <div class="ac"><div class="an" id="s-pending">—</div><div class="al">To Review</div></div>
+        <div class="ac"><div class="an" id="s-pending">—</div><div class="al">Flagged</div></div>
       </div>
       <div class="atabs">
         <button class="atab on" onclick="showATab('alerts',this)">Alerts</button>
@@ -520,14 +507,23 @@ async function refreshParticipant(handle){
 
 function handlePhoto(e){
   const f=e.target.files[0];if(!f)return;
-  const r=new FileReader();
-  r.onload=ev=>{
-    photoB64=ev.target.result;photo=ev.target.result;
+  const img=new Image();
+  const url=URL.createObjectURL(f);
+  img.onload=()=>{
+    const max=800;
+    let w=img.width,h=img.height;
+    if(w>max){h=Math.round(h*(max/w));w=max;}
+    const cv=document.createElement("canvas");
+    cv.width=w;cv.height=h;
+    cv.getContext("2d").drawImage(img,0,0,w,h);
+    photo=cv.toDataURL("image/jpeg",.75);
+    photoB64=photo;
+    URL.revokeObjectURL(url);
     ["prev-img","prev-img-r"].forEach(id=>{const el=document.getElementById(id);if(el){el.src=photo;el.style.display="block";}});
     ["uz-in","uz-in-r"].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display="none";});
     ["uz","uz-r"].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove("err");});
   };
-  r.readAsDataURL(f);
+  img.src=url;
 }
 
 function ini(n){return n.split(" ").map(w=>w[0]).join("").toUpperCase().slice(0,2);}
@@ -641,7 +637,7 @@ function updateProgressUI(p){
     else{c.classList.remove("done");n.classList.remove("lit");i.textContent="🔒";t.classList.remove("lit");}
   });
   let prev=1,next=30,tier="Committed — Day 30",reward="$75";
-  if(s>=365){prev=365;next=365;tier="Legend — Complete";reward:"Claim your box";}
+  if(s>=365){prev=365;next=365;tier="Legend — Complete";reward="Claim your box";}
   else if(s>=60){prev=60;next=365;tier="Legend — Day 365";reward="$500 Mystery Box";}
   else if(s>=30){prev=30;next=60;tier="Locked In — Day 60";reward="$150";}
   const segPct=next===prev?100:Math.round(((s-prev)/(next-prev))*100);
@@ -695,21 +691,16 @@ async function requestNotifications(){
   const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent);
   const isAndroid=/Android/.test(navigator.userAgent);
   if(!isStandalone){
-    if(isIOS){
-      alert("Step 1 first:\n\nTap the Share button at the bottom of Safari → Add to Home Screen → Add.\n\nThen open the app from your home screen icon and tap Enable Daily Reminders again.");
-    }else if(isAndroid){
-      alert("Step 1 first:\n\nTap the 3-dot menu in Chrome → Add to Home Screen → Add.\n\nThen open the app from your home screen icon and tap Enable Daily Reminders again.");
-    }else{
-      alert("Add this page to your home screen first, then open it from there and tap Enable Daily Reminders again.");
-    }
+    if(isIOS){alert("Step 1 first:\n\nTap the Share button at the bottom of Safari → Add to Home Screen → Add.\n\nThen open the app from your home screen icon and tap Enable Daily Reminders again.");}
+    else if(isAndroid){alert("Step 1 first:\n\nTap the 3-dot menu in Chrome → Add to Home Screen → Add.\n\nThen open the app from your home screen icon and tap Enable Daily Reminders again.");}
+    else{alert("Add this page to your home screen first, then open from there and tap Enable Daily Reminders again.");}
     return;
   }
   if(!("Notification" in window)){alert("Notifications not supported on this browser.");return;}
   const perm=await Notification.requestPermission();
   if(perm==="granted"){
     scheduleNotification();
-    const nb=document.getElementById("notif-card-wrap");
-    if(nb)nb.innerHTML='<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:16px;font-weight:900;color:var(--green);margin-bottom:4px">Notifications enabled</div><div style="font-size:12px;color:var(--gray2)">Daily reminder set for 9am. Never break the streak.</div>';
+    alert("Notifications enabled! Daily reminder set for 9am.");
   }else{
     alert("Notifications blocked. Go to Settings → find your browser → turn on notifications. Then try again.");
   }
@@ -766,13 +757,16 @@ async function loadAdmin(){
     const all=await api("participants?select=*&order=current_streak.desc");
     const tod=await api("checkins?checkin_date=eq."+today()+"&select=id");
     const mil=await api("milestones?reward_sent=eq.false&order=unlocked_at.desc&limit=20");
-    const pending=await api("checkins?photo_status=eq.pending&order=created_at.desc&limit=30&select=*");
+    // ALL photos with data — not just pending
+    const allPhotos=await api("checkins?photo_data=not.is.null&order=created_at.desc&limit=50&select=*");
     const legends=all?all.filter(p=>p.current_streak>=365):[];
+    const flaggedCount=allPhotos?allPhotos.filter(c=>c.photo_status==="flagged").length:0;
     document.getElementById("s-total").textContent=all?all.length:0;
     document.getElementById("s-today").textContent=tod?tod.length:0;
     document.getElementById("s-elite").textContent=legends.length;
-    document.getElementById("s-pending").textContent=pending?pending.length:0;
+    document.getElementById("s-pending").textContent=flaggedCount;
 
+    // ALERTS
     const ma=document.getElementById("milestone-alerts");
     if(!all||!all.length){ma.innerHTML='<div class="loading">No participants yet</div>';}
     else{
@@ -790,22 +784,27 @@ async function loadAdmin(){
           const md=MS_DATA[m]||{reward:""};
           return '<div class="alert-item"><div class="alert-days">'+dl+'<div style="font-size:9px;color:var(--gray2);font-weight:600;letter-spacing:.06em;text-transform:uppercase">days</div></div><div class="alert-info"><div class="alert-name">'+p.name+'</div><div class="alert-sub">@'+p.instagram_handle+' · Day '+p.current_streak+' streak</div></div><div class="alert-ms">Day '+m+'<br>'+md.reward+'</div></div>';
         }).join('')+
-        '<div style="margin-top:10px;font-size:11px;color:var(--gray2);line-height:1.6;font-weight:500">Prepare their reward now — create a Shopify discount code and have the IG feature ready.</div>';
+        '<div style="margin-top:10px;font-size:11px;color:var(--gray2);line-height:1.6;font-weight:500">Prepare their reward — create a Shopify discount code and have the IG feature ready.</div>';
       }
     }
 
+    // ALL PHOTOS
     const pr=document.getElementById("photo-review-list");
-    if(!pending||!pending.length){pr.innerHTML='<div class="loading">No photos pending review</div>';}
+    if(!allPhotos||!allPhotos.length){pr.innerHTML='<div class="loading">No photos submitted yet</div>';}
     else{
-      const pids=[...new Set(pending.map(c=>c.participant_id))];
+      const pids=[...new Set(allPhotos.map(c=>c.participant_id))];
       const parts=await api("participants?id=in.("+pids.join(",")+")");
       const pm={};parts.forEach(p=>pm[p.id]=p);
-      pr.innerHTML=pending.map(c=>{
+      pr.innerHTML='<div style="font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--gray2);font-weight:700;margin-bottom:10px">'+allPhotos.length+' photos submitted</div>'+
+      allPhotos.map(c=>{
         const p=pm[c.participant_id]||{};
-        return '<div class="photo-card">'+(c.photo_data?'<img class="photo-card-img" src="'+c.photo_data+'" />':`<div class="photo-card-img" style="display:flex;align-items:center;justify-content:center;color:var(--gray2);font-size:11px">NO PHOTO</div>`)+'<div class="photo-card-body"><div class="photo-card-name">'+p.name+' — Day '+c.day_number+'</div><div class="photo-card-meta">@'+(p.instagram_handle||"?")+" · "+fmtDate(c.checkin_date)+'</div><div class="photo-card-actions"><button class="btn-approve" onclick="reviewPhoto(\''+c.id+'\',\'approved\')">✓ Approve</button><button class="btn-flag" onclick="reviewPhoto(\''+c.id+'\',\'flagged\')">✕ Flag</button></div></div></div>';
+        const isFlagged=c.photo_status==="flagged";
+        const borderStyle=isFlagged?"border-color:rgba(255,64,64,.4)":" ";
+        return '<div class="photo-card" style="'+borderStyle+'">'+(c.photo_data?'<img class="photo-card-img" src="'+c.photo_data+'" loading="lazy" />':`<div class="photo-card-img" style="display:flex;align-items:center;justify-content:center;color:var(--gray2);font-size:11px">NO PHOTO</div>`)+'<div class="photo-card-body"><div class="photo-card-name">'+(isFlagged?'<span style="color:var(--red)">⚑ </span>':'')+(p.name||"Unknown")+' — Day '+c.day_number+'</div><div class="photo-card-meta">@'+(p.instagram_handle||"?")+" · "+fmtDate(c.checkin_date)+(c.used_free_pass?" · pass used":"")+'</div><div class="photo-card-actions">'+(!isFlagged?'<button class="btn-flag" onclick="reviewPhoto(\''+c.id+'\',\'flagged\')">✕ Flag</button>':'<button class="btn-approve" onclick="reviewPhoto(\''+c.id+'\',\'approved\')">✓ Unflag</button>')+'</div></div></div>';
       }).join("");
     }
 
+    // REWARDS
     const ae=document.getElementById("admin-alerts");
     if(!mil||!mil.length){ae.innerHTML='<div class="loading">No pending rewards</div>';}
     else{
@@ -819,6 +818,7 @@ async function loadAdmin(){
       }).join("");
     }
 
+    // PEOPLE
     const pe=document.getElementById("admin-parts");
     if(!all||!all.length){pe.innerHTML='<div class="loading">No participants yet</div>';return;}
     pe.innerHTML=all.map(p=>{
@@ -829,20 +829,29 @@ async function loadAdmin(){
       const ca=dtn>0&&dtn<=5?' <span style="color:var(--accent);font-weight:700">· '+dtn+'d to milestone</span>':"";
       return '<div class="pr"><div class="pav">'+ini(p.name)+'</div><div class="pin"><div class="pna">'+p.name+'</div><div class="pme">@'+p.instagram_handle+" · "+(p.email||"no email")+'</div><div class="pme">'+p.total_checkins+' check-ins'+flagged+ca+'</div><span class="tier '+tier+'">'+tl+'</span></div><div><div class="pst">'+p.current_streak+'</div><div class="psl">days</div></div></div>';
     }).join("");
-  }catch(e){document.getElementById("milestone-alerts").innerHTML='<div class="loading">Error loading</div>';}
+  }catch(e){document.getElementById("milestone-alerts").innerHTML='<div class="loading">Error loading — try refresh</div>';}
 }
 
 async function reviewPhoto(id,status){
   try{
     await api("checkins?id=eq."+id,{method:"PATCH",body:{photo_status:status},prefer:"return=minimal"});
-    if(status==="flagged"){const rows=await api("checkins?id=eq."+id+"&select=participant_id");if(rows&&rows.length)await api("participants?id=eq."+rows[0].participant_id,{method:"PATCH",body:{flagged:true},prefer:"return=minimal"});}
+    if(status==="flagged"){
+      const rows=await api("checkins?id=eq."+id+"&select=participant_id");
+      if(rows&&rows.length)await api("participants?id=eq."+rows[0].participant_id,{method:"PATCH",body:{flagged:true},prefer:"return=minimal"});
+    }
+    if(status==="approved"){
+      const rows=await api("checkins?id=eq."+id+"&select=participant_id");
+      if(rows&&rows.length)await api("participants?id=eq."+rows[0].participant_id,{method:"PATCH",body:{flagged:false},prefer:"return=minimal"});
+    }
     loadAdmin();
   }catch(e){alert("Failed — try again");}
 }
+
 async function markSent(id){
   try{await api("milestones?id=eq."+id,{method:"PATCH",body:{reward_sent:true},prefer:"return=minimal"});loadAdmin();}
   catch(e){alert("Failed — try again");}
 }
+
 function genCode(){
   const name=document.getElementById("amb-name").value.trim();if(!name)return;
   const chars="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";let s="";
@@ -850,11 +859,13 @@ function genCode(){
   const code="LOCKED-"+s;genCodes.push({code,name,used:false});renderCodes();
   document.getElementById("amb-name").value="";
 }
+
 function renderCodes(){
   const list=document.getElementById("code-list");
   if(!genCodes.length){list.innerHTML='<div style="font-size:11px;color:var(--gray2);text-align:center;padding:12px">No codes yet</div>';return;}
   list.innerHTML=genCodes.map(c=>'<div class="code-item" style="'+(c.used?"opacity:.35":"")+'"><div><div class="code-val">'+c.code+'</div><div class="code-meta">'+c.name+" · "+(c.used?"Used":"Active")+'</div></div><button class="code-copy" onclick=\'navigator.clipboard.writeText("'+c.code+'").then(()=>{this.textContent="Copied";setTimeout(()=>this.textContent="Copy",1500)})\'>Copy</button></div>').join("");
 }
+
 function downloadCard(){
   const day=parseInt(document.getElementById("sc-day").textContent)||1;
   const cv=document.createElement("canvas");cv.width=1080;cv.height=1920;
