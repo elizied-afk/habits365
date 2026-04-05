@@ -3,6 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="HABITS 365">
+<link rel="manifest" href="/manifest.json">
 <title>HABITS365 — 365 Challenge</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -26,8 +31,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .hdr{padding:18px 20px 16px;display:flex;justify-content:space-between;align-items:center;background:var(--black);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
 .logo-text{font-family:"Barlow Condensed",sans-serif;font-size:22px;font-weight:900;letter-spacing:.08em;color:var(--white);cursor:pointer}
 .hdr-r{display:flex;align-items:center;gap:10px}
-.streak-pill{background:var(--s3);border:1px solid var(--b2);border-radius:2px;padding:5px 11px;display:none;align-items:center;gap:7px}
-.streak-pill.on{display:flex}
+.streak-pill{background:var(--s3);border:1px solid var(--b2);border-radius:2px;padding:5px 11px;display:flex;align-items:center;gap:7px}
 .spn{font-family:"Barlow Condensed",sans-serif;font-size:17px;font-weight:900;color:var(--accent);line-height:1}
 .spl{font-size:9px;color:var(--gray2);letter-spacing:.1em;text-transform:uppercase;font-weight:600}
 .htag{font-size:10px;color:var(--gray2);letter-spacing:.08em;text-transform:uppercase;font-weight:600}
@@ -36,21 +40,37 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .nb.on{color:var(--white);border-bottom-color:var(--white)}
 .pg{display:none}
 .pg.on{display:block}
-.hero{padding:24px 20px 20px;border-bottom:1px solid var(--border)}
-.hero-ey{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray2);font-weight:700;margin-bottom:8px}
-.hero-day{font-family:"Barlow Condensed",sans-serif;font-size:84px;font-weight:900;line-height:.82;letter-spacing:-.02em;color:var(--white);margin-bottom:6px}
-.hero-day em{color:var(--accent);font-style:normal;display:block}
-.hero-sub{font-size:11px;color:var(--gray2);letter-spacing:.1em;text-transform:uppercase;font-weight:600}
-.ban{margin:12px 20px;border-radius:2px;padding:12px 14px;display:none;align-items:flex-start;gap:10px}
-.ban.on{display:flex}
-.ban.s{background:rgba(0,204,102,.06);border:1px solid rgba(0,204,102,.2)}
-.ban.e{background:rgba(255,64,64,.06);border:1px solid rgba(255,64,64,.2)}
-.ban.w{background:rgba(232,255,0,.06);border:1px solid rgba(232,255,0,.18)}
-.ban.i{background:var(--s2);border:1px solid var(--b2)}
-.bd{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:4px}
-.bd.g{background:var(--green)}.bd.r{background:var(--red)}.bd.y{background:var(--accent)}.bd.w{background:var(--gray2)}
-.bt{font-size:13px;font-weight:500;line-height:1.5;color:var(--off)}
-.bt.g{color:#66ffaa}.bt.r{color:#ff8080}.bt.y{color:var(--accent)}
+
+/* INSTALL BANNER */
+.install-banner{margin:12px 20px;background:var(--s2);border:1px solid rgba(232,255,0,.2);border-radius:2px;padding:14px 16px;display:none}
+.install-banner.on{display:block}
+.ib-title{font-family:"Barlow Condensed",sans-serif;font-size:16px;font-weight:900;color:var(--white);margin-bottom:6px;letter-spacing:.04em}
+.ib-steps{font-size:12px;color:var(--gray2);line-height:1.8;font-weight:500}
+.ib-steps strong{color:var(--white);font-weight:700}
+.ib-close{margin-top:10px;font-size:10px;color:var(--gray2);cursor:pointer;text-decoration:underline;background:none;border:none;font-family:"Barlow",sans-serif;padding:0}
+
+/* RETURNING USER VIEW */
+.ru-hero{padding:20px 20px 18px;border-bottom:1px solid var(--border)}
+.ru-greeting{font-size:11px;color:var(--gray2);letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:4px}
+.ru-name{font-family:"Barlow Condensed",sans-serif;font-size:36px;font-weight:900;color:var(--white);margin-bottom:2px}
+.ru-streak{font-size:12px;color:var(--gray2);font-weight:500}
+.ru-streak em{color:var(--accent);font-style:normal;font-weight:700}
+
+/* CHECKIN AREA */
+.photo-zone{padding:0 20px;margin-bottom:14px}
+.pz-label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);font-weight:700;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.pz-label span{color:var(--red);font-size:9px;letter-spacing:0;text-transform:none;font-weight:500}
+.uz{width:100%;aspect-ratio:4/3;background:var(--s2);border:1px solid var(--border);border-radius:2px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;position:relative;transition:border-color .2s}
+.uz:active{border-color:var(--gray2)}
+.uz.err{border-color:var(--red)}
+.uz img{width:100%;height:100%;object-fit:contain;position:absolute;inset:0;background:var(--s2)}
+.uz-in{position:relative;z-index:1;text-align:center;padding:20px}
+.uz-ic{font-size:36px;margin-bottom:12px}
+.uz-tx{font-size:15px;color:var(--white);font-weight:700}
+.uz-hint{font-size:12px;color:var(--gray2);margin-top:5px;font-weight:500}
+#pi{display:none}
+
+/* FORMS */
 .fp{padding:0 20px}
 .field{margin-bottom:14px}
 .fl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);font-weight:700;display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
@@ -63,17 +83,16 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .pbar.on{display:flex}
 .pbl{font-size:10px;color:var(--gray2);text-transform:uppercase;letter-spacing:.1em;font-weight:700}
 .pbn{font-family:"Barlow Condensed",sans-serif;font-size:26px;font-weight:900;color:var(--accent)}
-.uw{padding:0 20px;margin-bottom:14px}
-.uz{width:100%;aspect-ratio:4/3;background:var(--s2);border:1px solid var(--border);border-radius:2px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;position:relative;transition:border-color .2s}
-.uz:active{border-color:var(--gray2)}
-.uz.err{border-color:var(--red)}
-.uz img{width:100%;height:100%;object-fit:contain;position:absolute;inset:0;background:var(--s2)}
-.uz-in{position:relative;z-index:1;text-align:center;padding:20px}
-.uz-ic{font-size:28px;margin-bottom:10px}
-.uz-tx{font-size:13px;color:var(--gray);font-weight:600}
-.uz-hint{font-size:11px;color:var(--gray2);margin-top:4px;font-weight:500}
-.uz-rq{font-size:11px;color:var(--red);margin-top:5px;font-weight:600}
-#pi{display:none}
+.ban{margin:12px 20px;border-radius:2px;padding:12px 14px;display:none;align-items:flex-start;gap:10px}
+.ban.on{display:flex}
+.ban.s{background:rgba(0,204,102,.06);border:1px solid rgba(0,204,102,.2)}
+.ban.e{background:rgba(255,64,64,.06);border:1px solid rgba(255,64,64,.2)}
+.ban.w{background:rgba(232,255,0,.06);border:1px solid rgba(232,255,0,.18)}
+.ban.i{background:var(--s2);border:1px solid var(--b2)}
+.bd{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.bd.g{background:var(--green)}.bd.r{background:var(--red)}.bd.y{background:var(--accent)}.bd.w{background:var(--gray2)}
+.bt{font-size:13px;font-weight:500;line-height:1.5;color:var(--off)}
+.bt.g{color:#66ffaa}.bt.r{color:#ff8080}.bt.y{color:var(--accent)}
 .bw{padding:0 20px}
 .bp{width:100%;padding:17px;background:var(--white);color:var(--black);border:none;border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:20px;font-weight:900;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;transition:opacity .2s;margin-bottom:10px;display:block}
 .bp:hover{opacity:.88}
@@ -143,13 +162,11 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .bcl{width:100%;padding:13px;background:transparent;color:var(--white);border:1px solid var(--gray2);border-radius:2px;font-family:"Barlow",sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s}
 .bcl:hover{background:var(--white);color:var(--black)}
 .hist-block{margin:0 20px;background:var(--s2);border:1px solid var(--border);border-radius:2px;overflow:hidden}
-.hist-hdr{font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:var(--gray2);font-weight:700;padding:11px 14px;border-bottom:1px solid var(--border)}
 .hist-item{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid var(--border)}
 .hist-item:last-child{border-bottom:none}
 .hist-day{font-family:"Barlow Condensed",sans-serif;font-size:18px;font-weight:900;color:var(--white)}
 .hist-date{font-size:11px;color:var(--gray2);font-weight:500}
 .hist-ok{font-size:9px;font-weight:800;padding:2px 7px;border-radius:2px;letter-spacing:.08em;text-transform:uppercase;background:rgba(0,204,102,.1);color:var(--green);border:1px solid rgba(0,204,102,.2)}
-.hist-pend{font-size:9px;font-weight:800;padding:2px 7px;border-radius:2px;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.05);color:var(--gray2);border:1px solid var(--border)}
 .hist-flag{font-size:9px;font-weight:800;padding:2px 7px;border-radius:2px;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,64,64,.1);color:var(--red);border:1px solid rgba(255,64,64,.2)}
 .pt{padding:22px 20px 0}
 .stl{font-family:"Barlow Condensed",sans-serif;font-size:40px;font-weight:900;letter-spacing:-.01em;color:var(--white);margin-bottom:3px}
@@ -211,10 +228,16 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .pad{padding:0 20px}
 .mt{margin-top:14px}
 .mb{margin-bottom:14px}
+.not-banner{margin:12px 20px 0;background:var(--s2);border:1px solid rgba(232,255,0,.15);border-radius:2px;padding:14px 16px}
+.nb-title{font-size:13px;font-weight:700;color:var(--white);margin-bottom:6px}
+.nb-body{font-size:12px;color:var(--gray2);line-height:1.7;font-weight:500}
+.nb-body strong{color:var(--white);font-weight:700}
+.nb-btn{margin-top:10px;width:100%;padding:12px;background:var(--accent);color:var(--black);border:none;border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:16px;font-weight:900;cursor:pointer;letter-spacing:.06em;text-transform:uppercase}
 </style>
 </head>
 <body>
 
+<!-- SPLASH -->
 <div class="splash" id="splash">
   <div class="splash-logo">HABITS 365</div>
   <div class="splash-tag">#365Locked</div>
@@ -238,6 +261,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
   <div class="splash-note">Free to join · No purchase required</div>
 </div>
 
+<!-- ADMIN LOCK -->
 <div class="lo hidden" id="lock-screen">
   <div class="lo-logo">HABITS 365</div>
   <div class="lo-tag">Admin Access</div>
@@ -254,7 +278,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
   <div class="hdr">
     <div class="logo-text" onclick="logoTap()">HABITS 365</div>
     <div class="hdr-r">
-      <div class="streak-pill" id="streak-pill"><div class="spn" id="streak-num">0</div><div class="spl">day streak</div></div>
+      <div class="streak-pill" id="streak-pill"><div class="spn" id="streak-num">—</div><div class="spl">day streak</div></div>
       <div class="htag">#365Locked</div>
     </div>
   </div>
@@ -263,43 +287,88 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
     <button class="nb" onclick="showPg('progress',this)">My Progress</button>
   </nav>
 
-  <!-- CHECK IN -->
+  <!-- CHECK IN PAGE -->
   <div class="pg on" id="pg-checkin">
-    <div class="hero">
-      <div class="hero-ey">Today's Check-In</div>
-      <div class="hero-day">DAY<em id="day-num">—</em></div>
-      <div class="hero-sub" id="day-sub">365 Challenge · Keep the streak alive</div>
-    </div>
-    <div class="ban s" id="b-s"><div class="bd g"></div><div class="bt g" id="b-s-t"></div></div>
-    <div class="ban e" id="b-e"><div class="bd r"></div><div class="bt r" id="b-e-t"></div></div>
-    <div class="ban w" id="b-w"><div class="bd y"></div><div class="bt y" id="b-w-t"></div></div>
-    <div class="ban i" id="b-i"><div class="bd w"></div><div class="bt" id="b-i-t"></div></div>
-    <div class="fp mt">
-      <div class="field"><div class="fl">Instagram Handle</div><input type="text" class="fi" id="handle" placeholder="@yourhandle" /></div>
-      <div class="field"><div class="fl">Full Name</div><input type="text" class="fi" id="uname" placeholder="Your name" /></div>
-      <div class="field"><div class="fl">Email <span>for milestone notifications</span></div><input type="email" class="fi" id="email" placeholder="your@email.com" /></div>
-    </div>
-    <div class="pbar" id="pass-bar">
-      <div><div class="pbl">Free passes remaining</div><div style="font-size:10px;color:var(--gray2);margin-top:2px;font-weight:500">Resets every 30 days</div></div>
-      <div class="pbn" id="pass-count">1</div>
-    </div>
-    <div class="pad mb"><div class="fl" style="margin-bottom:0">Today's Photo <span>* Wear your Habits 365 gear</span></div></div>
-    <div class="uw mt">
-      <div class="uz" id="uz" onclick="document.getElementById('pi').click()">
-        <div class="uz-in" id="uz-in">
-          <div class="uz-ic">📸</div>
-          <div class="uz-tx">Tap to upload your photo</div>
-          <div class="uz-hint">Show us your workout in Habits 365 gear</div>
-          <div class="uz-rq">Required to submit</div>
+
+    <!-- RETURNING USER VIEW (shown when saved) -->
+    <div id="returning-view" style="display:none">
+      <div class="ru-hero">
+        <div class="ru-greeting">Welcome back</div>
+        <div class="ru-name" id="ru-name">—</div>
+        <div class="ru-streak">Day streak: <em id="ru-streak">—</em> · <span id="ru-handle" style="color:var(--gray2)"></span></div>
+      </div>
+      <div class="ban s" id="b-s"><div class="bd g"></div><div class="bt g" id="b-s-t"></div></div>
+      <div class="ban e" id="b-e"><div class="bd r"></div><div class="bt r" id="b-e-t"></div></div>
+      <div class="ban w" id="b-w"><div class="bd y"></div><div class="bt y" id="b-w-t"></div></div>
+      <div class="ban i" id="b-i"><div class="bd w"></div><div class="bt" id="b-i-t"></div></div>
+      <div class="pbar" id="pass-bar">
+        <div><div class="pbl">Free passes remaining</div><div style="font-size:10px;color:var(--gray2);margin-top:2px;font-weight:500">Resets every 30 days</div></div>
+        <div class="pbn" id="pass-count">1</div>
+      </div>
+      <div class="photo-zone">
+        <div class="pz-label">Today's Photo <span>* Wear your Habits 365 gear</span></div>
+        <div class="uz" id="uz-r" onclick="document.getElementById('pi').click()">
+          <div class="uz-in" id="uz-in-r">
+            <div class="uz-ic">📸</div>
+            <div class="uz-tx">Tap to upload</div>
+            <div class="uz-hint">Show your workout in Habits 365 gear</div>
+          </div>
+          <img id="prev-img-r" style="display:none" />
         </div>
-        <img id="prev-img" style="display:none" />
+      </div>
+      <div class="bw mb">
+        <button class="bp" id="submit-btn-r" onclick="submitCheckinReturning()">Lock In Today</button>
+        <button class="bg" style="font-size:12px;padding:10px" onclick="switchToNewUser()">Not you? Switch account</button>
+      </div>
+
+      <!-- NOTIFICATION BANNER — shown after first checkin -->
+      <div class="not-banner" id="notif-banner" style="display:none">
+        <div class="nb-title">Get daily streak reminders 🔒</div>
+        <div class="nb-body">
+          Add this app to your home screen to never miss a day:<br><br>
+          <strong>iPhone:</strong> Tap the Share button (box with arrow) at the bottom of Safari → tap <strong>"Add to Home Screen"</strong> → tap Add.<br><br>
+          <strong>Android:</strong> Tap the three dots menu → tap <strong>"Add to Home Screen"</strong> → tap Add.<br><br>
+          Once added, open it from your home screen and allow notifications when prompted.
+        </div>
+        <button class="nb-btn" onclick="requestNotifications()">Enable Notifications</button>
+      </div>
+
+      <div style="padding:12px 20px;font-size:11px;color:var(--gray2);text-align:center;line-height:1.6">
+        Streak resets if you miss more than 1 day. One free pass per 30 days.
       </div>
     </div>
-    <input type="file" id="pi" accept="image/*" onchange="handlePhoto(event)" />
-    <div class="bw mb">
-      <button class="bp" id="submit-btn" onclick="submitCheckin()">Lock In Day 1</button>
-      <button class="bg" onclick="lookupStreak()">Look Up My Streak</button>
+
+    <!-- NEW USER VIEW (shown when no saved data) -->
+    <div id="new-user-view">
+      <div style="padding:24px 20px 20px;border-bottom:1px solid var(--border)">
+        <div style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray2);font-weight:700;margin-bottom:8px">Join the Challenge</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:48px;font-weight:900;line-height:.86;color:var(--white);margin-bottom:6px">START<em style="color:var(--accent);font-style:normal;display:block">DAY 1.</em></div>
+        <div style="font-size:11px;color:var(--gray2);letter-spacing:.1em;text-transform:uppercase;font-weight:600">One time setup — done in 30 seconds</div>
+      </div>
+      <div class="ban s" id="b-s2"><div class="bd g"></div><div class="bt g" id="b-s2-t"></div></div>
+      <div class="ban e" id="b-e2"><div class="bd r"></div><div class="bt r" id="b-e2-t"></div></div>
+      <div class="fp mt">
+        <div class="field"><div class="fl">Instagram Handle</div><input type="text" class="fi" id="handle" placeholder="@yourhandle" /></div>
+        <div class="field"><div class="fl">Full Name</div><input type="text" class="fi" id="uname" placeholder="Your name" /></div>
+        <div class="field"><div class="fl">Email <span>for milestone rewards</span></div><input type="email" class="fi" id="email" placeholder="your@email.com" /></div>
+      </div>
+      <div class="photo-zone">
+        <div class="pz-label">Today's Photo <span>* Wear your Habits 365 gear</span></div>
+        <div class="uz" id="uz" onclick="document.getElementById('pi').click()">
+          <div class="uz-in" id="uz-in">
+            <div class="uz-ic">📸</div>
+            <div class="uz-tx">Tap to upload your photo</div>
+            <div class="uz-hint">Show your workout in Habits 365 gear</div>
+          </div>
+          <img id="prev-img" style="display:none" />
+        </div>
+      </div>
+      <div class="bw mb">
+        <button class="bp" id="submit-btn" onclick="submitCheckin()">Lock In Day 1</button>
+      </div>
     </div>
+
+    <input type="file" id="pi" accept="image/*" onchange="handlePhoto(event)" />
 
     <!-- STORY CARD -->
     <div class="sp" id="story-preview">
@@ -307,9 +376,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
       <div class="sc">
         <img class="sc-photo" id="sc-photo" src="" />
         <div class="sc-overlay"></div>
-        <div class="sc-top">
-          <div class="sc-hashtag">#365LOCKED</div>
-        </div>
+        <div class="sc-top"><div class="sc-hashtag">#365LOCKED</div></div>
         <div class="sc-bot">
           <div class="sc-day-word">DAY</div>
           <div class="sc-day-num" id="sc-day">1</div>
@@ -374,8 +441,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
       </div>
     </div>
     <div class="pad mb"><div style="font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:var(--gray2);font-weight:700">Recent Check-ins</div></div>
-    <div class="hist-block" id="hist-list"><div class="loading">Look up your streak to see history</div></div>
-    <div style="padding:12px 20px;font-size:11px;color:var(--gray2);text-align:center;line-height:1.6">Check In tab → Look Up My Streak to load your progress</div>
+    <div class="hist-block" id="hist-list"><div class="loading">No check-ins yet</div></div>
     <div class="sp2"></div>
   </div>
 
@@ -435,6 +501,13 @@ const MS_DATA={
 };
 let photo=null,photoB64=null,participant=null,adminOk=false,genCodes=[],logoTaps=0,logoTimer=null;
 
+// SAVED USER DATA
+const saved={
+  get:()=>{try{return JSON.parse(localStorage.getItem("h365_user")||"null");}catch{return null;}},
+  set:(d)=>localStorage.setItem("h365_user",JSON.stringify(d)),
+  clear:()=>localStorage.removeItem("h365_user")
+};
+
 async function api(path,opts={}){
   const r=await fetch(SBU+"/rest/v1/"+path,{
     headers:{"apikey":SBK,"Authorization":"Bearer "+SBK,"Content-Type":"application/json","Prefer":opts.prefer||"return=representation",...(opts.headers||{})},
@@ -444,67 +517,82 @@ async function api(path,opts={}){
   const t=await r.text();return t?JSON.parse(t):null;
 }
 
+// INIT — check for saved user
+window.addEventListener("load",async()=>{
+  // Register service worker
+  if("serviceWorker" in navigator){
+    try{await navigator.serviceWorker.register("/sw.js");}catch(e){}
+  }
+  // Check splash
+  if(localStorage.getItem("h365_seen")){
+    document.getElementById("splash").style.display="none";
+  }
+  // Check saved user
+  const u=saved.get();
+  if(u&&u.handle){
+    showReturningUser(u);
+    await refreshParticipant(u.handle);
+  }
+});
+
 function startChallenge(){
   const s=document.getElementById("splash");
-  s.style.opacity="0";
-  s.style.pointerEvents="none";
+  s.style.opacity="0";s.style.pointerEvents="none";
   setTimeout(()=>s.style.display="none",400);
   localStorage.setItem("h365_seen","1");
 }
-if(localStorage.getItem("h365_seen"))document.getElementById("splash").style.display="none";
 
-function checkHash(){
-  if(window.location.hash==="#admin"||window.location.hash==="/#admin"){
-    document.getElementById("splash").style.display="none";
-    requireAdmin(null);
-  }
-}
-checkHash();
-window.addEventListener("hashchange",checkHash);
-
-function logoTap(){
-  logoTaps++;clearTimeout(logoTimer);
-  logoTimer=setTimeout(()=>logoTaps=0,2000);
-  if(logoTaps>=7){logoTaps=0;requireAdmin(null);}
+function showReturningUser(u){
+  document.getElementById("returning-view").style.display="block";
+  document.getElementById("new-user-view").style.display="none";
+  document.getElementById("ru-name").textContent=u.name||"—";
+  document.getElementById("ru-handle").textContent="@"+u.handle;
+  document.getElementById("ru-streak").textContent=u.streak||"—";
+  document.getElementById("streak-num").textContent=u.streak||"—";
 }
 
-function showPg(id,btn){
-  document.querySelectorAll(".pg").forEach(p=>p.classList.remove("on"));
-  document.querySelectorAll(".nb").forEach(b=>b.classList.remove("on"));
-  document.getElementById("pg-"+id).classList.add("on");
-  if(btn)btn.classList.add("on");
-  if(id==="admin")loadAdmin();
+function switchToNewUser(){
+  saved.clear();participant=null;
+  document.getElementById("returning-view").style.display="none";
+  document.getElementById("new-user-view").style.display="block";
 }
-function showATab(id,btn){
-  document.querySelectorAll(".asec").forEach(s=>s.classList.remove("on"));
-  document.querySelectorAll(".atab").forEach(b=>b.classList.remove("on"));
-  document.getElementById("at-"+id).classList.add("on");btn.classList.add("on");
+
+async function refreshParticipant(handle){
+  try{
+    const rows=await api("participants?instagram_handle=eq."+encodeURIComponent(handle)+"&limit=1");
+    if(!rows||!rows.length)return;
+    const p=rows[0];participant=p;
+    const u=saved.get()||{};
+    u.streak=p.current_streak;u.name=p.name;
+    saved.set(u);
+    document.getElementById("ru-streak").textContent=p.current_streak;
+    document.getElementById("streak-num").textContent=p.current_streak;
+    document.getElementById("pass-count").textContent=Math.max(0,1-(p.free_passes_used||0));
+    document.getElementById("pass-bar").classList.add("on");
+    updateProgressUI(p);
+    checkClaim(p);
+    loadHistory(p.id);
+  }catch(e){}
 }
-function ban(type,msg){
-  ["s","e","w","i"].forEach(t=>document.getElementById("b-"+t).classList.remove("on"));
-  if(type){document.getElementById("b-"+type+"-t").textContent=msg;document.getElementById("b-"+type).classList.add("on");}
-}
-function requireAdmin(btn){
-  if(adminOk){showPg("admin",btn);return;}
-  document.getElementById("lock-screen").classList.remove("hidden");
-  document.getElementById("admin-pw").value="";document.getElementById("lock-err").textContent="";window._ab=btn;
-}
-function checkPw(){
-  if(document.getElementById("admin-pw").value===APW){adminOk=true;document.getElementById("lock-screen").classList.add("hidden");showPg("admin",window._ab);}
-  else{document.getElementById("lock-err").textContent="Incorrect password";document.getElementById("admin-pw").value="";}
-}
-function cancelAdmin(){document.getElementById("lock-screen").classList.add("hidden");window.location.hash="";}
-function adminLogout(){adminOk=false;showPg("checkin",document.querySelector(".nb"));document.querySelector(".nb").classList.add("on");window.location.hash="";}
 
 function handlePhoto(e){
   const f=e.target.files[0];if(!f)return;
   const r=new FileReader();
   r.onload=ev=>{
     photoB64=ev.target.result;photo=ev.target.result;
-    document.getElementById("prev-img").src=photo;
-    document.getElementById("prev-img").style.display="block";
-    document.getElementById("uz-in").style.display="none";
-    document.getElementById("uz").classList.remove("err");
+    // Update both upload zones
+    ["prev-img","prev-img-r"].forEach(id=>{
+      const el=document.getElementById(id);
+      if(el){el.src=photo;el.style.display="block";}
+    });
+    ["uz-in","uz-in-r"].forEach(id=>{
+      const el=document.getElementById(id);
+      if(el)el.style.display="none";
+    });
+    ["uz","uz-r"].forEach(id=>{
+      const el=document.getElementById(id);
+      if(el)el.classList.remove("err");
+    });
   };
   r.readAsDataURL(f);
 }
@@ -514,88 +602,27 @@ function diff(d1,d2){return Math.floor((new Date(d2)-new Date(d1))/86400000);}
 function today(){return new Date().toISOString().split("T")[0];}
 function fmtDate(d){return new Date(d).toLocaleDateString("en-US",{month:"short",day:"numeric"});}
 
-async function lookupStreak(){
-  const h=document.getElementById("handle").value.trim().replace("@","");
-  if(!h){ban("e","Enter your Instagram handle first");return;}
-  try{
-    const rows=await api("participants?instagram_handle=eq."+encodeURIComponent(h)+"&limit=1");
-    if(!rows||!rows.length){ban("w","No account found — submit your first check-in to join!");return;}
-    const p=rows[0];participant=p;
-    document.getElementById("uname").value=p.name;
-    if(p.email)document.getElementById("email").value=p.email;
-    document.getElementById("day-num").textContent=p.current_streak;
-    document.getElementById("streak-num").textContent=p.current_streak;
-    document.getElementById("streak-pill").classList.add("on");
-    document.getElementById("day-sub").textContent="Keep the streak alive — "+p.total_checkins+" check-ins logged";
-    document.getElementById("pass-count").textContent=Math.max(0,1-(p.free_passes_used||0));
-    document.getElementById("pass-bar").classList.add("on");
-    document.getElementById("submit-btn").textContent="Lock In Day "+(p.current_streak+1);
-    updateProgressUI(p);
-    ban("s","Welcome back "+p.name+" — Day "+p.current_streak+" streak active");
-    checkClaim(p);
-    loadHistory(p.id);
-  }catch(e){ban("e","Lookup failed — try again");}
-}
-
-async function loadHistory(pid){
-  try{
-    const rows=await api("checkins?participant_id=eq."+pid+"&order=checkin_date.desc&limit=10");
-    const el=document.getElementById("hist-list");
-    if(!rows||!rows.length){el.innerHTML='<div class="loading">No check-ins yet</div>';return;}
-    el.innerHTML=rows.map(c=>{
-      const cls=c.photo_status==="flagged"?"hist-flag":"hist-ok";
-      const lbl=c.photo_status==="flagged"?"Flagged":"Submitted";
-      return '<div class="hist-item"><div><div class="hist-day">Day '+c.day_number+'</div><div class="hist-date">'+fmtDate(c.checkin_date)+(c.used_free_pass?" · Pass used":"")+'</div></div><span class="'+cls+'">'+lbl+'</span></div>';
-    }).join("");
-  }catch(e){}
-}
-
-function updateProgressUI(p){
-  const s=p.current_streak||0;
-  document.getElementById("prog-streak").textContent=s;
-  document.getElementById("prog-total").textContent=p.total_checkins||0;
-  document.getElementById("prog-fill").style.width=Math.min(100,(s/365)*100)+"%";
-  MS.forEach(m=>{
-    const c=document.getElementById("ms"+m),n=document.getElementById("ms"+m+"n"),i=c.querySelector(".ms-icon"),t=c.querySelector(".ms-tier");
-    if(s>=m){c.classList.add("done");n.classList.add("lit");i.textContent="✓";t.classList.add("lit");}
-    else{c.classList.remove("done");n.classList.remove("lit");i.textContent="🔒";t.classList.remove("lit");}
+function ban(type,msg){
+  ["s","e","w","i","s2","e2"].forEach(t=>{
+    const el=document.getElementById("b-"+t);
+    if(el)el.classList.remove("on");
   });
-  let prev=1,next=30,tier="Committed — Day 30",reward="$75";
-  if(s>=365){prev=365;next=365;tier="Legend — Complete";reward="All done";}
-  else if(s>=60){prev=60;next=365;tier="Legend — Day 365";reward="$500 Mystery Box";}
-  else if(s>=30){prev=30;next=60;tier="Locked In — Day 60";reward="$150";}
-  const segPct=next===prev?100:Math.round(((s-prev)/(next-prev))*100);
-  const daysLeft=Math.max(0,next-s);
-  document.getElementById("seg-tier").textContent=tier;
-  document.getElementById("seg-reward").textContent=reward;
-  document.getElementById("seg-fill").style.width=Math.min(100,segPct)+"%";
-  document.getElementById("seg-from").textContent="Day "+prev;
-  document.getElementById("seg-to").textContent="Day "+next;
-  document.getElementById("seg-days-left").textContent=daysLeft>0?daysLeft+" day"+(daysLeft===1?"":"s")+" to go":"Milestone reached!";
-  document.getElementById("seg-label").textContent=s>=365?"All milestones complete":"Next milestone";
+  if(type){
+    const el=document.getElementById("b-"+type);
+    const tel=document.getElementById("b-"+type+"-t");
+    if(el&&tel){tel.textContent=msg;el.classList.add("on");}
+    // Also try the second set for new user view
+    const el2=document.getElementById("b-"+type+"2");
+    const tel2=document.getElementById("b-"+type+"2-t");
+    if(el2&&tel2){tel2.textContent=msg;el2.classList.add("on");}
+  }
 }
 
-async function checkClaim(p){
-  try{
-    const m=await api("milestones?participant_id=eq."+p.id+"&reward_sent=eq.false&limit=1");
-    if(m&&m.length){
-      const d=m[0].milestone_day;
-      const md=MS_DATA[d]||{};
-      document.getElementById("claim-wrap").classList.add("on");
-      document.getElementById("claim-text").textContent=d===365?"You did it. Claim your Legend reward.":"Milestone reached — claim your reward";
-      document.getElementById("claim-btn").textContent="Claim "+md.label+" →";
-      document.getElementById("claim-btn").dataset.mid=m[0].id;
-    }
-  }catch(e){}
-}
-
-async function claimReward(){
-  if(!participant){ban("e","Look up your streak first");return;}
-  try{
-    await api("milestones?id=eq."+document.getElementById("claim-btn").dataset.mid,{method:"PATCH",body:{reward_sent:true},prefer:"return=minimal"});
-    document.getElementById("claim-wrap").classList.remove("on");
-    ban("s","Reward claimed! We will reach out to @"+participant.instagram_handle+" within 48hrs.");
-  }catch(e){ban("e","Could not claim — try again");}
+async function submitCheckinReturning(){
+  if(!photo){document.getElementById("uz-r").classList.add("err");ban("e","Upload your workout photo first");return;}
+  const u=saved.get();if(!u)return;
+  const btn=document.getElementById("submit-btn-r");btn.disabled=true;btn.textContent="Submitting...";
+  await doSubmit(u.handle,u.name,u.email||"",btn,"submit-btn-r");
 }
 
 async function submitCheckin(){
@@ -606,8 +633,12 @@ async function submitCheckin(){
   document.getElementById("handle").classList.toggle("err",!h);if(!h)err=true;
   document.getElementById("uname").classList.toggle("err",!n);if(!n)err=true;
   document.getElementById("uz").classList.toggle("err",!photo);if(!photo)err=true;
-  if(err){ban("e","Fill in all fields and upload your workout photo");return;}
+  if(err){ban("e2","Fill in all fields and upload your workout photo");return;}
   const btn=document.getElementById("submit-btn");btn.disabled=true;btn.textContent="Submitting...";
+  await doSubmit(h,n,em,btn,"submit-btn");
+}
+
+async function doSubmit(h,n,em,btn,btnId){
   try{
     const td=today();let p=participant;
     if(!p){
@@ -621,7 +652,11 @@ async function submitCheckin(){
     }
     if(em&&!p.email)await api("participants?id=eq."+p.id,{method:"PATCH",body:{email:em},prefer:"return=minimal"});
     const dup=await api("checkins?participant_id=eq."+p.id+"&checkin_date=eq."+td+"&limit=1");
-    if(dup&&dup.length){ban("w","Already checked in today — come back tomorrow!");btn.disabled=false;btn.textContent="Lock In Day "+(p.current_streak+1);return;}
+    if(dup&&dup.length){
+      ban("w","Already checked in today — come back tomorrow!");
+      btn.disabled=false;btn.textContent=btnId==="submit-btn-r"?"Lock In Today":"Lock In Day 1";
+      return;
+    }
     const last=await api("checkins?participant_id=eq."+p.id+"&order=checkin_date.desc&limit=1");
     let streak=p.current_streak,usedPass=false,reset=false,dsr=0;
     if(last&&last.length){
@@ -641,25 +676,158 @@ async function submitCheckin(){
       const me=await api("milestones?participant_id=eq."+p.id+"&milestone_day=eq."+streak+"&limit=1");
       if(!me||!me.length)await api("milestones",{method:"POST",body:{participant_id:p.id,milestone_day:streak,reward_sent:false}});
     }
-    document.getElementById("day-num").textContent=streak;
+    // Save user locally
+    saved.set({handle:h,name:n,email:em,streak});
+    participant={...p,...upd};
+    // Update UI
     document.getElementById("streak-num").textContent=streak;
-    document.getElementById("streak-pill").classList.add("on");
     document.getElementById("sc-day").textContent=streak;
     if(photo){document.getElementById("sc-photo").src=photo;document.getElementById("sc-photo").style.display="block";}
     document.getElementById("story-preview").style.display="block";
     document.getElementById("story-preview").scrollIntoView({behavior:"smooth"});
     updateProgressUI({...p,...upd});
+    // Switch to returning view for future visits
+    document.getElementById("returning-view").style.display="block";
+    document.getElementById("new-user-view").style.display="none";
+    document.getElementById("ru-name").textContent=n;
+    document.getElementById("ru-handle").textContent="@"+h;
+    document.getElementById("ru-streak").textContent=streak;
+    // Show notification banner
+    document.getElementById("notif-banner").style.display="block";
     let msg="Day "+streak+" locked in!";
     if(usedPass)msg+=" Free pass used.";
-    if(reset)msg="Streak reset — starting fresh at Day 1.";
-    if(MS.includes(streak))msg+=" Milestone reached — check My Progress to claim!";
+    if(reset)msg="Streak reset — Day 1. Keep going.";
+    if(MS.includes(streak))msg+=" Milestone reached — check My Progress!";
     ban("s",msg);
-    participant={...p,...upd};
-    btn.textContent="Lock In Day "+(streak+1);
     if(MS.includes(streak))checkClaim(participant);
+    loadHistory(participant.id);
   }catch(e){ban("e","Submission failed: "+e.message);}
   btn.disabled=false;
+  btn.textContent=btnId==="submit-btn-r"?"Lock In Today":"Lock In Day 1";
 }
+
+function updateProgressUI(p){
+  const s=p.current_streak||0;
+  document.getElementById("prog-streak").textContent=s;
+  document.getElementById("prog-total").textContent=p.total_checkins||0;
+  document.getElementById("prog-fill").style.width=Math.min(100,(s/365)*100)+"%";
+  MS.forEach(m=>{
+    const c=document.getElementById("ms"+m),n=document.getElementById("ms"+m+"n"),i=c.querySelector(".ms-icon"),t=c.querySelector(".ms-tier");
+    if(s>=m){c.classList.add("done");n.classList.add("lit");i.textContent="✓";t.classList.add("lit");}
+    else{c.classList.remove("done");n.classList.remove("lit");i.textContent="🔒";t.classList.remove("lit");}
+  });
+  let prev=1,next=30,tier="Committed — Day 30",reward="$75";
+  if(s>=365){prev=365;next=365;tier="Legend — Complete";reward="Claim your box";}
+  else if(s>=60){prev=60;next=365;tier="Legend — Day 365";reward="$500 Mystery Box";}
+  else if(s>=30){prev=30;next=60;tier="Locked In — Day 60";reward="$150";}
+  const segPct=next===prev?100:Math.round(((s-prev)/(next-prev))*100);
+  const daysLeft=Math.max(0,next-s);
+  document.getElementById("seg-tier").textContent=tier;
+  document.getElementById("seg-reward").textContent=reward;
+  document.getElementById("seg-fill").style.width=Math.min(100,segPct)+"%";
+  document.getElementById("seg-from").textContent="Day "+prev;
+  document.getElementById("seg-to").textContent="Day "+next;
+  document.getElementById("seg-days-left").textContent=daysLeft>0?daysLeft+" day"+(daysLeft===1?"":"s")+" to go":"Milestone reached!";
+  document.getElementById("seg-label").textContent=s>=365?"All milestones complete":"Next milestone";
+}
+
+async function checkClaim(p){
+  try{
+    const m=await api("milestones?participant_id=eq."+p.id+"&reward_sent=eq.false&limit=1");
+    if(m&&m.length){
+      const d=m[0].milestone_day;const md=MS_DATA[d]||{};
+      document.getElementById("claim-wrap").classList.add("on");
+      document.getElementById("claim-text").textContent=d===365?"You did it. Claim your Legend reward.":"Milestone reached — claim your reward";
+      document.getElementById("claim-btn").textContent="Claim "+md.label+" →";
+      document.getElementById("claim-btn").dataset.mid=m[0].id;
+    }
+  }catch(e){}
+}
+
+async function claimReward(){
+  if(!participant)return;
+  try{
+    await api("milestones?id=eq."+document.getElementById("claim-btn").dataset.mid,{method:"PATCH",body:{reward_sent:true},prefer:"return=minimal"});
+    document.getElementById("claim-wrap").classList.remove("on");
+    ban("s","Reward claimed! We will reach out to @"+participant.instagram_handle+" within 48hrs.");
+  }catch(e){ban("e","Could not claim — try again");}
+}
+
+async function loadHistory(pid){
+  try{
+    const rows=await api("checkins?participant_id=eq."+pid+"&order=checkin_date.desc&limit=10");
+    const el=document.getElementById("hist-list");
+    if(!rows||!rows.length){el.innerHTML='<div class="loading">No check-ins yet</div>';return;}
+    el.innerHTML=rows.map(c=>{
+      const cls=c.photo_status==="flagged"?"hist-flag":"hist-ok";
+      const lbl=c.photo_status==="flagged"?"Flagged":"Submitted";
+      return '<div class="hist-item"><div><div class="hist-day">Day '+c.day_number+'</div><div class="hist-date">'+fmtDate(c.checkin_date)+(c.used_free_pass?" · Pass used":"")+'</div></div><span class="'+cls+'">'+lbl+'</span></div>';
+    }).join("");
+  }catch(e){}
+}
+
+async function requestNotifications(){
+  if(!("Notification" in window)){alert("Notifications not supported on this browser. Add the app to your home screen first.");return;}
+  const perm=await Notification.requestPermission();
+  if(perm==="granted"){
+    document.getElementById("notif-banner").innerHTML='<div class="nb-title">Notifications enabled ✓</div><div class="nb-body" style="color:var(--green)">You will get a daily reminder to check in. Never break the streak.</div>';
+    scheduleNotification();
+  }else{
+    document.getElementById("notif-banner").innerHTML='<div class="nb-title">Notifications blocked</div><div class="nb-body">To enable: go to your phone Settings → Notifications → find your browser → turn on notifications. Then add this app to your home screen.</div>';
+  }
+}
+
+function scheduleNotification(){
+  // Schedule daily notification via service worker
+  if("serviceWorker" in navigator&&navigator.serviceWorker.controller){
+    const now=new Date();
+    const next=new Date();
+    next.setHours(9,0,0,0);
+    if(next<=now)next.setDate(next.getDate()+1);
+    const delay=next-now;
+    setTimeout(()=>{
+      if(Notification.permission==="granted"){
+        const u=saved.get();
+        const streak=u?u.streak:0;
+        new Notification("HABITS 365",{body:"Day "+(streak+1)+" is waiting. Don't break your streak. 🔒",icon:"/icon.png",tag:"daily"});
+      }
+      setInterval(()=>{
+        if(Notification.permission==="granted"){
+          const u=saved.get();const streak=u?u.streak:0;
+          new Notification("HABITS 365",{body:"Day "+(streak+1)+" is waiting. Don't break your streak. 🔒",icon:"/icon.png",tag:"daily"});
+        }
+      },86400000);
+    },delay);
+  }
+}
+
+function showPg(id,btn){
+  document.querySelectorAll(".pg").forEach(p=>p.classList.remove("on"));
+  document.querySelectorAll(".nb").forEach(b=>b.classList.remove("on"));
+  document.getElementById("pg-"+id).classList.add("on");
+  if(btn)btn.classList.add("on");
+  if(id==="admin")loadAdmin();
+  if(id==="progress"){const u=saved.get();if(u&&u.handle)refreshParticipant(u.handle);}
+}
+function showATab(id,btn){
+  document.querySelectorAll(".asec").forEach(s=>s.classList.remove("on"));
+  document.querySelectorAll(".atab").forEach(b=>b.classList.remove("on"));
+  document.getElementById("at-"+id).classList.add("on");btn.classList.add("on");
+}
+function requireAdmin(btn){
+  if(adminOk){showPg("admin",btn);return;}
+  document.getElementById("lock-screen").classList.remove("hidden");
+  document.getElementById("admin-pw").value="";document.getElementById("lock-err").textContent="";window._ab=btn;
+}
+function checkPw(){
+  if(document.getElementById("admin-pw").value===APW){adminOk=true;document.getElementById("lock-screen").classList.add("hidden");showPg("admin",window._ab);}
+  else{document.getElementById("lock-err").textContent="Incorrect password";document.getElementById("admin-pw").value="";}
+}
+function cancelAdmin(){document.getElementById("lock-screen").classList.add("hidden");window.location.hash="";}
+function adminLogout(){adminOk=false;showPg("checkin",document.querySelector(".nb"));document.querySelector(".nb").classList.add("on");window.location.hash="";}
+function checkHash(){if(window.location.hash==="#admin"||window.location.hash==="/#admin"){document.getElementById("splash").style.display="none";requireAdmin(null);}}
+checkHash();window.addEventListener("hashchange",checkHash);
+function logoTap(){logoTaps++;clearTimeout(logoTimer);logoTimer=setTimeout(()=>logoTaps=0,2000);if(logoTaps>=7){logoTaps=0;requireAdmin(null);}}
 
 async function loadAdmin(){
   try{
@@ -705,23 +873,17 @@ async function loadAdmin(){
     }).join("");
   }catch(e){document.getElementById("photo-review-list").innerHTML='<div class="loading">Error loading</div>';}
 }
-
 async function reviewPhoto(id,status){
   try{
     await api("checkins?id=eq."+id,{method:"PATCH",body:{photo_status:status},prefer:"return=minimal"});
-    if(status==="flagged"){
-      const rows=await api("checkins?id=eq."+id+"&select=participant_id");
-      if(rows&&rows.length)await api("participants?id=eq."+rows[0].participant_id,{method:"PATCH",body:{flagged:true},prefer:"return=minimal"});
-    }
+    if(status==="flagged"){const rows=await api("checkins?id=eq."+id+"&select=participant_id");if(rows&&rows.length)await api("participants?id=eq."+rows[0].participant_id,{method:"PATCH",body:{flagged:true},prefer:"return=minimal"});}
     loadAdmin();
   }catch(e){alert("Failed — try again");}
 }
-
 async function markSent(id){
   try{await api("milestones?id=eq."+id,{method:"PATCH",body:{reward_sent:true},prefer:"return=minimal"});loadAdmin();}
   catch(e){alert("Failed — try again");}
 }
-
 function genCode(){
   const name=document.getElementById("amb-name").value.trim();if(!name)return;
   const chars="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";let s="";
@@ -734,51 +896,26 @@ function renderCodes(){
   if(!genCodes.length){list.innerHTML='<div style="font-size:11px;color:var(--gray2);text-align:center;padding:12px">No codes yet</div>';return;}
   list.innerHTML=genCodes.map(c=>'<div class="code-item" style="'+(c.used?"opacity:.35":"")+'"><div><div class="code-val">'+c.code+'</div><div class="code-meta">'+c.name+" · "+(c.used?"Used":"Active")+'</div></div><button class="code-copy" onclick=\'navigator.clipboard.writeText("'+c.code+'").then(()=>{this.textContent="Copied";setTimeout(()=>this.textContent="Copy",1500)})\'>Copy</button></div>').join("");
 }
-
 function shareIG(){
   downloadCard(true);
-  setTimeout(()=>{
-    if(navigator.share){navigator.share({title:"Day "+document.getElementById("sc-day").textContent+" #365Locked",text:"Day "+document.getElementById("sc-day").textContent+" of the 365 Challenge. #365Locked @habits_365"});}
-    else{ban("i","Card saved — open Instagram and add to your story");}
-  },600);
+  setTimeout(()=>{if(navigator.share){navigator.share({title:"Day "+document.getElementById("sc-day").textContent+" #365Locked",text:"Day "+document.getElementById("sc-day").textContent+" of the 365 Challenge. #365Locked @habits_365"});}else{ban("i","Card saved — open Instagram and add to your story");}},600);
 }
-
 function downloadCard(silent=false){
   const day=parseInt(document.getElementById("sc-day").textContent)||1;
   const cv=document.createElement("canvas");cv.width=1080;cv.height=1920;
   const ctx=cv.getContext("2d");
   const draw=()=>{
     ctx.fillStyle="#000";ctx.fillRect(0,0,1080,1920);
-    if(photo){
-      const img=new Image();
-      img.onload=()=>{
-        ctx.globalAlpha=.45;ctx.drawImage(img,0,0,1080,1920);ctx.globalAlpha=1;
-        finish();
-      };
-      img.src=photo;
-    }else{finish();}
+    if(photo){const img=new Image();img.onload=()=>{ctx.globalAlpha=.45;ctx.drawImage(img,0,0,1080,1920);ctx.globalAlpha=1;finish();};img.src=photo;}
+    else{finish();}
   };
   const finish=()=>{
     ctx.fillStyle="rgba(0,0,0,.55)";ctx.fillRect(0,0,1080,1920);
-    ctx.fillStyle="#fff";
-    ctx.font="800 40px sans-serif";
-    ctx.letterSpacing="8px";
-    ctx.fillText("#365LOCKED",60,100);
-    ctx.fillStyle="rgba(255,255,255,.28)";
-    ctx.font="700 90px sans-serif";
-    ctx.letterSpacing="4px";
-    ctx.fillText("DAY",60,1720);
-    ctx.fillStyle="#e8ff00";
-    ctx.font="900 480px sans-serif";
-    ctx.letterSpacing="-20px";
-    const dayStr=String(day);
-    ctx.fillText(dayStr,day<10?160:day<100?60:40,1900);
-    if(!silent){
-      const a=document.createElement("a");
-      a.download="habits365_day"+day+".png";
-      a.href=cv.toDataURL("image/png",1.0);
-      a.click();
-    }
+    ctx.fillStyle="#fff";ctx.font="800 40px sans-serif";ctx.letterSpacing="8px";ctx.fillText("#365LOCKED",60,100);
+    ctx.fillStyle="rgba(255,255,255,.28)";ctx.font="700 90px sans-serif";ctx.letterSpacing="4px";ctx.fillText("DAY",60,1720);
+    ctx.fillStyle="#e8ff00";ctx.font="900 480px sans-serif";ctx.letterSpacing="-20px";
+    ctx.fillText(String(day),day<10?160:day<100?60:40,1900);
+    if(!silent){const a=document.createElement("a");a.download="habits365_day"+day+".png";a.href=cv.toDataURL("image/png",1.0);a.click();}
   };
   draw();
 }
