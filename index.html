@@ -10,224 +10,260 @@
 :root{--black:#000;--surface:#0d0d0d;--s2:#141414;--s3:#1c1c1c;--white:#fff;--off:#e8e8e8;--gray:#999;--gray2:#666;--border:#222;--b2:#2e2e2e;--accent:#e8ff00;--red:#ff4040;--green:#00cc66;--ig:#e1306c}
 html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-serif;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 .app{max-width:430px;margin:0 auto;min-height:100vh}
-.hdr{padding:20px 20px 18px;display:flex;justify-content:space-between;align-items:center;background:var(--black);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
+
+/* SPLASH */
+.splash{position:fixed;inset:0;background:var(--black);z-index:300;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;text-align:center;transition:opacity .4s}
+.splash.hidden{opacity:0;pointer-events:none}
+.splash-logo{font-family:"Barlow Condensed",sans-serif;font-size:36px;font-weight:900;letter-spacing:.08em;color:var(--white);margin-bottom:6px}
+.splash-tag{font-size:11px;color:var(--gray2);letter-spacing:.2em;text-transform:uppercase;font-weight:700;margin-bottom:48px}
+.splash-headline{font-family:"Barlow Condensed",sans-serif;font-size:52px;font-weight:900;line-height:.88;letter-spacing:-.01em;color:var(--white);margin-bottom:16px}
+.splash-headline em{color:var(--accent);font-style:normal;display:block}
+.splash-sub{font-size:14px;color:var(--gray2);line-height:1.6;font-weight:500;margin-bottom:40px;max-width:280px}
+.splash-rewards{display:flex;gap:8px;margin-bottom:40px;width:100%}
+.splash-reward{flex:1;background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:12px 8px;text-align:center}
+.splash-reward-day{font-size:9px;color:var(--gray2);text-transform:uppercase;letter-spacing:.1em;font-weight:700;margin-bottom:4px}
+.splash-reward-val{font-family:"Barlow Condensed",sans-serif;font-size:18px;font-weight:900;color:var(--white);line-height:1}
+.splash-cta{width:100%;max-width:300px;padding:18px;background:var(--white);color:var(--black);border:none;border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:22px;font-weight:900;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;transition:opacity .2s}
+.splash-cta:hover{opacity:.88}
+.splash-note{font-size:11px;color:var(--gray2);margin-top:14px;font-weight:500}
+
+.hdr{padding:18px 20px 16px;display:flex;justify-content:space-between;align-items:center;background:var(--black);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
 .logo-text{font-family:"Barlow Condensed",sans-serif;font-size:22px;font-weight:900;letter-spacing:.08em;color:var(--white)}
-.hdr-r{display:flex;align-items:center;gap:12px}
-.streak-pill{background:var(--s3);border:1px solid var(--b2);border-radius:2px;padding:6px 12px;display:none;align-items:center;gap:8px}
+.hdr-r{display:flex;align-items:center;gap:10px}
+.streak-pill{background:var(--s3);border:1px solid var(--b2);border-radius:2px;padding:5px 11px;display:none;align-items:center;gap:7px}
 .streak-pill.on{display:flex}
-.spn{font-family:"Barlow Condensed",sans-serif;font-size:18px;font-weight:900;color:var(--accent);line-height:1}
-.spl{font-size:9px;color:var(--gray2);letter-spacing:.12em;text-transform:uppercase;font-weight:600}
-.htag{font-size:10px;color:var(--gray2);letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.spn{font-family:"Barlow Condensed",sans-serif;font-size:17px;font-weight:900;color:var(--accent);line-height:1}
+.spl{font-size:9px;color:var(--gray2);letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.htag{font-size:10px;color:var(--gray2);letter-spacing:.08em;text-transform:uppercase;font-weight:600}
 .nav{display:flex;background:var(--black);border-bottom:1px solid var(--border)}
-.nb{flex:1;padding:16px 4px 14px;background:none;border:none;color:var(--gray2);font-family:"Barlow",sans-serif;font-size:10px;font-weight:700;cursor:pointer;letter-spacing:.12em;text-transform:uppercase;border-bottom:2px solid transparent;transition:color .2s}
+.nb{flex:1;padding:15px 4px 13px;background:none;border:none;color:var(--gray2);font-family:"Barlow",sans-serif;font-size:10px;font-weight:700;cursor:pointer;letter-spacing:.12em;text-transform:uppercase;border-bottom:2px solid transparent;transition:color .2s}
 .nb.on{color:var(--white);border-bottom-color:var(--white)}
 .pg{display:none}
 .pg.on{display:block}
-.hero{padding:28px 20px 24px;border-bottom:1px solid var(--border)}
-.hero-ey{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray2);font-weight:700;margin-bottom:10px}
-.hero-day{font-family:"Barlow Condensed",sans-serif;font-size:88px;font-weight:900;line-height:.82;letter-spacing:-.02em;color:var(--white);margin-bottom:8px}
+
+/* CHECK IN */
+.hero{padding:24px 20px 20px;border-bottom:1px solid var(--border)}
+.hero-ey{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray2);font-weight:700;margin-bottom:8px}
+.hero-day{font-family:"Barlow Condensed",sans-serif;font-size:84px;font-weight:900;line-height:.82;letter-spacing:-.02em;color:var(--white);margin-bottom:6px}
 .hero-day em{color:var(--accent);font-style:normal;display:block}
-.hero-sub{font-size:11px;color:var(--gray2);letter-spacing:.12em;text-transform:uppercase;font-weight:600}
-.ban{margin:14px 20px;border-radius:2px;padding:12px 16px;display:none;align-items:flex-start;gap:10px}
+.hero-sub{font-size:11px;color:var(--gray2);letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.ban{margin:12px 20px;border-radius:2px;padding:12px 14px;display:none;align-items:flex-start;gap:10px}
 .ban.on{display:flex}
 .ban.s{background:rgba(0,204,102,.06);border:1px solid rgba(0,204,102,.2)}
 .ban.e{background:rgba(255,64,64,.06);border:1px solid rgba(255,64,64,.2)}
-.ban.w{background:rgba(232,255,0,.06);border:1px solid rgba(232,255,0,.2)}
+.ban.w{background:rgba(232,255,0,.06);border:1px solid rgba(232,255,0,.18)}
 .ban.i{background:var(--s2);border:1px solid var(--b2)}
 .bd{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:4px}
 .bd.g{background:var(--green)}.bd.r{background:var(--red)}.bd.y{background:var(--accent)}.bd.w{background:var(--gray2)}
 .bt{font-size:13px;font-weight:500;line-height:1.5;color:var(--off)}
 .bt.g{color:#66ffaa}.bt.r{color:#ff8080}.bt.y{color:var(--accent)}
 .fp{padding:0 20px}
-.field{margin-bottom:16px}
-.fl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);font-weight:700;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.field{margin-bottom:14px}
+.fl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);font-weight:700;display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
 .fl span{color:var(--red);font-size:9px;letter-spacing:0;text-transform:none;font-weight:500}
 .fi{width:100%;background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:14px 16px;color:var(--white);font-family:"Barlow",sans-serif;font-size:15px;font-weight:500;outline:none;transition:border-color .2s;-webkit-appearance:none}
 .fi:focus{border-color:var(--gray2)}
 .fi.err{border-color:var(--red)}
 .fi::placeholder{color:var(--b2)}
-.acc{margin:0 20px 16px;border:1px solid var(--border);border-radius:2px;overflow:hidden}
-.acc-top{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;background:var(--s2)}
-.acc-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--gray);font-weight:700}
-.acc-st{font-size:10px;font-weight:700;padding:3px 8px;border-radius:2px;letter-spacing:.06em;text-transform:uppercase}
-.acc-st.locked{background:rgba(255,64,64,.1);color:var(--red)}
-.acc-st.unlocked{background:rgba(0,204,102,.1);color:var(--green)}
-.acc-body{padding:16px;display:none;border-top:1px solid var(--border)}
-.acc-body.on{display:block}
-.acc-desc{font-size:13px;color:var(--gray);line-height:1.6;font-weight:500;margin-bottom:14px}
-.acc-desc a{color:var(--white);text-decoration:underline}
-.acc-row{display:flex;gap:8px}
-.acc-in{flex:1;background:var(--black);border:1px solid var(--border);border-radius:2px;padding:12px 14px;color:var(--white);font-family:"Barlow Condensed",sans-serif;font-size:18px;font-weight:800;outline:none;letter-spacing:.12em;text-transform:uppercase;-webkit-appearance:none}
-.acc-in:focus{border-color:var(--gray2)}
-.acc-in::placeholder{color:var(--b2);letter-spacing:.04em;font-size:13px;font-family:"Barlow",sans-serif;font-weight:500}
-.btn-verify{padding:12px 16px;background:var(--white);color:var(--black);border:none;border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:15px;font-weight:900;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;transition:opacity .2s;white-space:nowrap}
+
+/* REWARD UNLOCK — optional */
+.reward-unlock{margin:0 20px 14px;border:1px solid var(--border);border-radius:2px;overflow:hidden}
+.ru-top{padding:13px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;background:var(--s2)}
+.ru-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--gray);font-weight:700}
+.ru-hint{font-size:10px;color:var(--gray2);font-weight:500}
+.ru-st{font-size:10px;font-weight:700;padding:3px 8px;border-radius:2px;letter-spacing:.06em;text-transform:uppercase}
+.ru-st.locked{background:rgba(255,255,255,.06);color:var(--gray2)}
+.ru-st.unlocked{background:rgba(0,204,102,.1);color:var(--green)}
+.ru-body{padding:14px 16px;display:none;border-top:1px solid var(--border)}
+.ru-body.on{display:block}
+.ru-desc{font-size:13px;color:var(--gray);line-height:1.6;font-weight:500;margin-bottom:12px}
+.ru-desc a{color:var(--white);text-decoration:underline}
+.ru-rewards{display:flex;gap:6px;margin-bottom:14px}
+.ru-reward{flex:1;background:var(--black);border:1px solid var(--border);border-radius:2px;padding:10px 6px;text-align:center}
+.ru-reward-day{font-size:9px;color:var(--gray2);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:3px}
+.ru-reward-val{font-family:"Barlow Condensed",sans-serif;font-size:16px;font-weight:900;color:var(--white);line-height:1}
+.ru-row{display:flex;gap:8px}
+.ru-in{flex:1;background:var(--black);border:1px solid var(--border);border-radius:2px;padding:12px 14px;color:var(--white);font-family:"Barlow Condensed",sans-serif;font-size:17px;font-weight:800;outline:none;letter-spacing:.12em;text-transform:uppercase;-webkit-appearance:none}
+.ru-in:focus{border-color:var(--gray2)}
+.ru-in::placeholder{color:var(--b2);letter-spacing:.04em;font-size:13px;font-family:"Barlow",sans-serif;font-weight:500}
+.btn-verify{padding:12px 14px;background:var(--white);color:var(--black);border:none;border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:14px;font-weight:900;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;transition:opacity .2s;white-space:nowrap}
 .btn-verify:hover{opacity:.85}
-.acc-ok{display:none;align-items:center;gap:10px;padding:10px 0}
-.acc-ok.on{display:flex}
-.acc-ok-ic{width:22px;height:22px;border-radius:50%;background:rgba(0,204,102,.15);display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
-.acc-ok-tx{font-size:13px;color:var(--green);font-weight:600}
-.acc-ok-sub{font-size:11px;color:var(--gray2)}
-.pbar{margin:0 20px 16px;background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:12px 16px;display:none;justify-content:space-between;align-items:center}
+.ru-ok{display:none;align-items:center;gap:10px;padding:8px 0}
+.ru-ok.on{display:flex}
+.ru-ok-ic{width:20px;height:20px;border-radius:50%;background:rgba(0,204,102,.15);display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0}
+.ru-ok-tx{font-size:13px;color:var(--green);font-weight:600}
+.ru-ok-sub{font-size:10px;color:var(--gray2)}
+
+.pbar{margin:0 20px 14px;background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:11px 14px;display:none;justify-content:space-between;align-items:center}
 .pbar.on{display:flex}
-.pbl{font-size:10px;color:var(--gray2);text-transform:uppercase;letter-spacing:.12em;font-weight:700}
-.pbn{font-family:"Barlow Condensed",sans-serif;font-size:28px;font-weight:900;color:var(--accent)}
-.uw{padding:0 20px;margin-bottom:16px}
+.pbl{font-size:10px;color:var(--gray2);text-transform:uppercase;letter-spacing:.1em;font-weight:700}
+.pbn{font-family:"Barlow Condensed",sans-serif;font-size:26px;font-weight:900;color:var(--accent)}
+.uw{padding:0 20px;margin-bottom:14px}
 .uz{width:100%;aspect-ratio:4/3;background:var(--s2);border:1px solid var(--border);border-radius:2px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;position:relative;transition:border-color .2s}
 .uz:active{border-color:var(--gray2)}
 .uz.err{border-color:var(--red)}
 .uz img{width:100%;height:100%;object-fit:contain;position:absolute;inset:0;background:var(--s2)}
-.uz-in{position:relative;z-index:1;text-align:center;padding:24px}
-.uz-ic{font-size:24px;margin-bottom:10px}
+.uz-in{position:relative;z-index:1;text-align:center;padding:20px}
+.uz-ic{font-size:28px;margin-bottom:10px}
 .uz-tx{font-size:13px;color:var(--gray);font-weight:600}
-.uz-rq{font-size:11px;color:var(--red);margin-top:6px;font-weight:600}
+.uz-rq{font-size:11px;color:var(--red);margin-top:5px;font-weight:600}
 #pi{display:none}
 .bw{padding:0 20px}
-.bp{width:100%;padding:16px;background:var(--white);color:var(--black);border:none;border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:18px;font-weight:900;cursor:pointer;letter-spacing:.1em;text-transform:uppercase;transition:opacity .2s;margin-bottom:10px;display:block}
+.bp{width:100%;padding:17px;background:var(--white);color:var(--black);border:none;border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:20px;font-weight:900;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;transition:opacity .2s;margin-bottom:10px;display:block}
 .bp:hover{opacity:.88}
+.bp:active{opacity:.75;transform:scale(.99)}
 .bp:disabled{opacity:.25;cursor:not-allowed}
-.bg{width:100%;padding:14px;background:transparent;color:var(--white);border:1px solid var(--border);border-radius:2px;font-family:"Barlow",sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:border-color .2s;margin-bottom:10px;display:block;letter-spacing:.04em}
+.bg{width:100%;padding:14px;background:transparent;color:var(--off);border:1px solid var(--border);border-radius:2px;font-family:"Barlow",sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:border-color .2s;margin-bottom:10px;display:block;letter-spacing:.03em}
 .bg:hover{border-color:var(--gray2)}
 .big{background:var(--ig)!important;color:#fff!important;border:none!important}
 .bsm{font-size:10px;padding:5px 10px;border:1px solid var(--border);border-radius:2px;background:none;color:var(--gray);cursor:pointer;font-family:"Barlow",sans-serif;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:all .2s}
 .bsm:hover{border-color:var(--gray2);color:var(--white)}
-.bsm.danger{border-color:rgba(255,64,64,.3);color:var(--red)}
-.bsm.approve{border-color:rgba(0,204,102,.3);color:var(--green)}
+
+/* STORY CARD */
 .sp{display:none;padding:16px 20px 0}
-.sp-lb{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray2);font-weight:700;margin-bottom:12px}
-.sc{width:100%;aspect-ratio:9/16;background:#000;border-radius:4px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:24px 20px;border:1px solid var(--border)}
+.sp-lb{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray2);font-weight:700;margin-bottom:10px}
+.sc{width:100%;aspect-ratio:9/16;background:#000;border-radius:4px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:22px 18px;border:1px solid var(--border)}
 .sc-bg-pat{position:absolute;inset:0;background:linear-gradient(135deg,#050505,#111,#050505)}
 .sc-gr{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.65) 0%,rgba(0,0,0,0) 40%,rgba(0,0,0,.9) 100%)}
 .sc-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;opacity:.5}
 .sc-top{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-start}
-.sc-logo-text{font-family:"Barlow Condensed",sans-serif;font-size:18px;font-weight:900;letter-spacing:.08em;color:#fff}
-.sc-pill{background:var(--white);color:#000;font-size:8px;font-weight:900;letter-spacing:.12em;padding:4px 9px;border-radius:1px;text-transform:uppercase}
+.sc-logo-text{font-family:"Barlow Condensed",sans-serif;font-size:17px;font-weight:900;letter-spacing:.08em;color:#fff}
+.sc-pill{background:var(--white);color:#000;font-size:8px;font-weight:900;letter-spacing:.1em;padding:4px 9px;border-radius:1px;text-transform:uppercase}
 .sc-bot{position:relative;z-index:2}
-.sc-handle{font-size:11px;color:rgba(255,255,255,.45);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
-.sc-day{font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:92px;line-height:.82;letter-spacing:-.02em;color:var(--white);margin-bottom:6px}
+.sc-handle{font-size:11px;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.sc-day{font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:88px;line-height:.82;letter-spacing:-.02em;color:var(--white);margin-bottom:5px}
 .sc-day em{color:var(--accent);font-style:normal}
-.sc-meta{font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.18em;text-transform:uppercase;font-weight:700;margin-bottom:10px}
-.sc-tag{font-family:"Barlow Condensed",sans-serif;font-size:20px;font-weight:900;color:var(--accent);letter-spacing:.06em}
-.sa{display:flex;flex-direction:column;gap:8px;margin-top:14px}
-.sn{font-size:11px;color:var(--gray2);text-align:center;margin-top:8px;line-height:1.6;font-weight:500}
+.sc-meta{font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin-bottom:8px}
+.sc-tag{font-family:"Barlow Condensed",sans-serif;font-size:18px;font-weight:900;color:var(--accent);letter-spacing:.06em}
+.sa{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.sn{font-size:11px;color:var(--gray2);text-align:center;margin-top:6px;line-height:1.6;font-weight:500}
 
-/* PROGRESS PAGE */
-.prog-hero{padding:24px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-end}
-.prog-big{font-family:"Barlow Condensed",sans-serif;font-size:72px;font-weight:900;line-height:.85;color:var(--white)}
-.prog-big em{color:var(--accent);font-style:normal;display:block;font-size:18px;letter-spacing:.1em}
-.prog-right{text-align:right}
-.prog-stat{font-family:"Barlow Condensed",sans-serif;font-size:32px;font-weight:900;color:var(--white);line-height:1}
-.prog-stat-lbl{font-size:9px;color:var(--gray2);letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-top:2px}
-.ms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:16px 20px}
-.ms-card{background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:16px 10px;text-align:center;transition:all .3s}
-.ms-card.done{border-color:rgba(255,255,255,.2)}
-.ms-card.pending{border-color:var(--border)}
-.ms-num{font-family:"Barlow Condensed",sans-serif;font-size:36px;font-weight:900;line-height:1;color:var(--white)}
-.ms-num.lit{color:var(--accent)}
-.ms-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:var(--gray2);font-weight:700;margin-top:2px}
-.ms-icon{font-size:14px;margin:8px 0 4px}
-.ms-tier{font-size:10px;color:var(--gray2);font-weight:600}
-.ms-tier.lit{color:var(--white)}
-.prog-bar-block{padding:0 20px 16px}
-.prog-track{width:100%;height:2px;background:var(--s3);overflow:hidden;margin-bottom:8px}
+/* PROGRESS */
+.prog-hero{padding:22px 20px 18px;border-bottom:1px solid var(--border)}
+.prog-top-row{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:16px}
+.prog-big{font-family:"Barlow Condensed",sans-serif;font-size:80px;font-weight:900;line-height:.82;color:var(--white)}
+.prog-big em{color:var(--accent);font-style:normal;display:block;font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-family:"Barlow",sans-serif;font-weight:700;margin-bottom:4px}
+.prog-stats{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.prog-stat-item{text-align:right}
+.prog-stat-num{font-family:"Barlow Condensed",sans-serif;font-size:28px;font-weight:900;line-height:1;color:var(--white)}
+.prog-stat-lbl{font-size:9px;color:var(--gray2);letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+.prog-track{width:100%;height:2px;background:var(--s3);overflow:hidden}
 .prog-fill{height:100%;background:var(--white);transition:width .8s cubic-bezier(.4,0,.2,1)}
-.prog-labels{display:flex;justify-content:space-between}
-.prog-lbl{font-size:9px;color:var(--gray2);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-.reward-block{margin:0 20px 16px;background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:16px}
-.reward-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.18em;color:var(--gray2);font-weight:700;margin-bottom:14px}
-.reward-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)}
+.ms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:14px 20px}
+.ms-card{background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:16px 8px;text-align:center;transition:all .3s}
+.ms-card.done{border-color:rgba(255,255,255,.15)}
+.ms-num{font-family:"Barlow Condensed",sans-serif;font-size:34px;font-weight:900;line-height:1;color:var(--white)}
+.ms-num.lit{color:var(--accent)}
+.ms-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--gray2);font-weight:700;margin-top:2px}
+.ms-icon{font-size:14px;margin:7px 0 4px}
+.ms-tier{font-size:10px;color:var(--gray2);font-weight:600}
+.ms-tier.lit{color:var(--gray)}
+.reward-block{margin:0 20px 14px;background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:14px}
+.reward-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:var(--gray2);font-weight:700;margin-bottom:12px}
+.reward-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--border)}
 .reward-row:last-child{border-bottom:none;padding-bottom:0}
-.reward-tier{font-size:14px;font-weight:700;color:var(--white)}
-.reward-days{font-size:11px;color:var(--gray2);font-weight:500;margin-top:2px}
-.reward-amt{font-family:"Barlow Condensed",sans-serif;font-size:16px;font-weight:900;color:var(--white);text-align:right;line-height:1.3}
+.reward-tier{font-size:13px;font-weight:700;color:var(--white)}
+.reward-detail{font-size:11px;color:var(--gray2);font-weight:500;margin-top:2px}
+.reward-amt{text-align:right}
+.reward-val{font-family:"Barlow Condensed",sans-serif;font-size:17px;font-weight:900;color:var(--white);line-height:1}
+.reward-bonus{font-size:10px;color:var(--gray2);font-weight:500;margin-top:2px}
 .claim-block{margin-top:12px;padding-top:12px;border-top:1px solid var(--border);display:none}
 .claim-block.on{display:block}
-.claim-text{font-size:12px;color:var(--white);font-weight:600;margin-bottom:10px}
+.claim-text{font-size:12px;color:var(--accent);font-weight:600;margin-bottom:8px}
 .bcl{width:100%;padding:13px;background:transparent;color:var(--white);border:1px solid var(--gray2);border-radius:2px;font-family:"Barlow",sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s}
 .bcl:hover{background:var(--white);color:var(--black)}
 .hist-block{margin:0 20px;background:var(--s2);border:1px solid var(--border);border-radius:2px;overflow:hidden}
-.hist-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.18em;color:var(--gray2);font-weight:700;padding:12px 14px;border-bottom:1px solid var(--border)}
+.hist-hdr{font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:var(--gray2);font-weight:700;padding:11px 14px;border-bottom:1px solid var(--border)}
 .hist-item{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid var(--border)}
 .hist-item:last-child{border-bottom:none}
 .hist-day{font-family:"Barlow Condensed",sans-serif;font-size:18px;font-weight:900;color:var(--white)}
 .hist-date{font-size:11px;color:var(--gray2);font-weight:500}
-.hist-status{font-size:10px;font-weight:700;padding:2px 7px;border-radius:2px;letter-spacing:.06em;text-transform:uppercase}
-.hist-ok{background:rgba(0,204,102,.1);color:var(--green);border:1px solid rgba(0,204,102,.2)}
-.hist-pending{background:rgba(232,255,0,.08);color:var(--accent);border:1px solid rgba(232,255,0,.15)}
-.hist-flagged{background:rgba(255,64,64,.1);color:var(--red);border:1px solid rgba(255,64,64,.2)}
+.hist-ok{font-size:9px;font-weight:800;padding:2px 7px;border-radius:2px;letter-spacing:.08em;text-transform:uppercase;background:rgba(0,204,102,.1);color:var(--green);border:1px solid rgba(0,204,102,.2)}
+.hist-pend{font-size:9px;font-weight:800;padding:2px 7px;border-radius:2px;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.05);color:var(--gray2);border:1px solid var(--border)}
+.hist-flag{font-size:9px;font-weight:800;padding:2px 7px;border-radius:2px;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,64,64,.1);color:var(--red);border:1px solid rgba(255,64,64,.2)}
+.prog-lookup{padding:14px 20px;font-size:12px;color:var(--gray2);text-align:center;line-height:1.6}
 
 /* ADMIN */
-.pt{padding:24px 20px 0}
-.stl{font-family:"Barlow Condensed",sans-serif;font-size:42px;font-weight:900;letter-spacing:-.01em;color:var(--white);margin-bottom:4px}
-.ssb{font-size:12px;color:var(--gray2);font-weight:600;margin-bottom:20px;letter-spacing:.04em}
-.ag{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}
-.ac{background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:16px}
-.an{font-family:"Barlow Condensed",sans-serif;font-size:46px;font-weight:900;line-height:1;color:var(--white);margin-bottom:4px}
-.al{font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:var(--gray2);font-weight:700}
-.atabs{display:flex;gap:0;margin-bottom:16px;border-bottom:1px solid var(--border)}
-.atab{flex:1;padding:11px 4px;background:none;border:none;color:var(--gray2);font-family:"Barlow",sans-serif;font-size:9px;font-weight:700;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;transition:all .2s;border-bottom:2px solid transparent;margin-bottom:-1px}
+.pt{padding:22px 20px 0}
+.stl{font-family:"Barlow Condensed",sans-serif;font-size:40px;font-weight:900;letter-spacing:-.01em;color:var(--white);margin-bottom:3px}
+.ssb{font-size:12px;color:var(--gray2);font-weight:600;margin-bottom:18px}
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.ac{background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:14px}
+.an{font-family:"Barlow Condensed",sans-serif;font-size:44px;font-weight:900;line-height:1;color:var(--white);margin-bottom:3px}
+.al{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--gray2);font-weight:700}
+.atabs{display:flex;gap:0;margin-bottom:14px;border-bottom:1px solid var(--border)}
+.atab{flex:1;padding:10px 4px;background:none;border:none;color:var(--gray2);font-family:"Barlow",sans-serif;font-size:9px;font-weight:700;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;transition:all .2s;border-bottom:2px solid transparent;margin-bottom:-1px}
 .atab.on{color:var(--white);border-bottom-color:var(--white)}
 .asec{display:none}
 .asec.on{display:block}
-.ar{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:var(--s2);border:1px solid var(--border);border-radius:2px;margin-bottom:6px}
-.ard{width:4px;height:4px;border-radius:50%;background:var(--white);flex-shrink:0;margin-top:6px}
-.arn{font-size:12px;font-weight:700;color:var(--white);margin-bottom:3px}
-.ari{font-size:10px;color:var(--gray2);font-weight:500}
-.pr{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--border)}
-.pav{width:34px;height:34px;border-radius:50%;background:var(--s3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:"Barlow Condensed",sans-serif;font-size:13px;font-weight:900;color:var(--white);flex-shrink:0}
-.pin{flex:1;min-width:0}
-.pna{font-size:13px;font-weight:700;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pme{font-size:10px;color:var(--gray2);font-weight:500;margin-top:1px}
-.pst{font-family:"Barlow Condensed",sans-serif;font-size:24px;font-weight:900;text-align:right;color:var(--white)}
-.psl{font-size:9px;color:var(--gray2);font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-align:right}
-.tier{display:inline-block;font-size:9px;padding:2px 6px;border-radius:2px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-top:2px}
-.te{background:rgba(232,255,0,.1);color:var(--accent);border:1px solid rgba(232,255,0,.2)}
-.tl2{background:rgba(255,255,255,.06);color:var(--gray);border:1px solid rgba(255,255,255,.1)}
-.tc{background:transparent;color:var(--gray2);border:1px solid var(--border)}
-
-/* PHOTO REVIEW */
 .photo-card{background:var(--s2);border:1px solid var(--border);border-radius:2px;margin-bottom:10px;overflow:hidden}
-.photo-card-img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:var(--s3)}
+.photo-card-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:var(--s3)}
 .photo-card-body{padding:12px 14px}
 .photo-card-name{font-size:13px;font-weight:700;color:var(--white);margin-bottom:2px}
 .photo-card-meta{font-size:11px;color:var(--gray2);margin-bottom:10px}
 .photo-card-actions{display:flex;gap:8px}
-.btn-approve{flex:1;padding:9px;background:rgba(0,204,102,.1);color:var(--green);border:1px solid rgba(0,204,102,.25);border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:14px;font-weight:900;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;transition:all .2s}
-.btn-approve:hover{background:rgba(0,204,102,.2)}
-.btn-flag{flex:1;padding:9px;background:rgba(255,64,64,.08);color:var(--red);border:1px solid rgba(255,64,64,.2);border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:14px;font-weight:900;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;transition:all .2s}
-.btn-flag:hover{background:rgba(255,64,64,.15)}
-
-/* CODE GEN */
-.codegen{background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:16px;margin-bottom:14px}
-.codegen-title{font-size:10px;text-transform:uppercase;letter-spacing:.18em;color:var(--gray2);font-weight:700;margin-bottom:12px}
+.btn-approve{flex:1;padding:10px;background:rgba(0,204,102,.1);color:var(--green);border:1px solid rgba(0,204,102,.25);border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:15px;font-weight:900;cursor:pointer;letter-spacing:.06em;text-transform:uppercase}
+.btn-flag{flex:1;padding:10px;background:rgba(255,64,64,.08);color:var(--red);border:1px solid rgba(255,64,64,.2);border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:15px;font-weight:900;cursor:pointer;letter-spacing:.06em;text-transform:uppercase}
+.ar{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:var(--s2);border:1px solid var(--border);border-radius:2px;margin-bottom:6px}
+.ard{width:4px;height:4px;border-radius:50%;background:var(--white);flex-shrink:0;margin-top:5px}
+.arn{font-size:12px;font-weight:700;color:var(--white);margin-bottom:3px}
+.ari{font-size:10px;color:var(--gray2);font-weight:500}
+.pr{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.pav{width:34px;height:34px;border-radius:50%;background:var(--s3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:"Barlow Condensed",sans-serif;font-size:13px;font-weight:900;color:var(--white);flex-shrink:0}
+.pin{flex:1;min-width:0}
+.pna{font-size:13px;font-weight:700;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pme{font-size:10px;color:var(--gray2);font-weight:500;margin-top:1px}
+.pst{font-family:"Barlow Condensed",sans-serif;font-size:22px;font-weight:900;text-align:right;color:var(--white)}
+.psl{font-size:9px;color:var(--gray2);font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-align:right}
+.tier{display:inline-block;font-size:9px;padding:2px 6px;border-radius:2px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+.te{background:rgba(232,255,0,.1);color:var(--accent);border:1px solid rgba(232,255,0,.2)}
+.tl2{background:rgba(255,255,255,.05);color:var(--gray);border:1px solid rgba(255,255,255,.08)}
+.tc{background:transparent;color:var(--gray2);border:1px solid var(--border)}
+.codegen{background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:14px;margin-bottom:12px}
+.codegen-title{font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:var(--gray2);font-weight:700;margin-bottom:10px}
 .codegen-row{display:flex;gap:8px;margin-bottom:10px}
-.codegen-in{flex:1;background:var(--black);border:1px solid var(--border);border-radius:2px;padding:10px 12px;color:var(--white);font-family:"Barlow",sans-serif;font-size:13px;outline:none;-webkit-appearance:none;transition:border-color .2s}
-.codegen-in:focus{border-color:var(--gray2)}
+.codegen-in{flex:1;background:var(--black);border:1px solid var(--border);border-radius:2px;padding:10px 12px;color:var(--white);font-family:"Barlow",sans-serif;font-size:13px;outline:none;-webkit-appearance:none}
 .codegen-in::placeholder{color:var(--b2)}
-.btn-gen{padding:10px 14px;background:var(--white);color:var(--black);border:none;border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:14px;font-weight:900;cursor:pointer;white-space:nowrap;letter-spacing:.08em;text-transform:uppercase}
+.btn-gen{padding:10px 14px;background:var(--white);color:var(--black);border:none;border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:14px;font-weight:900;cursor:pointer;white-space:nowrap;letter-spacing:.06em;text-transform:uppercase}
 .code-list{display:flex;flex-direction:column;gap:6px;max-height:200px;overflow-y:auto}
-.code-item{display:flex;justify-content:space-between;align-items:center;background:var(--black);border:1px solid var(--border);border-radius:2px;padding:10px 14px}
-.code-val{font-family:"Barlow Condensed",sans-serif;font-size:17px;font-weight:900;color:var(--white);letter-spacing:.1em}
+.code-item{display:flex;justify-content:space-between;align-items:center;background:var(--black);border:1px solid var(--border);border-radius:2px;padding:9px 12px}
+.code-val{font-family:"Barlow Condensed",sans-serif;font-size:16px;font-weight:900;color:var(--white);letter-spacing:.1em}
 .code-meta{font-size:10px;color:var(--gray2);font-weight:500;margin-top:2px}
-.code-copy{font-size:10px;padding:4px 10px;border:1px solid var(--border);border-radius:2px;background:none;color:var(--gray2);cursor:pointer;font-family:"Barlow",sans-serif;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
-
-/* LOCK */
+.code-copy{font-size:10px;padding:4px 9px;border:1px solid var(--border);border-radius:2px;background:none;color:var(--gray2);cursor:pointer;font-family:"Barlow",sans-serif;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
 .lo{position:fixed;inset:0;background:var(--black);z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px}
 .lo.hidden{display:none}
-.lo-logo{font-family:"Barlow Condensed",sans-serif;font-size:28px;font-weight:900;letter-spacing:.08em;color:var(--white);margin-bottom:8px}
-.lo-tag{font-size:10px;color:var(--gray2);letter-spacing:.2em;text-transform:uppercase;font-weight:700;margin-bottom:40px}
-.lo-lbl{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray2);font-weight:700;margin-bottom:10px}
-.lo-in{width:100%;max-width:260px;background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:16px;color:var(--white);font-family:"Barlow Condensed",sans-serif;font-size:32px;font-weight:700;outline:none;text-align:center;letter-spacing:.4em;margin-bottom:8px;-webkit-appearance:none}
+.lo-logo{font-family:"Barlow Condensed",sans-serif;font-size:26px;font-weight:900;letter-spacing:.08em;color:var(--white);margin-bottom:6px}
+.lo-tag{font-size:10px;color:var(--gray2);letter-spacing:.18em;text-transform:uppercase;font-weight:700;margin-bottom:36px}
+.lo-lbl{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gray2);font-weight:700;margin-bottom:8px}
+.lo-in{width:100%;max-width:260px;background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:16px;color:var(--white);font-family:"Barlow Condensed",sans-serif;font-size:30px;font-weight:700;outline:none;text-align:center;letter-spacing:.4em;margin-bottom:8px;-webkit-appearance:none}
 .lo-in:focus{border-color:var(--gray2)}
-.lo-err{font-size:11px;color:var(--red);text-align:center;margin-bottom:12px;height:14px;font-weight:600}
+.lo-err{font-size:11px;color:var(--red);text-align:center;margin-bottom:10px;height:14px;font-weight:600}
 .lo-btns{width:100%;max-width:260px;display:flex;flex-direction:column;gap:8px}
-.loading{text-align:center;padding:36px 20px;color:var(--gray2);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.loading{text-align:center;padding:32px 20px;color:var(--gray2);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
 .sp2{height:28px}
 .pad{padding:0 20px}
-.mt{margin-top:16px}
-.mb{margin-bottom:16px}
+.mt{margin-top:14px}
+.mb{margin-bottom:14px}
 </style>
 </head>
 <body>
+
+<!-- SPLASH -->
+<div class="splash" id="splash">
+  <div class="splash-logo">HABITS 365</div>
+  <div class="splash-tag">#365Locked</div>
+  <div class="splash-headline">YOU SAID<em>YOU WOULD.</em></div>
+  <div class="splash-sub">365 days. One check-in a day. No excuses. Free to join — rewards for those who show up.</div>
+  <div class="splash-rewards">
+    <div class="splash-reward"><div class="splash-reward-day">Day 30</div><div class="splash-reward-val">$20</div></div>
+    <div class="splash-reward"><div class="splash-reward-day">Day 60</div><div class="splash-reward-val">$35</div></div>
+    <div class="splash-reward"><div class="splash-reward-day">Day 90</div><div class="splash-reward-val">Free Tee</div></div>
+  </div>
+  <button class="splash-cta" onclick="startChallenge()">Start Your 365 →</button>
+  <div class="splash-note">Free to join · No purchase required to participate</div>
+</div>
+
+<!-- ADMIN LOCK -->
 <div class="lo hidden" id="lock-screen">
   <div class="lo-logo">HABITS 365</div>
   <div class="lo-tag">Admin Access</div>
@@ -242,7 +278,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 
 <div class="app">
   <div class="hdr">
-    <div class="logo-text">HABITS 365</div>
+    <div class="logo-text" id="logo-tap" onclick="logoTap()">HABITS 365</div>
     <div class="hdr-r">
       <div class="streak-pill" id="streak-pill"><div class="spn" id="streak-num">0</div><div class="spl">day streak</div></div>
       <div class="htag">#365Locked</div>
@@ -251,7 +287,6 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
   <nav class="nav">
     <button class="nb on" onclick="showPg('checkin',this)">Check In</button>
     <button class="nb" onclick="showPg('progress',this)">My Progress</button>
-    <button class="nb" onclick="requireAdmin(this)">Admin</button>
   </nav>
 
   <!-- CHECK IN -->
@@ -270,25 +305,36 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
       <div class="field"><div class="fl">Full Name</div><input type="text" class="fi" id="uname" placeholder="Your name" /></div>
       <div class="field"><div class="fl">Email <span>for milestone notifications</span></div><input type="email" class="fi" id="email" placeholder="your@email.com" /></div>
     </div>
-    <div class="acc">
-      <div class="acc-top" onclick="toggleAcc()">
-        <div class="acc-lbl">Unlock Rewards</div>
-        <div class="acc-st locked" id="acc-st">Locked</div>
+
+    <!-- OPTIONAL REWARD UNLOCK -->
+    <div class="reward-unlock">
+      <div class="ru-top" onclick="toggleRU()">
+        <div>
+          <div class="ru-lbl">Unlock Rewards</div>
+          <div class="ru-hint" style="font-size:10px;color:var(--gray2);margin-top:2px">Have a purchase code? Unlock $20–$35 credit + free tee</div>
+        </div>
+        <div class="ru-st locked" id="ru-st">Optional</div>
       </div>
-      <div class="acc-body" id="acc-body">
-        <div class="acc-desc">Enter the access code from your order confirmation email, or your ambassador code. No code? <a href="https://habits365.com" target="_blank">Purchase a Habits 365 product</a></div>
-        <div class="acc-row" id="acc-row">
-          <input type="text" class="acc-in" id="acc-code" placeholder="H365-XXXXX" maxlength="10" onkeyup="this.value=this.value.toUpperCase()" />
+      <div class="ru-body" id="ru-body">
+        <div class="ru-desc">Enter the access code from your Habits 365 order confirmation to unlock milestone rewards. No code? You can still participate — <a href="https://habits365.com" target="_blank">shop to unlock rewards</a></div>
+        <div class="ru-rewards">
+          <div class="ru-reward"><div class="ru-reward-day">Day 30</div><div class="ru-reward-val">$20</div></div>
+          <div class="ru-reward"><div class="ru-reward-day">Day 60</div><div class="ru-reward-val">$35</div></div>
+          <div class="ru-reward"><div class="ru-reward-day">Day 90</div><div class="ru-reward-val">Free Tee</div></div>
+        </div>
+        <div class="ru-row" id="ru-row">
+          <input type="text" class="ru-in" id="acc-code" placeholder="H365-XXXXX" maxlength="10" onkeyup="this.value=this.value.toUpperCase()" />
           <button class="btn-verify" onclick="verifyCode()">Verify</button>
         </div>
-        <div class="acc-ok" id="acc-ok">
-          <div class="acc-ok-ic">✓</div>
-          <div><div class="acc-ok-tx">Rewards Unlocked</div><div class="acc-ok-sub" id="acc-ok-sub">You're in</div></div>
+        <div class="ru-ok" id="ru-ok">
+          <div class="ru-ok-ic">✓</div>
+          <div><div class="ru-ok-tx">Rewards Unlocked</div><div class="ru-ok-sub" id="ru-ok-sub">You're eligible for all milestone rewards</div></div>
         </div>
       </div>
     </div>
+
     <div class="pbar" id="pass-bar">
-      <div><div class="pbl">Free passes remaining</div><div style="font-size:10px;color:var(--gray2);margin-top:3px;font-weight:500">Resets every 30 days</div></div>
+      <div><div class="pbl">Free passes remaining</div><div style="font-size:10px;color:var(--gray2);margin-top:2px;font-weight:500">Resets every 30 days</div></div>
       <div class="pbn" id="pass-count">1</div>
     </div>
     <div class="pad mb"><div class="fl" style="margin-bottom:0">Today's Photo <span>* Required — show your workout</span></div></div>
@@ -325,7 +371,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
         </div>
       </div>
       <div class="sa">
-        <button class="bp big" style="margin:0" onclick="shareIG()">Share to Instagram Story</button>
+        <button class="bp big" style="margin:0" onclick="shareIG()">Share to Instagram Story ↗</button>
         <button class="bg" style="margin:0" onclick="downloadCard()">Save Card to Photos</button>
       </div>
       <div class="sn">Save the card · Open Instagram · Add to your story</div>
@@ -336,55 +382,56 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
   <!-- MY PROGRESS -->
   <div class="pg" id="pg-progress">
     <div class="prog-hero">
-      <div>
-        <div class="prog-big"><em>Day Streak</em><span id="prog-streak">—</span></div>
+      <div class="prog-top-row">
+        <div>
+          <div class="prog-big"><em>Day Streak</em><span id="prog-streak">—</span></div>
+        </div>
+        <div class="prog-stats">
+          <div class="prog-stat-item">
+            <div class="prog-stat-num" id="prog-total">—</div>
+            <div class="prog-stat-lbl">Check-ins</div>
+          </div>
+        </div>
       </div>
-      <div class="prog-right">
-        <div class="prog-stat" id="prog-total">—</div>
-        <div class="prog-stat-lbl">Total Check-ins</div>
-      </div>
+      <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
     </div>
     <div class="ms-grid">
-      <div class="ms-card pending" id="ms30"><div class="ms-num" id="ms30n">30</div><div class="ms-lbl">Days</div><div class="ms-icon">🔒</div><div class="ms-tier">Committed</div></div>
-      <div class="ms-card pending" id="ms60"><div class="ms-num" id="ms60n">60</div><div class="ms-lbl">Days</div><div class="ms-icon">🔒</div><div class="ms-tier">Locked In</div></div>
-      <div class="ms-card pending" id="ms90"><div class="ms-num" id="ms90n">90</div><div class="ms-lbl">Days</div><div class="ms-icon">🔒</div><div class="ms-tier">Elite</div></div>
-    </div>
-    <div class="prog-bar-block">
-      <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
-      <div class="prog-labels"><div class="prog-lbl">Day 1</div><div class="prog-lbl">Day 365</div></div>
+      <div class="ms-card" id="ms30"><div class="ms-num" id="ms30n">30</div><div class="ms-lbl">Days</div><div class="ms-icon">🔒</div><div class="ms-tier">Committed</div></div>
+      <div class="ms-card" id="ms60"><div class="ms-num" id="ms60n">60</div><div class="ms-lbl">Days</div><div class="ms-icon">🔒</div><div class="ms-tier">Locked In</div></div>
+      <div class="ms-card" id="ms90"><div class="ms-num" id="ms90n">90</div><div class="ms-lbl">Days</div><div class="ms-icon">🔒</div><div class="ms-tier">Elite</div></div>
     </div>
     <div class="reward-block">
       <div class="reward-lbl">Reward Structure</div>
       <div class="reward-row">
-        <div><div class="reward-tier">Day 30 — Committed</div><div class="reward-days">$20 store credit</div></div>
-        <div class="reward-amt">$20<br><span style="font-size:10px;color:var(--gray2);font-family:'Barlow',sans-serif;font-weight:500">+ IG Feature</span></div>
+        <div><div class="reward-tier">Day 30 — Committed</div><div class="reward-detail">$20 store credit</div></div>
+        <div class="reward-amt"><div class="reward-val">$20</div><div class="reward-bonus">+ IG Feature</div></div>
       </div>
       <div class="reward-row">
-        <div><div class="reward-tier">Day 60 — Locked In</div><div class="reward-days">$35 store credit</div></div>
-        <div class="reward-amt">$35<br><span style="font-size:10px;color:var(--gray2);font-family:'Barlow',sans-serif;font-weight:500">+ Hall of Fame</span></div>
+        <div><div class="reward-tier">Day 60 — Locked In</div><div class="reward-detail">$35 store credit</div></div>
+        <div class="reward-amt"><div class="reward-val">$35</div><div class="reward-bonus">+ Hall of Fame</div></div>
       </div>
       <div class="reward-row">
-        <div><div class="reward-tier">Day 90 — Elite</div><div class="reward-days">Free tee + recognition</div></div>
-        <div class="reward-amt">Free Tee<br><span style="font-size:10px;color:var(--accent);font-family:'Barlow',sans-serif;font-weight:600">+ Elite Status</span></div>
+        <div><div class="reward-tier">Day 90 — Elite</div><div class="reward-detail">Free tee + recognition</div></div>
+        <div class="reward-amt"><div class="reward-val">Free Tee</div><div class="reward-bonus" style="color:var(--accent)">+ Elite Status</div></div>
       </div>
       <div class="claim-block" id="claim-wrap">
-        <div class="claim-text">Milestone unlocked — claim your reward</div>
+        <div class="claim-text">Milestone reached — claim your reward below</div>
         <button class="bcl" id="claim-btn" onclick="claimReward()">Claim Reward →</button>
       </div>
     </div>
-    <div class="pad" style="margin-bottom:8px"><div style="font-size:10px;text-transform:uppercase;letter-spacing:.18em;color:var(--gray2);font-weight:700">Recent Check-ins</div></div>
+    <div class="pad mb"><div style="font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:var(--gray2);font-weight:700">Recent Check-ins</div></div>
     <div class="hist-block" id="hist-list"><div class="loading">Look up your streak to see history</div></div>
-    <div style="padding:12px 20px;font-size:11px;color:var(--gray2);text-align:center;line-height:1.6">Go to Check In tab → Look Up My Streak to see your progress</div>
+    <div class="prog-lookup">Check In tab → Look Up My Streak to load your progress</div>
     <div class="sp2"></div>
   </div>
 
-  <!-- ADMIN -->
+  <!-- ADMIN (hidden — access via #admin) -->
   <div class="pg" id="pg-admin">
     <div class="pt">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px">
         <div><div class="stl">Admin</div><div class="ssb" style="margin:0">Habits 365 Dashboard</div></div>
-        <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
-          <div style="font-size:9px;color:var(--gray2);background:var(--s2);border:1px solid var(--border);padding:4px 8px;border-radius:2px;letter-spacing:.12em;font-weight:800;text-transform:uppercase">Live</div>
+        <div style="display:flex;gap:8px;align-items:center;margin-top:6px">
+          <div style="font-size:9px;color:var(--gray2);background:var(--s2);border:1px solid var(--border);padding:3px 8px;border-radius:2px;letter-spacing:.1em;font-weight:800;text-transform:uppercase">Live</div>
           <button class="bsm" onclick="adminLogout()">Lock</button>
         </div>
       </div>
@@ -397,28 +444,14 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
         <div class="ac"><div class="an" id="s-pending">—</div><div class="al">To Review</div></div>
       </div>
       <div class="atabs">
-        <button class="atab on" onclick="showATab('photos',this)">Photo Review</button>
+        <button class="atab on" onclick="showATab('photos',this)">Photos</button>
         <button class="atab" onclick="showATab('rewards',this)">Rewards</button>
         <button class="atab" onclick="showATab('people',this)">People</button>
         <button class="atab" onclick="showATab('codes',this)">Codes</button>
       </div>
-
-      <!-- PHOTO REVIEW -->
-      <div class="asec on" id="at-photos">
-        <div id="photo-review-list"><div class="loading">Loading</div></div>
-      </div>
-
-      <!-- REWARDS -->
-      <div class="asec" id="at-rewards">
-        <div id="admin-alerts"><div class="loading">Loading</div></div>
-      </div>
-
-      <!-- PEOPLE -->
-      <div class="asec" id="at-people">
-        <div id="admin-parts"><div class="loading">Loading</div></div>
-      </div>
-
-      <!-- CODES -->
+      <div class="asec on" id="at-photos"><div id="photo-review-list"><div class="loading">Loading</div></div></div>
+      <div class="asec" id="at-rewards"><div id="admin-alerts"><div class="loading">Loading</div></div></div>
+      <div class="asec" id="at-people"><div id="admin-parts"><div class="loading">Loading</div></div></div>
       <div class="asec" id="at-codes">
         <div class="codegen">
           <div class="codegen-title">Generate Ambassador Codes</div>
@@ -426,11 +459,10 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
             <input type="text" class="codegen-in" id="amb-name" placeholder="Ambassador @handle or name" />
             <button class="btn-gen" onclick="genCode()">Generate</button>
           </div>
-          <div class="code-list" id="code-list"><div style="font-size:11px;color:var(--gray2);text-align:center;padding:14px">No codes generated yet</div></div>
+          <div class="code-list" id="code-list"><div style="font-size:11px;color:var(--gray2);text-align:center;padding:12px">No codes yet</div></div>
         </div>
-        <div style="font-size:12px;color:var(--gray2);line-height:1.7;font-weight:500">Single-use codes. Send via DM or email. Bypasses purchase requirement.</div>
+        <div style="font-size:12px;color:var(--gray2);line-height:1.7;font-weight:500">Single-use. Bypasses purchase requirement. Send via DM or email.</div>
       </div>
-
       <button class="bg mt" onclick="loadAdmin()">Refresh</button>
     </div>
     <div class="sp2"></div>
@@ -441,7 +473,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 const SBU="https://smhyobptjyvkuutotray.supabase.co";
 const SBK="sb_publishable_FmmSdKoCPw4O9JdN3wf1Kg_YlmJhiHF";
 const APW="365elite";
-let photo=null,photoB64=null,participant=null,adminOk=false,accVerified=false,genCodes=[];
+let photo=null,photoB64=null,participant=null,adminOk=false,accVerified=false,genCodes=[],logoTaps=0,logoTimer=null;
 
 async function api(path,opts={}){
   const r=await fetch(SBU+"/rest/v1/"+path,{
@@ -450,6 +482,36 @@ async function api(path,opts={}){
   });
   if(!r.ok)throw new Error(await r.text());
   const t=await r.text();return t?JSON.parse(t):null;
+}
+
+function startChallenge(){
+  const splash=document.getElementById("splash");
+  splash.classList.add("hidden");
+  setTimeout(()=>splash.style.display="none",400);
+  localStorage.setItem("h365_seen","1");
+}
+
+// Check if already seen splash
+if(localStorage.getItem("h365_seen")){
+  document.getElementById("splash").style.display="none";
+}
+
+// Secret admin access
+function checkHash(){
+  if(window.location.hash==="/#admin"||window.location.hash==="#admin"){
+    document.getElementById("splash").style.display="none";
+    requireAdmin(null);
+  }
+}
+checkHash();
+window.addEventListener("hashchange",checkHash);
+
+// Logo tap secret (tap 7 times)
+function logoTap(){
+  logoTaps++;
+  clearTimeout(logoTimer);
+  logoTimer=setTimeout(()=>logoTaps=0,2000);
+  if(logoTaps>=7){logoTaps=0;requireAdmin(null);}
 }
 
 function showPg(id,btn){
@@ -477,21 +539,32 @@ function requireAdmin(btn){
   document.getElementById("admin-pw").value="";document.getElementById("lock-err").textContent="";window._ab=btn;
 }
 function checkPw(){
-  if(document.getElementById("admin-pw").value===APW){adminOk=true;document.getElementById("lock-screen").classList.add("hidden");showPg("admin",window._ab);}
-  else{document.getElementById("lock-err").textContent="Incorrect password";document.getElementById("admin-pw").value="";}
+  if(document.getElementById("admin-pw").value===APW){
+    adminOk=true;document.getElementById("lock-screen").classList.add("hidden");
+    showPg("admin",window._ab);
+  }else{document.getElementById("lock-err").textContent="Incorrect password";document.getElementById("admin-pw").value="";}
 }
-function cancelAdmin(){document.getElementById("lock-screen").classList.add("hidden");}
-function adminLogout(){adminOk=false;showPg("checkin",document.querySelector(".nb"));document.querySelector(".nb").classList.add("on");}
-function toggleAcc(){document.getElementById("acc-body").classList.toggle("on");}
+function cancelAdmin(){
+  document.getElementById("lock-screen").classList.add("hidden");
+  window.location.hash="";
+}
+function adminLogout(){
+  adminOk=false;
+  showPg("checkin",document.querySelector(".nb"));
+  document.querySelector(".nb").classList.add("on");
+  window.location.hash="";
+}
+
+function toggleRU(){document.getElementById("ru-body").classList.toggle("on");}
 
 function verifyCode(){
   const code=document.getElementById("acc-code").value.trim().toUpperCase();if(!code)return;
   const vp=/^H365-[A-Z0-9]{5}$/.test(code),va=/^LOCKED-[A-Z0-9]{4}$/.test(code),vg=genCodes.some(c=>c.code===code&&!c.used);
   if(vp||va||vg||code==="H365-DEMO"){
     accVerified=true;
-    document.getElementById("acc-st").textContent="Unlocked";document.getElementById("acc-st").className="acc-st unlocked";
-    document.getElementById("acc-row").style.display="none";document.getElementById("acc-ok").classList.add("on");
-    document.getElementById("acc-ok-sub").textContent=(va||vg)?"Ambassador access":"Purchase verified";
+    document.getElementById("ru-st").textContent="Unlocked";document.getElementById("ru-st").className="ru-st unlocked";
+    document.getElementById("ru-row").style.display="none";document.getElementById("ru-ok").classList.add("on");
+    document.getElementById("ru-ok-sub").textContent=(va||vg)?"Ambassador access — all rewards active":"Purchase verified — all rewards active";
     genCodes.forEach(c=>{if(c.code===code)c.used=true;});
   }else{
     document.getElementById("acc-code").style.borderColor="var(--red)";
@@ -504,8 +577,7 @@ function handlePhoto(e){
   const f=e.target.files[0];if(!f)return;
   const r=new FileReader();
   r.onload=ev=>{
-    photoB64=ev.target.result;
-    photo=ev.target.result;
+    photoB64=ev.target.result;photo=ev.target.result;
     document.getElementById("prev-img").src=photo;
     document.getElementById("prev-img").style.display="block";
     document.getElementById("uz-in").style.display="none";
@@ -540,11 +612,11 @@ async function lookupStreak(){
     checkClaim(p);
     if(p.access_verified){
       accVerified=true;
-      document.getElementById("acc-st").textContent="Unlocked";
-      document.getElementById("acc-st").className="acc-st unlocked";
-      document.getElementById("acc-row").style.display="none";
-      document.getElementById("acc-ok").classList.add("on");
-      document.getElementById("acc-ok-sub").textContent="Previously verified";
+      document.getElementById("ru-st").textContent="Unlocked";
+      document.getElementById("ru-st").className="ru-st unlocked";
+      document.getElementById("ru-row").style.display="none";
+      document.getElementById("ru-ok").classList.add("on");
+      document.getElementById("ru-ok-sub").textContent="Previously verified";
     }
     loadHistory(p.id);
   }catch(e){ban("e","Lookup failed — try again");}
@@ -556,20 +628,20 @@ async function loadHistory(pid){
     const el=document.getElementById("hist-list");
     if(!rows||!rows.length){el.innerHTML='<div class="loading">No check-ins yet</div>';return;}
     el.innerHTML=rows.map(c=>{
-      const st=c.photo_status==="flagged"?"hist-flagged":c.photo_status==="approved"?"hist-ok":"hist-pending";
-      const sl=c.photo_status==="flagged"?"Flagged":c.photo_status==="approved"?"Approved":"Pending";
-      return '<div class="hist-item"><div><div class="hist-day">Day '+c.day_number+'</div><div class="hist-date">'+fmtDate(c.checkin_date)+(c.used_free_pass?" · Free pass used":"")+'</div></div><span class="hist-status '+st+'">'+sl+'</span></div>';
+      const cls=c.photo_status==="flagged"?"hist-flag":c.photo_status==="approved"?"hist-ok":"hist-pend";
+      const lbl=c.photo_status==="flagged"?"Flagged":c.photo_status==="approved"?"Approved":"Submitted";
+      return '<div class="hist-item"><div><div class="hist-day">Day '+c.day_number+'</div><div class="hist-date">'+fmtDate(c.checkin_date)+(c.used_free_pass?" · Pass used":"")+'</div></div><span class="'+cls+'">'+lbl+'</span></div>';
     }).join("");
   }catch(e){}
 }
 
 function updateProgressUI(p){
-  document.getElementById("prog-streak").textContent=p.current_streak||"0";
-  document.getElementById("prog-total").textContent=p.total_checkins||"0";
+  document.getElementById("prog-streak").textContent=p.current_streak||0;
+  document.getElementById("prog-total").textContent=p.total_checkins||0;
   document.getElementById("prog-fill").style.width=Math.min(100,((p.current_streak||0)/365)*100)+"%";
   [30,60,90].forEach(m=>{
     const c=document.getElementById("ms"+m),n=document.getElementById("ms"+m+"n"),i=c.querySelector(".ms-icon"),t=c.querySelector(".ms-tier");
-    if((p.current_streak||0)>=m){c.classList.add("done");c.classList.remove("pending");n.classList.add("lit");i.textContent="✓";t.classList.add("lit");}
+    if((p.current_streak||0)>=m){c.classList.add("done");n.classList.add("lit");i.textContent="✓";t.classList.add("lit");}
   });
 }
 
@@ -630,8 +702,11 @@ async function submitCheckin(){
       }else{streak=1;reset=true;}
     }else{streak=1;}
 
-    // Store photo as base64 in database for admin review
-    await api("checkins",{method:"POST",body:{participant_id:p.id,checkin_date:td,day_number:streak,used_free_pass:usedPass,photo_url:"uploaded",photo_data:photoB64,photo_status:"pending"}});
+    await api("checkins",{method:"POST",body:{
+      participant_id:p.id,checkin_date:td,day_number:streak,
+      used_free_pass:usedPass,photo_url:"uploaded",
+      photo_data:photoB64,photo_status:"approved"
+    }});
 
     const upd={name:n,current_streak:streak,longest_streak:Math.max(p.longest_streak||0,streak),total_checkins:(p.total_checkins||0)+1,free_passes_used:usedPass?(p.free_passes_used||0)+1:p.free_passes_used,streak_reset:false,access_verified:accVerified};
     if(em)upd.email=em;if(dsr>=30)upd.free_pass_reset_date=td;
@@ -653,7 +728,7 @@ async function submitCheckin(){
     document.getElementById("story-preview").style.display="block";
     document.getElementById("story-preview").scrollIntoView({behavior:"smooth"});
 
-    let msg="Day "+streak+" locked in! Photo pending review.";
+    let msg="Day "+streak+" locked in!";
     if(usedPass)msg+=" Free pass used.";
     if(reset)msg="Streak reset — starting fresh at Day 1.";
     if([30,60,90].includes(streak))msg+=" Milestone hit — claim your reward!";
@@ -670,14 +745,13 @@ async function loadAdmin(){
     const all=await api("participants?select=*&order=current_streak.desc");
     const tod=await api("checkins?checkin_date=eq."+today()+"&select=id");
     const mil=await api("milestones?reward_sent=eq.false&order=unlocked_at.desc&limit=20");
-    const pending=await api("checkins?photo_status=eq.pending&order=created_at.desc&limit=20&select=*");
+    const pending=await api("checkins?photo_status=eq.pending&order=created_at.desc&limit=30&select=*");
     const elites=all?all.filter(p=>p.current_streak>=90):[];
     document.getElementById("s-total").textContent=all?all.length:0;
     document.getElementById("s-today").textContent=tod?tod.length:0;
     document.getElementById("s-elite").textContent=elites.length;
     document.getElementById("s-pending").textContent=pending?pending.length:0;
 
-    // Photo review
     const pr=document.getElementById("photo-review-list");
     if(!pending||!pending.length){pr.innerHTML='<div class="loading">No photos pending review</div>';}
     else{
@@ -686,12 +760,10 @@ async function loadAdmin(){
       const pm={};parts.forEach(p=>pm[p.id]=p);
       pr.innerHTML=pending.map(c=>{
         const p=pm[c.participant_id]||{};
-        const imgSrc=c.photo_data||"";
-        return '<div class="photo-card">'+(imgSrc?'<img class="photo-card-img" src="'+imgSrc+'" />':`<div class="photo-card-img" style="display:flex;align-items:center;justify-content:center;color:var(--gray2);font-size:12px">No photo data</div>`)+'<div class="photo-card-body"><div class="photo-card-name">'+p.name+' — Day '+c.day_number+'</div><div class="photo-card-meta">@'+(p.instagram_handle||"?")+" · "+fmtDate(c.checkin_date)+'</div><div class="photo-card-actions"><button class="btn-approve" onclick="reviewPhoto(\''+c.id+'\',\'approved\')">Approve</button><button class="btn-flag" onclick="reviewPhoto(\''+c.id+'\',\'flagged\')">Flag</button></div></div></div>';
+        return '<div class="photo-card">'+(c.photo_data?'<img class="photo-card-img" src="'+c.photo_data+'" />':`<div class="photo-card-img" style="display:flex;align-items:center;justify-content:center;color:var(--gray2);font-size:12px;letter-spacing:.06em">NO PHOTO DATA</div>`)+'<div class="photo-card-body"><div class="photo-card-name">'+p.name+' — Day '+c.day_number+'</div><div class="photo-card-meta">@'+(p.instagram_handle||"?")+" · "+fmtDate(c.checkin_date)+'</div><div class="photo-card-actions"><button class="btn-approve" onclick="reviewPhoto(\''+c.id+'\',\'approved\')">✓ Approve</button><button class="btn-flag" onclick="reviewPhoto(\''+c.id+'\',\'flagged\')">✕ Flag</button></div></div></div>';
       }).join("");
     }
 
-    // Rewards
     const ae=document.getElementById("admin-alerts");
     if(!mil||!mil.length){ae.innerHTML='<div class="loading">No pending rewards</div>';}
     else{
@@ -706,29 +778,25 @@ async function loadAdmin(){
       }).join("");
     }
 
-    // People
     const pe=document.getElementById("admin-parts");
     if(!all||!all.length){pe.innerHTML='<div class="loading">No participants yet</div>';return;}
     pe.innerHTML=all.map(p=>{
       const tier=p.current_streak>=90?"te":p.current_streak>=60?"tl2":"tc";
       const tl=tier==="te"?"ELITE":tier==="tl2"?"LOCKED IN":"COMMITTED";
-      const av=p.access_verified?"✓":"⚠";
+      const av=p.access_verified?"✓ Rewards":"Free";
       const avc=p.access_verified?"color:var(--green)":"color:var(--gray2)";
-      const flagged=p.flagged?'<span style="color:var(--red);font-weight:700;font-size:10px"> · Flagged</span>':"";
-      return '<div class="pr"><div class="pav">'+ini(p.name)+'</div><div class="pin"><div class="pna">'+p.name+'</div><div class="pme">@'+p.instagram_handle+" · "+(p.email||"no email")+'</div><div class="pme"><span style="'+avc+';font-weight:700">'+av+' Access</span> · '+p.total_checkins+' check-ins'+flagged+'</div><span class="tier '+tier+'">'+tl+'</span></div><div><div class="pst">'+p.current_streak+'</div><div class="psl">days</div></div></div>';
+      const flagged=p.flagged?' <span style="color:var(--red);font-weight:700">· Flagged</span>':"";
+      return '<div class="pr"><div class="pav">'+ini(p.name)+'</div><div class="pin"><div class="pna">'+p.name+'</div><div class="pme">@'+p.instagram_handle+" · "+(p.email||"no email")+'</div><div class="pme"><span style="'+avc+';font-weight:700">'+av+'</span> · '+p.total_checkins+' check-ins'+flagged+'</div><span class="tier '+tier+'">'+tl+'</span></div><div><div class="pst">'+p.current_streak+'</div><div class="psl">days</div></div></div>';
     }).join("");
   }catch(e){document.getElementById("photo-review-list").innerHTML='<div class="loading">Error loading</div>';}
 }
 
-async function reviewPhoto(checkinId, status){
+async function reviewPhoto(id,status){
   try{
-    await api("checkins?id=eq."+checkinId,{method:"PATCH",body:{photo_status:status},prefer:"return=minimal"});
+    await api("checkins?id=eq."+id,{method:"PATCH",body:{photo_status:status},prefer:"return=minimal"});
     if(status==="flagged"){
-      // Find participant and flag them
-      const rows=await api("checkins?id=eq."+checkinId+"&select=participant_id");
-      if(rows&&rows.length){
-        await api("participants?id=eq."+rows[0].participant_id,{method:"PATCH",body:{flagged:true},prefer:"return=minimal"});
-      }
+      const rows=await api("checkins?id=eq."+id+"&select=participant_id");
+      if(rows&&rows.length)await api("participants?id=eq."+rows[0].participant_id,{method:"PATCH",body:{flagged:true},prefer:"return=minimal"});
     }
     loadAdmin();
   }catch(e){alert("Failed — try again");}
@@ -748,15 +816,16 @@ function genCode(){
 }
 function renderCodes(){
   const list=document.getElementById("code-list");
-  if(!genCodes.length){list.innerHTML='<div style="font-size:11px;color:var(--gray2);text-align:center;padding:14px">No codes generated yet</div>';return;}
+  if(!genCodes.length){list.innerHTML='<div style="font-size:11px;color:var(--gray2);text-align:center;padding:12px">No codes yet</div>';return;}
   list.innerHTML=genCodes.map(c=>'<div class="code-item" style="'+(c.used?"opacity:.35":"")+'"><div><div class="code-val">'+c.code+'</div><div class="code-meta">'+c.name+" · "+(c.used?"Used":"Active")+'</div></div><button class="code-copy" onclick=\'navigator.clipboard.writeText("'+c.code+'").then(()=>{this.textContent="Copied";setTimeout(()=>this.textContent="Copy",1500)})\'>Copy</button></div>').join("");
 }
 
 function shareIG(){
   downloadCard(true);
   setTimeout(()=>{
-    if(navigator.share){navigator.share({title:"Day "+document.getElementById("card-day").textContent+" #365Locked",text:"Day "+document.getElementById("card-day").textContent+" of the 365 Challenge. #365Locked @habits365"});}
-    else{ban("i","Card saved — open Instagram and add to your story");}
+    if(navigator.share){
+      navigator.share({title:"Day "+document.getElementById("card-day").textContent+" #365Locked",text:"Day "+document.getElementById("card-day").textContent+" of the 365 Challenge. #365Locked @habits365"});
+    }else{ban("i","Card saved — open Instagram and add to your story");}
   },600);
 }
 
@@ -768,12 +837,12 @@ function downloadCard(silent=false){
   const draw=()=>{
     ctx.fillStyle="rgba(0,0,0,.65)";ctx.fillRect(0,0,1080,1920);
     ctx.fillStyle="#fff";ctx.font="900 72px sans-serif";ctx.fillText("HABITS 365",60,120);
-    ctx.fillStyle="#fff";ctx.fillRect(1080-210,72,170,36);
-    ctx.fillStyle="#000";ctx.font="800 13px sans-serif";ctx.fillText("#365LOCKED",1080-200,96);
-    ctx.fillStyle="rgba(255,255,255,.4)";ctx.font="600 26px sans-serif";ctx.fillText("@"+handle,60,1650);
-    ctx.fillStyle="#fff";ctx.font="900 210px sans-serif";ctx.fillText("DAY",60,1826);
-    ctx.fillStyle="#e8ff00";ctx.fillText(day,60+ctx.measureText("DAY ").width,1826);
-    ctx.fillStyle="#e8ff00";ctx.font="800 36px sans-serif";ctx.fillText("#365LOCKED",60,1880);
+    ctx.fillStyle="#fff";ctx.fillRect(870,76,168,34);
+    ctx.fillStyle="#000";ctx.font="800 12px sans-serif";ctx.fillText("#365LOCKED",884,98);
+    ctx.fillStyle="rgba(255,255,255,.4)";ctx.font="600 26px sans-serif";ctx.fillText("@"+handle,60,1648);
+    ctx.fillStyle="#fff";ctx.font="900 210px sans-serif";ctx.fillText("DAY",60,1824);
+    ctx.fillStyle="#e8ff00";ctx.fillText(day,60+ctx.measureText("DAY ").width,1824);
+    ctx.fillStyle="#e8ff00";ctx.font="800 34px sans-serif";ctx.fillText("#365LOCKED",60,1876);
     if(!silent){const a=document.createElement("a");a.download="habits365_day"+day+".png";a.href=cv.toDataURL("image/png");a.click();}
   };
   if(photo){const img=new Image();img.onload=()=>{ctx.drawImage(img,0,0,1080,1920);draw();};img.src=photo;}
