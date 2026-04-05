@@ -10,10 +10,7 @@
 :root{--black:#000;--surface:#0d0d0d;--s2:#141414;--s3:#1c1c1c;--white:#fff;--off:#e8e8e8;--gray:#999;--gray2:#666;--border:#222;--b2:#2e2e2e;--accent:#e8ff00;--red:#ff4040;--green:#00cc66;--ig:#e1306c}
 html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-serif;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 .app{max-width:430px;margin:0 auto;min-height:100vh}
-
-/* SPLASH */
 .splash{position:fixed;inset:0;background:var(--black);z-index:300;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;text-align:center;transition:opacity .4s}
-.splash.hidden{opacity:0;pointer-events:none}
 .splash-logo{font-family:"Barlow Condensed",sans-serif;font-size:32px;font-weight:900;letter-spacing:.08em;color:var(--white);margin-bottom:6px}
 .splash-tag{font-size:10px;color:var(--gray2);letter-spacing:.2em;text-transform:uppercase;font-weight:700;margin-bottom:44px}
 .splash-headline{font-family:"Barlow Condensed",sans-serif;font-size:56px;font-weight:900;line-height:.86;letter-spacing:-.01em;color:var(--white);margin-bottom:14px}
@@ -26,8 +23,6 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .splash-tier-reward{font-family:"Barlow Condensed",sans-serif;font-size:16px;font-weight:900;color:var(--accent)}
 .splash-cta{width:100%;max-width:300px;padding:18px;background:var(--white);color:var(--black);border:none;border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:22px;font-weight:900;cursor:pointer;letter-spacing:.08em;text-transform:uppercase}
 .splash-note{font-size:11px;color:var(--gray2);margin-top:12px;font-weight:500}
-
-/* HEADER */
 .hdr{padding:18px 20px 16px;display:flex;justify-content:space-between;align-items:center;background:var(--black);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
 .logo-text{font-family:"Barlow Condensed",sans-serif;font-size:22px;font-weight:900;letter-spacing:.08em;color:var(--white);cursor:pointer}
 .hdr-r{display:flex;align-items:center;gap:10px}
@@ -41,15 +36,11 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .nb.on{color:var(--white);border-bottom-color:var(--white)}
 .pg{display:none}
 .pg.on{display:block}
-
-/* HERO */
 .hero{padding:24px 20px 20px;border-bottom:1px solid var(--border)}
 .hero-ey{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray2);font-weight:700;margin-bottom:8px}
 .hero-day{font-family:"Barlow Condensed",sans-serif;font-size:84px;font-weight:900;line-height:.82;letter-spacing:-.02em;color:var(--white);margin-bottom:6px}
 .hero-day em{color:var(--accent);font-style:normal;display:block}
 .hero-sub{font-size:11px;color:var(--gray2);letter-spacing:.1em;text-transform:uppercase;font-weight:600}
-
-/* BANNERS */
 .ban{margin:12px 20px;border-radius:2px;padding:12px 14px;display:none;align-items:flex-start;gap:10px}
 .ban.on{display:flex}
 .ban.s{background:rgba(0,204,102,.06);border:1px solid rgba(0,204,102,.2)}
@@ -60,8 +51,6 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .bd.g{background:var(--green)}.bd.r{background:var(--red)}.bd.y{background:var(--accent)}.bd.w{background:var(--gray2)}
 .bt{font-size:13px;font-weight:500;line-height:1.5;color:var(--off)}
 .bt.g{color:#66ffaa}.bt.r{color:#ff8080}.bt.y{color:var(--accent)}
-
-/* FORM */
 .fp{padding:0 20px}
 .field{margin-bottom:14px}
 .fl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);font-weight:700;display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
@@ -70,35 +59,10 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .fi:focus{border-color:var(--gray2)}
 .fi.err{border-color:var(--red)}
 .fi::placeholder{color:var(--b2)}
-
-/* REWARD UNLOCK */
-.ru{margin:0 20px 14px;border:1px solid var(--border);border-radius:2px;overflow:hidden}
-.ru-top{padding:13px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;background:var(--s2)}
-.ru-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--gray);font-weight:700}
-.ru-st{font-size:10px;font-weight:700;padding:3px 8px;border-radius:2px;letter-spacing:.06em;text-transform:uppercase;background:rgba(255,255,255,.06);color:var(--gray2)}
-.ru-st.unlocked{background:rgba(0,204,102,.1);color:var(--green)}
-.ru-body{padding:14px 16px;display:none;border-top:1px solid var(--border)}
-.ru-body.on{display:block}
-.ru-desc{font-size:13px;color:var(--gray);line-height:1.6;font-weight:500;margin-bottom:12px}
-.ru-desc a{color:var(--white);text-decoration:underline}
-.ru-row{display:flex;gap:8px}
-.ru-in{flex:1;background:var(--black);border:1px solid var(--border);border-radius:2px;padding:12px 14px;color:var(--white);font-family:"Barlow Condensed",sans-serif;font-size:17px;font-weight:800;outline:none;letter-spacing:.12em;text-transform:uppercase;-webkit-appearance:none}
-.ru-in:focus{border-color:var(--gray2)}
-.ru-in::placeholder{color:var(--b2);letter-spacing:.04em;font-size:13px;font-family:"Barlow",sans-serif;font-weight:500}
-.btn-verify{padding:12px 14px;background:var(--white);color:var(--black);border:none;border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:14px;font-weight:900;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
-.ru-ok{display:none;align-items:center;gap:10px;padding:8px 0}
-.ru-ok.on{display:flex}
-.ru-ok-ic{width:20px;height:20px;border-radius:50%;background:rgba(0,204,102,.15);display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0}
-.ru-ok-tx{font-size:13px;color:var(--green);font-weight:600}
-.ru-ok-sub{font-size:10px;color:var(--gray2)}
-
-/* PASS BAR */
 .pbar{margin:0 20px 14px;background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:11px 14px;display:none;justify-content:space-between;align-items:center}
 .pbar.on{display:flex}
 .pbl{font-size:10px;color:var(--gray2);text-transform:uppercase;letter-spacing:.1em;font-weight:700}
 .pbn{font-family:"Barlow Condensed",sans-serif;font-size:26px;font-weight:900;color:var(--accent)}
-
-/* PHOTO UPLOAD */
 .uw{padding:0 20px;margin-bottom:14px}
 .uz{width:100%;aspect-ratio:4/3;background:var(--s2);border:1px solid var(--border);border-radius:2px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;position:relative;transition:border-color .2s}
 .uz:active{border-color:var(--gray2)}
@@ -110,8 +74,6 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .uz-hint{font-size:11px;color:var(--gray2);margin-top:4px;font-weight:500}
 .uz-rq{font-size:11px;color:var(--red);margin-top:5px;font-weight:600}
 #pi{display:none}
-
-/* BUTTONS */
 .bw{padding:0 20px}
 .bp{width:100%;padding:17px;background:var(--white);color:var(--black);border:none;border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:20px;font-weight:900;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;transition:opacity .2s;margin-bottom:10px;display:block}
 .bp:hover{opacity:.88}
@@ -124,18 +86,18 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .bsm:hover{border-color:var(--gray2);color:var(--white)}
 
 /* STORY CARD */
-<div class="sc">
-  <div class="sc-bg-pat"></div>
-  <div class="sc-gr"></div>
-  <img class="sc-photo" id="sc-photo" src="" />
-  <div class="sc-top">
-    <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:900;letter-spacing:.14em;color:#fff">#365LOCKED</div>
-  </div>
-  <div class="sc-bot">
-    <div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:rgba(255,255,255,.35);letter-spacing:.06em;margin-bottom:-8px">DAY</div>
-    <div style="font-family:'Barlow Condensed',sans-serif;font-size:110px;font-weight:900;line-height:.85;color:#e8ff00;letter-spacing:-.02em" id="sc-day">1</div>
-  </div>
-</div>
+.sp{display:none;padding:16px 20px 0}
+.sp-lb{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray2);font-weight:700;margin-bottom:10px}
+.sc{width:100%;aspect-ratio:9/16;background:#000;border-radius:8px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:28px 24px;border:1px solid var(--border)}
+.sc-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;opacity:.45}
+.sc-overlay{position:absolute;inset:0;background:rgba(0,0,0,.5)}
+.sc-top{position:relative;z-index:2}
+.sc-hashtag{font-family:"Barlow Condensed",sans-serif;font-size:13px;font-weight:900;letter-spacing:.16em;color:#fff;text-transform:uppercase}
+.sc-bot{position:relative;z-index:2}
+.sc-day-word{font-family:"Barlow Condensed",sans-serif;font-size:22px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.08em;margin-bottom:-8px}
+.sc-day-num{font-family:"Barlow Condensed",sans-serif;font-size:130px;font-weight:900;line-height:.82;color:#e8ff00;letter-spacing:-.02em}
+.sa{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.sn{font-size:11px;color:var(--gray2);text-align:center;margin-top:6px;line-height:1.6;font-weight:500}
 
 /* PROGRESS */
 .prog-hero{padding:22px 20px 16px;border-bottom:1px solid var(--border)}
@@ -147,8 +109,6 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .prog-stat-l{font-size:9px;color:var(--gray2);letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-top:2px}
 .prog-track{width:100%;height:2px;background:var(--s3);overflow:hidden}
 .prog-fill{height:100%;background:var(--white);transition:width .8s cubic-bezier(.4,0,.2,1)}
-
-/* MILESTONE SEGMENT */
 .seg-block{margin:0 20px 14px;background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:14px}
 .seg-label{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gray2);font-weight:700;margin-bottom:10px}
 .seg-next-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
@@ -159,8 +119,6 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .seg-info{display:flex;justify-content:space-between}
 .seg-pct{font-size:10px;color:var(--gray2);font-weight:600}
 .seg-days{font-size:10px;font-weight:700;color:var(--white)}
-
-/* MILESTONE CARDS */
 .ms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 20px 14px}
 .ms-card{background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:14px 8px;text-align:center;transition:all .3s}
 .ms-card.done{border-color:rgba(255,255,255,.15)}
@@ -170,28 +128,20 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .ms-icon{font-size:14px;margin:6px 0 3px}
 .ms-tier{font-size:9px;color:var(--gray2);font-weight:600}
 .ms-tier.lit{color:var(--gray)}
-
-/* REWARD TABLE */
 .reward-block{margin:0 20px 14px;background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:14px}
 .reward-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.16em;color:var(--gray2);font-weight:700;margin-bottom:12px}
 .reward-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--border)}
 .reward-row:last-child{border-bottom:none;padding-bottom:0}
-.reward-left{}
 .reward-tier{font-size:13px;font-weight:700;color:var(--white)}
 .reward-detail{font-size:10px;color:var(--gray2);font-weight:500;margin-top:2px}
-.reward-right{text-align:right}
-.reward-val{font-family:"Barlow Condensed",sans-serif;font-size:18px;font-weight:900;color:var(--white);line-height:1}
-.reward-bonus{font-size:10px;color:var(--gray2);font-weight:500;margin-top:2px}
+.reward-val{font-family:"Barlow Condensed",sans-serif;font-size:18px;font-weight:900;color:var(--white);line-height:1;text-align:right}
+.reward-bonus{font-size:10px;color:var(--gray2);font-weight:500;margin-top:2px;text-align:right}
 .reward-bonus.hot{color:var(--accent)}
-
-/* CLAIM */
 .claim-block{margin-top:10px;padding-top:10px;border-top:1px solid var(--border);display:none}
 .claim-block.on{display:block}
 .claim-text{font-size:12px;color:var(--accent);font-weight:600;margin-bottom:8px}
 .bcl{width:100%;padding:13px;background:transparent;color:var(--white);border:1px solid var(--gray2);border-radius:2px;font-family:"Barlow",sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s}
 .bcl:hover{background:var(--white);color:var(--black)}
-
-/* HISTORY */
 .hist-block{margin:0 20px;background:var(--s2);border:1px solid var(--border);border-radius:2px;overflow:hidden}
 .hist-hdr{font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:var(--gray2);font-weight:700;padding:11px 14px;border-bottom:1px solid var(--border)}
 .hist-item{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid var(--border)}
@@ -201,8 +151,6 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .hist-ok{font-size:9px;font-weight:800;padding:2px 7px;border-radius:2px;letter-spacing:.08em;text-transform:uppercase;background:rgba(0,204,102,.1);color:var(--green);border:1px solid rgba(0,204,102,.2)}
 .hist-pend{font-size:9px;font-weight:800;padding:2px 7px;border-radius:2px;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.05);color:var(--gray2);border:1px solid var(--border)}
 .hist-flag{font-size:9px;font-weight:800;padding:2px 7px;border-radius:2px;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,64,64,.1);color:var(--red);border:1px solid rgba(255,64,64,.2)}
-
-/* ADMIN */
 .pt{padding:22px 20px 0}
 .stl{font-family:"Barlow Condensed",sans-serif;font-size:40px;font-weight:900;letter-spacing:-.01em;color:var(--white);margin-bottom:3px}
 .ssb{font-size:12px;color:var(--gray2);font-weight:600;margin-bottom:18px}
@@ -249,8 +197,6 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .code-val{font-family:"Barlow Condensed",sans-serif;font-size:16px;font-weight:900;color:var(--white);letter-spacing:.1em}
 .code-meta{font-size:10px;color:var(--gray2);font-weight:500;margin-top:2px}
 .code-copy{font-size:10px;padding:4px 9px;border:1px solid var(--border);border-radius:2px;background:none;color:var(--gray2);cursor:pointer;font-family:"Barlow",sans-serif;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
-
-/* LOCK */
 .lo{position:fixed;inset:0;background:var(--black);z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px}
 .lo.hidden{display:none}
 .lo-logo{font-family:"Barlow Condensed",sans-serif;font-size:26px;font-weight:900;letter-spacing:.08em;color:var(--white);margin-bottom:6px}
@@ -269,7 +215,6 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 </head>
 <body>
 
-<!-- SPLASH -->
 <div class="splash" id="splash">
   <div class="splash-logo">HABITS 365</div>
   <div class="splash-tag">#365Locked</div>
@@ -290,10 +235,9 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
     </div>
   </div>
   <button class="splash-cta" onclick="startChallenge()">Start Your 365 →</button>
-  <div class="splash-note">Free to join · No purchase required to participate</div>
+  <div class="splash-note">Free to join · No purchase required</div>
 </div>
 
-<!-- ADMIN LOCK -->
 <div class="lo hidden" id="lock-screen">
   <div class="lo-logo">HABITS 365</div>
   <div class="lo-tag">Admin Access</div>
@@ -335,23 +279,6 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
       <div class="field"><div class="fl">Full Name</div><input type="text" class="fi" id="uname" placeholder="Your name" /></div>
       <div class="field"><div class="fl">Email <span>for milestone notifications</span></div><input type="email" class="fi" id="email" placeholder="your@email.com" /></div>
     </div>
-    <div class="ru">
-      <div class="ru-top" onclick="toggleRU()">
-        <div class="ru-lbl">Unlock Rewards</div>
-        <div class="ru-st" id="ru-st">Optional</div>
-      </div>
-      <div class="ru-body" id="ru-body">
-        <div class="ru-desc">Have a Habits 365 purchase code? Unlock your milestone rewards. No code? <a href="https://habits365.com" target="_blank">Shop now</a> — your code is in your order confirmation.</div>
-        <div class="ru-row" id="ru-row">
-          <input type="text" class="ru-in" id="acc-code" placeholder="H365-XXXXX" maxlength="10" onkeyup="this.value=this.value.toUpperCase()" />
-          <button class="btn-verify" onclick="verifyCode()">Verify</button>
-        </div>
-        <div class="ru-ok" id="ru-ok">
-          <div class="ru-ok-ic">✓</div>
-          <div><div class="ru-ok-tx">Rewards Unlocked</div><div class="ru-ok-sub" id="ru-ok-sub">Milestone rewards active</div></div>
-        </div>
-      </div>
-    </div>
     <div class="pbar" id="pass-bar">
       <div><div class="pbl">Free passes remaining</div><div style="font-size:10px;color:var(--gray2);margin-top:2px;font-weight:500">Resets every 30 days</div></div>
       <div class="pbn" id="pass-count">1</div>
@@ -377,23 +304,15 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
     <!-- STORY CARD -->
     <div class="sp" id="story-preview">
       <div class="sp-lb">Your Story Card</div>
-      <div class="sc" id="story-card-el">
-        <div class="sc-bg-pat"></div>
-        <div class="sc-gr"></div>
+      <div class="sc">
         <img class="sc-photo" id="sc-photo" src="" />
+        <div class="sc-overlay"></div>
         <div class="sc-top">
-          <div class="sc-logo">HABITS 365</div>
-          <div class="sc-pill" id="sc-pill" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.5)">#365Locked</div>
+          <div class="sc-hashtag">#365LOCKED</div>
         </div>
         <div class="sc-bot">
-          <div class="sc-handle" id="sc-handle">@YOURHANDLE</div>
-          <div class="sc-day-row">
-            <div class="sc-day-word">DAY</div>
-            <div class="sc-day-num" id="sc-day">1</div>
-          </div>
-          <div class="sc-ms-badge" id="sc-ms-badge"></div>
-          <div class="sc-tag">#365LOCKED</div>
-          <div class="sc-sub">365 Challenge · Habits 365</div>
+          <div class="sc-day-word">DAY</div>
+          <div class="sc-day-num" id="sc-day">1</div>
         </div>
       </div>
       <div class="sa">
@@ -417,14 +336,12 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
       </div>
       <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
     </div>
-
     <div class="ms-grid">
       <div class="ms-card" id="ms30"><div class="ms-num" id="ms30n">30</div><div class="ms-lbl">Days</div><div class="ms-icon">🔒</div><div class="ms-tier">Committed</div></div>
       <div class="ms-card" id="ms60"><div class="ms-num" id="ms60n">60</div><div class="ms-lbl">Days</div><div class="ms-icon">🔒</div><div class="ms-tier">Locked In</div></div>
       <div class="ms-card" id="ms365"><div class="ms-num" id="ms365n">365</div><div class="ms-lbl">Days</div><div class="ms-icon">🔒</div><div class="ms-tier">Legend</div></div>
     </div>
-
-    <div class="seg-block" id="seg-block">
+    <div class="seg-block">
       <div class="seg-label" id="seg-label">Next milestone</div>
       <div class="seg-next-row">
         <div class="seg-tier" id="seg-tier">Committed — Day 30</div>
@@ -437,27 +354,25 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
         <div class="seg-pct" id="seg-to">Day 30</div>
       </div>
     </div>
-
     <div class="reward-block">
       <div class="reward-lbl">Reward Structure</div>
       <div class="reward-row">
-        <div class="reward-left"><div class="reward-tier">Day 30 — Committed</div><div class="reward-detail">Featured on @habits_365</div></div>
-        <div class="reward-right"><div class="reward-val">$75</div><div class="reward-bonus">store credit</div></div>
+        <div><div class="reward-tier">Day 30 — Committed</div><div class="reward-detail">Featured on @habits_365</div></div>
+        <div><div class="reward-val">$75</div><div class="reward-bonus">store credit</div></div>
       </div>
       <div class="reward-row">
-        <div class="reward-left"><div class="reward-tier">Day 60 — Locked In</div><div class="reward-detail">Hall of Fame on habits365.com</div></div>
-        <div class="reward-right"><div class="reward-val">$150</div><div class="reward-bonus">store credit</div></div>
+        <div><div class="reward-tier">Day 60 — Locked In</div><div class="reward-detail">Hall of Fame on habits365.com</div></div>
+        <div><div class="reward-val">$150</div><div class="reward-bonus">store credit</div></div>
       </div>
       <div class="reward-row">
-        <div class="reward-left"><div class="reward-tier">Day 365 — Legend</div><div class="reward-detail">Legacy status · habits365.com</div></div>
-        <div class="reward-right"><div class="reward-val">$500</div><div class="reward-bonus hot">Mystery Box</div></div>
+        <div><div class="reward-tier">Day 365 — Legend</div><div class="reward-detail">Legacy status · habits365.com</div></div>
+        <div><div class="reward-val">$500</div><div class="reward-bonus hot">Mystery Box</div></div>
       </div>
       <div class="claim-block" id="claim-wrap">
         <div class="claim-text" id="claim-text">Milestone reached — claim your reward</div>
         <button class="bcl" id="claim-btn" onclick="claimReward()">Claim Reward →</button>
       </div>
     </div>
-
     <div class="pad mb"><div style="font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:var(--gray2);font-weight:700">Recent Check-ins</div></div>
     <div class="hist-block" id="hist-list"><div class="loading">Look up your streak to see history</div></div>
     <div style="padding:12px 20px;font-size:11px;color:var(--gray2);text-align:center;line-height:1.6">Check In tab → Look Up My Streak to load your progress</div>
@@ -500,7 +415,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
           </div>
           <div class="code-list" id="code-list"><div style="font-size:11px;color:var(--gray2);text-align:center;padding:12px">No codes yet</div></div>
         </div>
-        <div style="font-size:12px;color:var(--gray2);line-height:1.7;font-weight:500">Single-use. Bypasses purchase requirement. Send via DM or email.</div>
+        <div style="font-size:12px;color:var(--gray2);line-height:1.7;font-weight:500">Single-use. Send via DM or email.</div>
       </div>
       <button class="bg mt" onclick="loadAdmin()">Refresh</button>
     </div>
@@ -518,7 +433,7 @@ const MS_DATA={
   60:{tier:"Locked In",reward:"$150",label:"Day 60 — Locked In",rec:"$150 Credit + Hall of Fame"},
   365:{tier:"Legend",reward:"$500 Box",label:"Day 365 — Legend",rec:"$500 Mystery Box + Legacy Status"}
 };
-let photo=null,photoB64=null,participant=null,adminOk=false,accVerified=false,genCodes=[],logoTaps=0,logoTimer=null;
+let photo=null,photoB64=null,participant=null,adminOk=false,genCodes=[],logoTaps=0,logoTimer=null;
 
 async function api(path,opts={}){
   const r=await fetch(SBU+"/rest/v1/"+path,{
@@ -531,7 +446,8 @@ async function api(path,opts={}){
 
 function startChallenge(){
   const s=document.getElementById("splash");
-  s.classList.add("hidden");
+  s.style.opacity="0";
+  s.style.pointerEvents="none";
   setTimeout(()=>s.style.display="none",400);
   localStorage.setItem("h365_seen","1");
 }
@@ -579,23 +495,6 @@ function checkPw(){
 }
 function cancelAdmin(){document.getElementById("lock-screen").classList.add("hidden");window.location.hash="";}
 function adminLogout(){adminOk=false;showPg("checkin",document.querySelector(".nb"));document.querySelector(".nb").classList.add("on");window.location.hash="";}
-function toggleRU(){document.getElementById("ru-body").classList.toggle("on");}
-
-function verifyCode(){
-  const code=document.getElementById("acc-code").value.trim().toUpperCase();if(!code)return;
-  const vp=/^H365-[A-Z0-9]{5}$/.test(code),va=/^LOCKED-[A-Z0-9]{4}$/.test(code),vg=genCodes.some(c=>c.code===code&&!c.used);
-  if(vp||va||vg||code==="H365-DEMO"){
-    accVerified=true;
-    document.getElementById("ru-st").textContent="Unlocked";document.getElementById("ru-st").className="ru-st unlocked";
-    document.getElementById("ru-row").style.display="none";document.getElementById("ru-ok").classList.add("on");
-    document.getElementById("ru-ok-sub").textContent=(va||vg)?"Ambassador access":"Purchase verified";
-    genCodes.forEach(c=>{if(c.code===code)c.used=true;});
-  }else{
-    document.getElementById("acc-code").style.borderColor="var(--red)";
-    setTimeout(()=>document.getElementById("acc-code").style.borderColor="",2000);
-    ban("e","Invalid code — check your order email or contact @habits_365");
-  }
-}
 
 function handlePhoto(e){
   const f=e.target.files[0];if(!f)return;
@@ -608,33 +507,6 @@ function handlePhoto(e){
     document.getElementById("uz").classList.remove("err");
   };
   r.readAsDataURL(f);
-}
-
-function getMilestoneStyle(day){
-  if(day>=365)return{badge:"LEGEND",bg:"#fff",col:"#000",pill:"#fff",pillTxt:"#000",accent:"#fff"};
-  if(day>=60)return{badge:"LOCKED IN",bg:"#fff",col:"#000",pill:"rgba(255,255,255,.15)",pillTxt:"rgba(255,255,255,.7)",accent:"#fff"};
-  if(day>=30)return{badge:"COMMITTED",bg:"#e8ff00",col:"#000",pill:"#e8ff00",pillTxt:"#000",accent:"#e8ff00"};
-  return{badge:null,bg:"transparent",col:"transparent",pill:"rgba(255,255,255,.08)",pillTxt:"rgba(255,255,255,.4)",accent:"#e8ff00"};
-}
-
-function updateStoryCard(day,handle){
-  const ms=getMilestoneStyle(day);
-  document.getElementById("sc-handle").textContent="@"+handle.toUpperCase();
-  document.getElementById("sc-day").textContent=day;
-  document.getElementById("sc-day").style.color=ms.accent;
-  const pill=document.getElementById("sc-pill");
-  pill.style.background=ms.pill;pill.style.color=ms.pillTxt;
-  const badge=document.getElementById("sc-ms-badge");
-  if(ms.badge){
-    badge.style.display="inline-block";
-    badge.textContent=ms.badge;
-    badge.style.background=ms.bg;
-    badge.style.color=ms.col;
-  }else{badge.style.display="none";}
-  if(photo){
-    const img=document.getElementById("sc-photo");
-    img.src=photo;img.style.display="block";
-  }
 }
 
 function ini(n){return n.split(" ").map(w=>w[0]).join("").toUpperCase().slice(0,2);}
@@ -661,14 +533,6 @@ async function lookupStreak(){
     updateProgressUI(p);
     ban("s","Welcome back "+p.name+" — Day "+p.current_streak+" streak active");
     checkClaim(p);
-    if(p.access_verified){
-      accVerified=true;
-      document.getElementById("ru-st").textContent="Unlocked";
-      document.getElementById("ru-st").className="ru-st unlocked";
-      document.getElementById("ru-row").style.display="none";
-      document.getElementById("ru-ok").classList.add("on");
-      document.getElementById("ru-ok-sub").textContent="Previously verified";
-    }
     loadHistory(p.id);
   }catch(e){ban("e","Lookup failed — try again");}
 }
@@ -679,7 +543,7 @@ async function loadHistory(pid){
     const el=document.getElementById("hist-list");
     if(!rows||!rows.length){el.innerHTML='<div class="loading">No check-ins yet</div>';return;}
     el.innerHTML=rows.map(c=>{
-      const cls=c.photo_status==="flagged"?"hist-flag":c.photo_status==="approved"?"hist-ok":"hist-pend";
+      const cls=c.photo_status==="flagged"?"hist-flag":"hist-ok";
       const lbl=c.photo_status==="flagged"?"Flagged":"Submitted";
       return '<div class="hist-item"><div><div class="hist-day">Day '+c.day_number+'</div><div class="hist-date">'+fmtDate(c.checkin_date)+(c.used_free_pass?" · Pass used":"")+'</div></div><span class="'+cls+'">'+lbl+'</span></div>';
     }).join("");
@@ -696,9 +560,8 @@ function updateProgressUI(p){
     if(s>=m){c.classList.add("done");n.classList.add("lit");i.textContent="✓";t.classList.add("lit");}
     else{c.classList.remove("done");n.classList.remove("lit");i.textContent="🔒";t.classList.remove("lit");}
   });
-  // Segment progress
   let prev=1,next=30,tier="Committed — Day 30",reward="$75";
-  if(s>=365){prev=365;next=365;tier="Legend — Complete";reward="Claim your box";}
+  if(s>=365){prev=365;next=365;tier="Legend — Complete";reward="All done";}
   else if(s>=60){prev=60;next=365;tier="Legend — Day 365";reward="$500 Mystery Box";}
   else if(s>=30){prev=30;next=60;tier="Locked In — Day 60";reward="$150";}
   const segPct=next===prev?100:Math.round(((s-prev)/(next-prev))*100);
@@ -751,7 +614,7 @@ async function submitCheckin(){
       const ex=await api("participants?instagram_handle=eq."+encodeURIComponent(h)+"&limit=1");
       if(ex&&ex.length){p=ex[0];}
       else{
-        const body={name:n,instagram_handle:h,start_date:td,current_streak:0,total_checkins:0,free_passes_used:0,free_pass_reset_date:td,access_verified:accVerified};
+        const body={name:n,instagram_handle:h,start_date:td,current_streak:0,total_checkins:0,free_passes_used:0,free_pass_reset_date:td,access_verified:false};
         if(em)body.email=em;
         const c=await api("participants",{method:"POST",body});p=c[0];
       }
@@ -771,7 +634,7 @@ async function submitCheckin(){
       }else{streak=1;reset=true;}
     }else{streak=1;}
     await api("checkins",{method:"POST",body:{participant_id:p.id,checkin_date:td,day_number:streak,used_free_pass:usedPass,photo_url:"uploaded",photo_data:photoB64,photo_status:"approved"}});
-    const upd={name:n,current_streak:streak,longest_streak:Math.max(p.longest_streak||0,streak),total_checkins:(p.total_checkins||0)+1,free_passes_used:usedPass?(p.free_passes_used||0)+1:p.free_passes_used,streak_reset:false,access_verified:accVerified};
+    const upd={name:n,current_streak:streak,longest_streak:Math.max(p.longest_streak||0,streak),total_checkins:(p.total_checkins||0)+1,free_passes_used:usedPass?(p.free_passes_used||0)+1:p.free_passes_used,streak_reset:false};
     if(em)upd.email=em;if(dsr>=30)upd.free_pass_reset_date=td;
     await api("participants?id=eq."+p.id,{method:"PATCH",body:upd,prefer:"return=minimal"});
     if(MS.includes(streak)){
@@ -781,14 +644,15 @@ async function submitCheckin(){
     document.getElementById("day-num").textContent=streak;
     document.getElementById("streak-num").textContent=streak;
     document.getElementById("streak-pill").classList.add("on");
-    updateProgressUI({...p,...upd});
-    updateStoryCard(streak,h);
+    document.getElementById("sc-day").textContent=streak;
+    if(photo){document.getElementById("sc-photo").src=photo;document.getElementById("sc-photo").style.display="block";}
     document.getElementById("story-preview").style.display="block";
     document.getElementById("story-preview").scrollIntoView({behavior:"smooth"});
+    updateProgressUI({...p,...upd});
     let msg="Day "+streak+" locked in!";
     if(usedPass)msg+=" Free pass used.";
     if(reset)msg="Streak reset — starting fresh at Day 1.";
-    if(MS.includes(streak))msg+=" Milestone reached — claim your reward in My Progress!";
+    if(MS.includes(streak))msg+=" Milestone reached — check My Progress to claim!";
     ban("s",msg);
     participant={...p,...upd};
     btn.textContent="Lock In Day "+(streak+1);
@@ -816,7 +680,7 @@ async function loadAdmin(){
       const pm={};parts.forEach(p=>pm[p.id]=p);
       pr.innerHTML=pending.map(c=>{
         const p=pm[c.participant_id]||{};
-        return '<div class="photo-card">'+(c.photo_data?'<img class="photo-card-img" src="'+c.photo_data+'" />':`<div class="photo-card-img" style="display:flex;align-items:center;justify-content:center;color:var(--gray2);font-size:11px;letter-spacing:.06em">NO PHOTO</div>`)+'<div class="photo-card-body"><div class="photo-card-name">'+p.name+' — Day '+c.day_number+'</div><div class="photo-card-meta">@'+(p.instagram_handle||"?")+" · "+fmtDate(c.checkin_date)+'</div><div class="photo-card-actions"><button class="btn-approve" onclick="reviewPhoto(\''+c.id+'\',\'approved\')">✓ Approve</button><button class="btn-flag" onclick="reviewPhoto(\''+c.id+'\',\'flagged\')">✕ Flag</button></div></div></div>';
+        return '<div class="photo-card">'+(c.photo_data?'<img class="photo-card-img" src="'+c.photo_data+'" />':`<div class="photo-card-img" style="display:flex;align-items:center;justify-content:center;color:var(--gray2);font-size:11px">NO PHOTO</div>`)+'<div class="photo-card-body"><div class="photo-card-name">'+p.name+' — Day '+c.day_number+'</div><div class="photo-card-meta">@'+(p.instagram_handle||"?")+" · "+fmtDate(c.checkin_date)+'</div><div class="photo-card-actions"><button class="btn-approve" onclick="reviewPhoto(\''+c.id+'\',\'approved\')">✓ Approve</button><button class="btn-flag" onclick="reviewPhoto(\''+c.id+'\',\'flagged\')">✕ Flag</button></div></div></div>';
       }).join("");
     }
     const ae=document.getElementById("admin-alerts");
@@ -836,10 +700,8 @@ async function loadAdmin(){
     pe.innerHTML=all.map(p=>{
       const tier=p.current_streak>=365?"te":p.current_streak>=60?"tl2":"tc";
       const tl=tier==="te"?"LEGEND":tier==="tl2"?"LOCKED IN":"COMMITTED";
-      const av=p.access_verified?"✓ Rewards":"Free";
-      const avc=p.access_verified?"color:var(--green)":"color:var(--gray2)";
       const flagged=p.flagged?' <span style="color:var(--red);font-weight:700">· Flagged</span>':"";
-      return '<div class="pr"><div class="pav">'+ini(p.name)+'</div><div class="pin"><div class="pna">'+p.name+'</div><div class="pme">@'+p.instagram_handle+" · "+(p.email||"no email")+'</div><div class="pme"><span style="'+avc+';font-weight:700">'+av+'</span> · '+p.total_checkins+' check-ins'+flagged+'</div><span class="tier '+tier+'">'+tl+'</span></div><div><div class="pst">'+p.current_streak+'</div><div class="psl">days</div></div></div>';
+      return '<div class="pr"><div class="pav">'+ini(p.name)+'</div><div class="pin"><div class="pna">'+p.name+'</div><div class="pme">@'+p.instagram_handle+" · "+(p.email||"no email")+'</div><div class="pme">'+p.total_checkins+' check-ins'+flagged+'</div><span class="tier '+tier+'">'+tl+'</span></div><div><div class="pst">'+p.current_streak+'</div><div class="psl">days</div></div></div>';
     }).join("");
   }catch(e){document.getElementById("photo-review-list").innerHTML='<div class="loading">Error loading</div>';}
 }
@@ -891,21 +753,35 @@ function downloadCard(silent=false){
       const img=new Image();
       img.onload=()=>{
         ctx.globalAlpha=.45;ctx.drawImage(img,0,0,1080,1920);ctx.globalAlpha=1;
-        render();
+        finish();
       };
-      img.src=photo;return;
-    }
-    render();
+      img.src=photo;
+    }else{finish();}
   };
-  const render=()=>{
+  const finish=()=>{
     ctx.fillStyle="rgba(0,0,0,.55)";ctx.fillRect(0,0,1080,1920);
-    ctx.fillStyle="#fff";ctx.font="700 38px sans-serif";ctx.letterSpacing="6px";
+    ctx.fillStyle="#fff";
+    ctx.font="800 40px sans-serif";
+    ctx.letterSpacing="8px";
     ctx.fillText("#365LOCKED",60,100);
-    ctx.fillStyle="rgba(255,255,255,.3)";ctx.font="700 80px sans-serif";ctx.letterSpacing="4px";
-    ctx.fillText("DAY",60,1700);
-    ctx.fillStyle="#e8ff00";ctx.font="900 420px sans-serif";ctx.letterSpacing="-10px";
-    ctx.fillText(String(day),60,1900);
-    if(!silent){const a=document.createElement("a");a.download="habits365_day"+day+".png";a.href=cv.toDataURL("image/png",1.0);a.click();}
+    ctx.fillStyle="rgba(255,255,255,.28)";
+    ctx.font="700 90px sans-serif";
+    ctx.letterSpacing="4px";
+    ctx.fillText("DAY",60,1720);
+    ctx.fillStyle="#e8ff00";
+    ctx.font="900 480px sans-serif";
+    ctx.letterSpacing="-20px";
+    const dayStr=String(day);
+    ctx.fillText(dayStr,day<10?160:day<100?60:40,1900);
+    if(!silent){
+      const a=document.createElement("a");
+      a.download="habits365_day"+day+".png";
+      a.href=cv.toDataURL("image/png",1.0);
+      a.click();
+    }
   };
   draw();
 }
+</script>
+</body>
+</html>
