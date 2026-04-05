@@ -7,12 +7,11 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="HABITS 365">
-<link rel="manifest" href="/manifest.json">
 <title>HABITS365 — 365 Challenge</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-:root{--black:#000;--surface:#0d0d0d;--s2:#141414;--s3:#1c1c1c;--white:#fff;--off:#e8e8e8;--gray:#999;--gray2:#666;--border:#222;--b2:#2e2e2e;--accent:#e8ff00;--red:#ff4040;--green:#00cc66;--ig:#e1306c}
+:root{--black:#000;--s2:#141414;--s3:#1c1c1c;--white:#fff;--off:#e8e8e8;--gray:#999;--gray2:#666;--border:#222;--b2:#2e2e2e;--accent:#e8ff00;--red:#ff4040;--green:#00cc66;--ig:#e1306c}
 html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-serif;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 .app{max-width:430px;margin:0 auto;min-height:100vh}
 .splash{position:fixed;inset:0;background:var(--black);z-index:300;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;text-align:center;transition:opacity .4s}
@@ -40,37 +39,16 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .nb.on{color:var(--white);border-bottom-color:var(--white)}
 .pg{display:none}
 .pg.on{display:block}
-
-/* INSTALL BANNER */
-.install-banner{margin:12px 20px;background:var(--s2);border:1px solid rgba(232,255,0,.2);border-radius:2px;padding:14px 16px;display:none}
-.install-banner.on{display:block}
-.ib-title{font-family:"Barlow Condensed",sans-serif;font-size:16px;font-weight:900;color:var(--white);margin-bottom:6px;letter-spacing:.04em}
-.ib-steps{font-size:12px;color:var(--gray2);line-height:1.8;font-weight:500}
-.ib-steps strong{color:var(--white);font-weight:700}
-.ib-close{margin-top:10px;font-size:10px;color:var(--gray2);cursor:pointer;text-decoration:underline;background:none;border:none;font-family:"Barlow",sans-serif;padding:0}
-
-/* RETURNING USER VIEW */
-.ru-hero{padding:20px 20px 18px;border-bottom:1px solid var(--border)}
-.ru-greeting{font-size:11px;color:var(--gray2);letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:4px}
-.ru-name{font-family:"Barlow Condensed",sans-serif;font-size:36px;font-weight:900;color:var(--white);margin-bottom:2px}
-.ru-streak{font-size:12px;color:var(--gray2);font-weight:500}
-.ru-streak em{color:var(--accent);font-style:normal;font-weight:700}
-
-/* CHECKIN AREA */
-.photo-zone{padding:0 20px;margin-bottom:14px}
-.pz-label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);font-weight:700;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
-.pz-label span{color:var(--red);font-size:9px;letter-spacing:0;text-transform:none;font-weight:500}
-.uz{width:100%;aspect-ratio:4/3;background:var(--s2);border:1px solid var(--border);border-radius:2px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;position:relative;transition:border-color .2s}
-.uz:active{border-color:var(--gray2)}
-.uz.err{border-color:var(--red)}
-.uz img{width:100%;height:100%;object-fit:contain;position:absolute;inset:0;background:var(--s2)}
-.uz-in{position:relative;z-index:1;text-align:center;padding:20px}
-.uz-ic{font-size:36px;margin-bottom:12px}
-.uz-tx{font-size:15px;color:var(--white);font-weight:700}
-.uz-hint{font-size:12px;color:var(--gray2);margin-top:5px;font-weight:500}
-#pi{display:none}
-
-/* FORMS */
+.ban{margin:12px 20px;border-radius:2px;padding:12px 14px;display:none;align-items:flex-start;gap:10px}
+.ban.on{display:flex}
+.ban.s{background:rgba(0,204,102,.06);border:1px solid rgba(0,204,102,.2)}
+.ban.e{background:rgba(255,64,64,.06);border:1px solid rgba(255,64,64,.2)}
+.ban.w{background:rgba(232,255,0,.06);border:1px solid rgba(232,255,0,.18)}
+.ban.i{background:var(--s2);border:1px solid var(--b2)}
+.bd{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.bd.g{background:var(--green)}.bd.r{background:var(--red)}.bd.y{background:var(--accent)}.bd.w{background:var(--gray2)}
+.bt{font-size:13px;font-weight:500;line-height:1.5;color:var(--off)}
+.bt.g{color:#66ffaa}.bt.r{color:#ff8080}.bt.y{color:var(--accent)}
 .fp{padding:0 20px}
 .field{margin-bottom:14px}
 .fl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);font-weight:700;display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
@@ -83,16 +61,18 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .pbar.on{display:flex}
 .pbl{font-size:10px;color:var(--gray2);text-transform:uppercase;letter-spacing:.1em;font-weight:700}
 .pbn{font-family:"Barlow Condensed",sans-serif;font-size:26px;font-weight:900;color:var(--accent)}
-.ban{margin:12px 20px;border-radius:2px;padding:12px 14px;display:none;align-items:flex-start;gap:10px}
-.ban.on{display:flex}
-.ban.s{background:rgba(0,204,102,.06);border:1px solid rgba(0,204,102,.2)}
-.ban.e{background:rgba(255,64,64,.06);border:1px solid rgba(255,64,64,.2)}
-.ban.w{background:rgba(232,255,0,.06);border:1px solid rgba(232,255,0,.18)}
-.ban.i{background:var(--s2);border:1px solid var(--b2)}
-.bd{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:4px}
-.bd.g{background:var(--green)}.bd.r{background:var(--red)}.bd.y{background:var(--accent)}.bd.w{background:var(--gray2)}
-.bt{font-size:13px;font-weight:500;line-height:1.5;color:var(--off)}
-.bt.g{color:#66ffaa}.bt.r{color:#ff8080}.bt.y{color:var(--accent)}
+.photo-zone{padding:0 20px;margin-bottom:14px}
+.pz-label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);font-weight:700;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.pz-label span{color:var(--red);font-size:9px;letter-spacing:0;text-transform:none;font-weight:500}
+.uz{width:100%;aspect-ratio:4/3;background:var(--s2);border:1px solid var(--border);border-radius:2px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;position:relative;transition:border-color .2s}
+.uz:active{border-color:var(--gray2)}
+.uz.err{border-color:var(--red)}
+.uz img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.uz-in{position:relative;z-index:1;text-align:center;padding:20px}
+.uz-ic{font-size:36px;margin-bottom:12px}
+.uz-tx{font-size:15px;color:var(--white);font-weight:700}
+.uz-hint{font-size:12px;color:var(--gray2);margin-top:5px;font-weight:500}
+#pi{display:none}
 .bw{padding:0 20px}
 .bp{width:100%;padding:17px;background:var(--white);color:var(--black);border:none;border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:20px;font-weight:900;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;transition:opacity .2s;margin-bottom:10px;display:block}
 .bp:hover{opacity:.88}
@@ -100,25 +80,32 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .bp:disabled{opacity:.25;cursor:not-allowed}
 .bg{width:100%;padding:14px;background:transparent;color:var(--off);border:1px solid var(--border);border-radius:2px;font-family:"Barlow",sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:border-color .2s;margin-bottom:10px;display:block;letter-spacing:.03em}
 .bg:hover{border-color:var(--gray2)}
-.big{background:var(--ig)!important;color:#fff!important;border:none!important}
 .bsm{font-size:10px;padding:5px 10px;border:1px solid var(--border);border-radius:2px;background:none;color:var(--gray);cursor:pointer;font-family:"Barlow",sans-serif;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:all .2s}
 .bsm:hover{border-color:var(--gray2);color:var(--white)}
-
-/* STORY CARD */
+.ru-hero{padding:20px 20px 18px;border-bottom:1px solid var(--border)}
+.ru-greeting{font-size:10px;color:var(--gray2);letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:4px}
+.ru-name{font-family:"Barlow Condensed",sans-serif;font-size:38px;font-weight:900;color:var(--white);margin-bottom:2px;line-height:1}
+.ru-meta{font-size:12px;color:var(--gray2);font-weight:500}
+.ru-meta em{color:var(--accent);font-style:normal;font-weight:700}
 .sp{display:none;padding:16px 20px 0}
 .sp-lb{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray2);font-weight:700;margin-bottom:10px}
 .sc{width:100%;aspect-ratio:9/16;background:#000;border-radius:8px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:28px 24px;border:1px solid var(--border)}
-.sc-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;opacity:.45}
-.sc-overlay{position:absolute;inset:0;background:rgba(0,0,0,.5)}
+.sc-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;opacity:.82}
+.sc-overlay{position:absolute;inset:0;background:rgba(0,0,0,.18)}
 .sc-top{position:relative;z-index:2}
 .sc-hashtag{font-family:"Barlow Condensed",sans-serif;font-size:13px;font-weight:900;letter-spacing:.16em;color:#fff;text-transform:uppercase}
 .sc-bot{position:relative;z-index:2}
-.sc-day-word{font-family:"Barlow Condensed",sans-serif;font-size:22px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.08em;margin-bottom:-8px}
+.sc-day-word{font-family:"Barlow Condensed",sans-serif;font-size:22px;font-weight:700;color:rgba(255,255,255,.35);letter-spacing:.08em;margin-bottom:-8px}
 .sc-day-num{font-family:"Barlow Condensed",sans-serif;font-size:130px;font-weight:900;line-height:.82;color:#e8ff00;letter-spacing:-.02em}
-.sa{display:flex;flex-direction:column;gap:8px;margin-top:12px}
-.sn{font-size:11px;color:var(--gray2);text-align:center;margin-top:6px;line-height:1.6;font-weight:500}
-
-/* PROGRESS */
+.sc-instructions{background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:14px 16px;margin-top:12px}
+.sc-inst-title{font-family:"Barlow Condensed",sans-serif;font-size:17px;font-weight:900;color:var(--white);margin-bottom:4px;letter-spacing:.04em}
+.sc-inst-body{font-size:12px;color:var(--gray2);line-height:1.7;font-weight:500}
+.sc-inst-body strong{color:var(--white);font-weight:700}
+.not-banner{margin:12px 20px 0;background:var(--s2);border:1px solid rgba(232,255,0,.15);border-radius:2px;padding:14px 16px}
+.nb-title{font-size:13px;font-weight:700;color:var(--white);margin-bottom:6px}
+.nb-body{font-size:12px;color:var(--gray2);line-height:1.7;font-weight:500}
+.nb-body strong{color:var(--white);font-weight:700}
+.nb-btn{margin-top:10px;width:100%;padding:12px;background:var(--accent);color:var(--black);border:none;border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:16px;font-weight:900;cursor:pointer;letter-spacing:.06em;text-transform:uppercase}
 .prog-hero{padding:22px 20px 16px;border-bottom:1px solid var(--border)}
 .prog-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:14px}
 .prog-big{font-family:"Barlow Condensed",sans-serif;font-size:76px;font-weight:900;line-height:.82;color:var(--white)}
@@ -228,16 +215,10 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .pad{padding:0 20px}
 .mt{margin-top:14px}
 .mb{margin-bottom:14px}
-.not-banner{margin:12px 20px 0;background:var(--s2);border:1px solid rgba(232,255,0,.15);border-radius:2px;padding:14px 16px}
-.nb-title{font-size:13px;font-weight:700;color:var(--white);margin-bottom:6px}
-.nb-body{font-size:12px;color:var(--gray2);line-height:1.7;font-weight:500}
-.nb-body strong{color:var(--white);font-weight:700}
-.nb-btn{margin-top:10px;width:100%;padding:12px;background:var(--accent);color:var(--black);border:none;border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:16px;font-weight:900;cursor:pointer;letter-spacing:.06em;text-transform:uppercase}
 </style>
 </head>
 <body>
 
-<!-- SPLASH -->
 <div class="splash" id="splash">
   <div class="splash-logo">HABITS 365</div>
   <div class="splash-tag">#365Locked</div>
@@ -261,7 +242,6 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
   <div class="splash-note">Free to join · No purchase required</div>
 </div>
 
-<!-- ADMIN LOCK -->
 <div class="lo hidden" id="lock-screen">
   <div class="lo-logo">HABITS 365</div>
   <div class="lo-tag">Admin Access</div>
@@ -287,15 +267,14 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
     <button class="nb" onclick="showPg('progress',this)">My Progress</button>
   </nav>
 
-  <!-- CHECK IN PAGE -->
   <div class="pg on" id="pg-checkin">
 
-    <!-- RETURNING USER VIEW (shown when saved) -->
+    <!-- RETURNING USER -->
     <div id="returning-view" style="display:none">
       <div class="ru-hero">
         <div class="ru-greeting">Welcome back</div>
         <div class="ru-name" id="ru-name">—</div>
-        <div class="ru-streak">Day streak: <em id="ru-streak">—</em> · <span id="ru-handle" style="color:var(--gray2)"></span></div>
+        <div class="ru-meta">Day streak: <em id="ru-streak">—</em> &nbsp;·&nbsp; <span id="ru-handle" style="color:var(--gray2)"></span></div>
       </div>
       <div class="ban s" id="b-s"><div class="bd g"></div><div class="bt g" id="b-s-t"></div></div>
       <div class="ban e" id="b-e"><div class="bd r"></div><div class="bt r" id="b-e-t"></div></div>
@@ -305,7 +284,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
         <div><div class="pbl">Free passes remaining</div><div style="font-size:10px;color:var(--gray2);margin-top:2px;font-weight:500">Resets every 30 days</div></div>
         <div class="pbn" id="pass-count">1</div>
       </div>
-      <div class="photo-zone">
+      <div class="photo-zone mt">
         <div class="pz-label">Today's Photo <span>* Wear your Habits 365 gear</span></div>
         <div class="uz" id="uz-r" onclick="document.getElementById('pi').click()">
           <div class="uz-in" id="uz-in-r">
@@ -320,30 +299,25 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
         <button class="bp" id="submit-btn-r" onclick="submitCheckinReturning()">Lock In Today</button>
         <button class="bg" style="font-size:12px;padding:10px" onclick="switchToNewUser()">Not you? Switch account</button>
       </div>
-
-      <!-- NOTIFICATION BANNER — shown after first checkin -->
       <div class="not-banner" id="notif-banner" style="display:none">
-        <div class="nb-title">Get daily streak reminders 🔒</div>
+        <div class="nb-title">Get daily streak reminders</div>
         <div class="nb-body">
-          Add this app to your home screen to never miss a day:<br><br>
-          <strong>iPhone:</strong> Tap the Share button (box with arrow) at the bottom of Safari → tap <strong>"Add to Home Screen"</strong> → tap Add.<br><br>
+          Add this app to your home screen to never miss a day.<br><br>
+          <strong>iPhone:</strong> Tap the Share button at the bottom of Safari → tap <strong>"Add to Home Screen"</strong> → tap Add.<br><br>
           <strong>Android:</strong> Tap the three dots menu → tap <strong>"Add to Home Screen"</strong> → tap Add.<br><br>
-          Once added, open it from your home screen and allow notifications when prompted.
+          Once added, open it from your home screen and allow notifications when asked.
         </div>
         <button class="nb-btn" onclick="requestNotifications()">Enable Notifications</button>
       </div>
-
-      <div style="padding:12px 20px;font-size:11px;color:var(--gray2);text-align:center;line-height:1.6">
-        Streak resets if you miss more than 1 day. One free pass per 30 days.
-      </div>
+      <div style="padding:12px 20px;font-size:11px;color:var(--gray2);text-align:center;line-height:1.6">One free pass per 30 days if you miss a day.</div>
     </div>
 
-    <!-- NEW USER VIEW (shown when no saved data) -->
+    <!-- NEW USER -->
     <div id="new-user-view">
       <div style="padding:24px 20px 20px;border-bottom:1px solid var(--border)">
         <div style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray2);font-weight:700;margin-bottom:8px">Join the Challenge</div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:48px;font-weight:900;line-height:.86;color:var(--white);margin-bottom:6px">START<em style="color:var(--accent);font-style:normal;display:block">DAY 1.</em></div>
-        <div style="font-size:11px;color:var(--gray2);letter-spacing:.1em;text-transform:uppercase;font-weight:600">One time setup — done in 30 seconds</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:52px;font-weight:900;line-height:.86;color:var(--white);margin-bottom:6px">START<em style="color:var(--accent);font-style:normal;display:block">DAY 1.</em></div>
+        <div style="font-size:11px;color:var(--gray2);letter-spacing:.1em;text-transform:uppercase;font-weight:600">One time setup · 30 seconds</div>
       </div>
       <div class="ban s" id="b-s2"><div class="bd g"></div><div class="bt g" id="b-s2-t"></div></div>
       <div class="ban e" id="b-e2"><div class="bd r"></div><div class="bt r" id="b-e2-t"></div></div>
@@ -382,11 +356,13 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
           <div class="sc-day-num" id="sc-day">1</div>
         </div>
       </div>
-      <div class="sa">
-        <button class="bp big" style="margin:0" onclick="shareIG()">Share to Instagram Story ↗</button>
-        <button class="bg" style="margin:0" onclick="downloadCard()">Save Card to Photos</button>
+      <div class="sc-instructions">
+        <div class="sc-inst-title">Save to your phone</div>
+        <div class="sc-inst-body">Then open Instagram → add to your story → tag <strong>@habits_365</strong></div>
       </div>
-      <div class="sn">Save · Open Instagram · Add to your story</div>
+      <div class="bw mt mb">
+        <button class="bp" style="margin-bottom:0" onclick="downloadCard()">Save Card to Photos</button>
+      </div>
     </div>
     <div class="sp2"></div>
   </div>
@@ -501,7 +477,6 @@ const MS_DATA={
 };
 let photo=null,photoB64=null,participant=null,adminOk=false,genCodes=[],logoTaps=0,logoTimer=null;
 
-// SAVED USER DATA
 const saved={
   get:()=>{try{return JSON.parse(localStorage.getItem("h365_user")||"null");}catch{return null;}},
   set:(d)=>localStorage.setItem("h365_user",JSON.stringify(d)),
@@ -517,17 +492,9 @@ async function api(path,opts={}){
   const t=await r.text();return t?JSON.parse(t):null;
 }
 
-// INIT — check for saved user
 window.addEventListener("load",async()=>{
-  // Register service worker
-  if("serviceWorker" in navigator){
-    try{await navigator.serviceWorker.register("/sw.js");}catch(e){}
-  }
-  // Check splash
-  if(localStorage.getItem("h365_seen")){
-    document.getElementById("splash").style.display="none";
-  }
-  // Check saved user
+  if("serviceWorker" in navigator){try{await navigator.serviceWorker.register("/sw.js");}catch(e){}}
+  if(localStorage.getItem("h365_seen"))document.getElementById("splash").style.display="none";
   const u=saved.get();
   if(u&&u.handle){
     showReturningUser(u);
@@ -546,13 +513,13 @@ function showReturningUser(u){
   document.getElementById("returning-view").style.display="block";
   document.getElementById("new-user-view").style.display="none";
   document.getElementById("ru-name").textContent=u.name||"—";
-  document.getElementById("ru-handle").textContent="@"+u.handle;
+  document.getElementById("ru-handle").textContent="@"+(u.handle||"");
   document.getElementById("ru-streak").textContent=u.streak||"—";
   document.getElementById("streak-num").textContent=u.streak||"—";
 }
 
 function switchToNewUser(){
-  saved.clear();participant=null;
+  saved.clear();participant=null;photo=null;photoB64=null;
   document.getElementById("returning-view").style.display="none";
   document.getElementById("new-user-view").style.display="block";
 }
@@ -563,15 +530,12 @@ async function refreshParticipant(handle){
     if(!rows||!rows.length)return;
     const p=rows[0];participant=p;
     const u=saved.get()||{};
-    u.streak=p.current_streak;u.name=p.name;
-    saved.set(u);
+    u.streak=p.current_streak;u.name=p.name;saved.set(u);
     document.getElementById("ru-streak").textContent=p.current_streak;
     document.getElementById("streak-num").textContent=p.current_streak;
     document.getElementById("pass-count").textContent=Math.max(0,1-(p.free_passes_used||0));
     document.getElementById("pass-bar").classList.add("on");
-    updateProgressUI(p);
-    checkClaim(p);
-    loadHistory(p.id);
+    updateProgressUI(p);checkClaim(p);loadHistory(p.id);
   }catch(e){}
 }
 
@@ -580,19 +544,9 @@ function handlePhoto(e){
   const r=new FileReader();
   r.onload=ev=>{
     photoB64=ev.target.result;photo=ev.target.result;
-    // Update both upload zones
-    ["prev-img","prev-img-r"].forEach(id=>{
-      const el=document.getElementById(id);
-      if(el){el.src=photo;el.style.display="block";}
-    });
-    ["uz-in","uz-in-r"].forEach(id=>{
-      const el=document.getElementById(id);
-      if(el)el.style.display="none";
-    });
-    ["uz","uz-r"].forEach(id=>{
-      const el=document.getElementById(id);
-      if(el)el.classList.remove("err");
-    });
+    ["prev-img","prev-img-r"].forEach(id=>{const el=document.getElementById(id);if(el){el.src=photo;el.style.display="block";}});
+    ["uz-in","uz-in-r"].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display="none";});
+    ["uz","uz-r"].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove("err");});
   };
   r.readAsDataURL(f);
 }
@@ -603,18 +557,13 @@ function today(){return new Date().toISOString().split("T")[0];}
 function fmtDate(d){return new Date(d).toLocaleDateString("en-US",{month:"short",day:"numeric"});}
 
 function ban(type,msg){
-  ["s","e","w","i","s2","e2"].forEach(t=>{
-    const el=document.getElementById("b-"+t);
-    if(el)el.classList.remove("on");
-  });
+  ["s","e","w","i","s2","e2"].forEach(t=>{const el=document.getElementById("b-"+t);if(el)el.classList.remove("on");});
   if(type){
-    const el=document.getElementById("b-"+type);
-    const tel=document.getElementById("b-"+type+"-t");
-    if(el&&tel){tel.textContent=msg;el.classList.add("on");}
-    // Also try the second set for new user view
-    const el2=document.getElementById("b-"+type+"2");
-    const tel2=document.getElementById("b-"+type+"2-t");
-    if(el2&&tel2){tel2.textContent=msg;el2.classList.add("on");}
+    ["b-"+type,"b-"+type+"2"].forEach(id=>{
+      const el=document.getElementById(id);
+      const tel=document.getElementById(id+"-t");
+      if(el&&tel){tel.textContent=msg;el.classList.add("on");}
+    });
   }
 }
 
@@ -622,7 +571,7 @@ async function submitCheckinReturning(){
   if(!photo){document.getElementById("uz-r").classList.add("err");ban("e","Upload your workout photo first");return;}
   const u=saved.get();if(!u)return;
   const btn=document.getElementById("submit-btn-r");btn.disabled=true;btn.textContent="Submitting...";
-  await doSubmit(u.handle,u.name,u.email||"",btn,"submit-btn-r");
+  await doSubmit(u.handle,u.name,u.email||"",btn,"r");
 }
 
 async function submitCheckin(){
@@ -635,10 +584,10 @@ async function submitCheckin(){
   document.getElementById("uz").classList.toggle("err",!photo);if(!photo)err=true;
   if(err){ban("e2","Fill in all fields and upload your workout photo");return;}
   const btn=document.getElementById("submit-btn");btn.disabled=true;btn.textContent="Submitting...";
-  await doSubmit(h,n,em,btn,"submit-btn");
+  await doSubmit(h,n,em,btn,"new");
 }
 
-async function doSubmit(h,n,em,btn,btnId){
+async function doSubmit(h,n,em,btn,mode){
   try{
     const td=today();let p=participant;
     if(!p){
@@ -654,8 +603,7 @@ async function doSubmit(h,n,em,btn,btnId){
     const dup=await api("checkins?participant_id=eq."+p.id+"&checkin_date=eq."+td+"&limit=1");
     if(dup&&dup.length){
       ban("w","Already checked in today — come back tomorrow!");
-      btn.disabled=false;btn.textContent=btnId==="submit-btn-r"?"Lock In Today":"Lock In Day 1";
-      return;
+      btn.disabled=false;btn.textContent=mode==="r"?"Lock In Today":"Lock In Day 1";return;
     }
     const last=await api("checkins?participant_id=eq."+p.id+"&order=checkin_date.desc&limit=1");
     let streak=p.current_streak,usedPass=false,reset=false,dsr=0;
@@ -676,23 +624,19 @@ async function doSubmit(h,n,em,btn,btnId){
       const me=await api("milestones?participant_id=eq."+p.id+"&milestone_day=eq."+streak+"&limit=1");
       if(!me||!me.length)await api("milestones",{method:"POST",body:{participant_id:p.id,milestone_day:streak,reward_sent:false}});
     }
-    // Save user locally
     saved.set({handle:h,name:n,email:em,streak});
     participant={...p,...upd};
-    // Update UI
     document.getElementById("streak-num").textContent=streak;
     document.getElementById("sc-day").textContent=streak;
     if(photo){document.getElementById("sc-photo").src=photo;document.getElementById("sc-photo").style.display="block";}
     document.getElementById("story-preview").style.display="block";
     document.getElementById("story-preview").scrollIntoView({behavior:"smooth"});
     updateProgressUI({...p,...upd});
-    // Switch to returning view for future visits
     document.getElementById("returning-view").style.display="block";
     document.getElementById("new-user-view").style.display="none";
     document.getElementById("ru-name").textContent=n;
     document.getElementById("ru-handle").textContent="@"+h;
     document.getElementById("ru-streak").textContent=streak;
-    // Show notification banner
     document.getElementById("notif-banner").style.display="block";
     let msg="Day "+streak+" locked in!";
     if(usedPass)msg+=" Free pass used.";
@@ -701,9 +645,12 @@ async function doSubmit(h,n,em,btn,btnId){
     ban("s",msg);
     if(MS.includes(streak))checkClaim(participant);
     loadHistory(participant.id);
+    photo=null;photoB64=null;
+    ["prev-img","prev-img-r"].forEach(id=>{const el=document.getElementById(id);if(el){el.src="";el.style.display="none";}});
+    ["uz-in","uz-in-r"].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display="block";});
   }catch(e){ban("e","Submission failed: "+e.message);}
   btn.disabled=false;
-  btn.textContent=btnId==="submit-btn-r"?"Lock In Today":"Lock In Day 1";
+  btn.textContent=mode==="r"?"Lock In Today":"Lock In Day 1";
 }
 
 function updateProgressUI(p){
@@ -767,38 +714,34 @@ async function loadHistory(pid){
 }
 
 async function requestNotifications(){
-  if(!("Notification" in window)){alert("Notifications not supported on this browser. Add the app to your home screen first.");return;}
+  if(!("Notification" in window)){
+    document.getElementById("notif-banner").innerHTML='<div class="nb-title">Add to home screen first</div><div class="nb-body">Open this app from your home screen icon, then try again.</div>';return;
+  }
   const perm=await Notification.requestPermission();
   if(perm==="granted"){
-    document.getElementById("notif-banner").innerHTML='<div class="nb-title">Notifications enabled ✓</div><div class="nb-body" style="color:var(--green)">You will get a daily reminder to check in. Never break the streak.</div>';
+    document.getElementById("notif-banner").innerHTML='<div class="nb-title">Notifications enabled</div><div class="nb-body" style="color:var(--green)">You will get a daily reminder at 9am. Never break the streak.</div>';
     scheduleNotification();
   }else{
-    document.getElementById("notif-banner").innerHTML='<div class="nb-title">Notifications blocked</div><div class="nb-body">To enable: go to your phone Settings → Notifications → find your browser → turn on notifications. Then add this app to your home screen.</div>';
+    document.getElementById("notif-banner").innerHTML='<div class="nb-title">Allow notifications</div><div class="nb-body">Go to Settings on your phone → find your browser → turn on notifications. Then come back here.</div>';
   }
 }
 
 function scheduleNotification(){
-  // Schedule daily notification via service worker
-  if("serviceWorker" in navigator&&navigator.serviceWorker.controller){
-    const now=new Date();
-    const next=new Date();
-    next.setHours(9,0,0,0);
-    if(next<=now)next.setDate(next.getDate()+1);
-    const delay=next-now;
-    setTimeout(()=>{
+  const now=new Date(),next=new Date();
+  next.setHours(9,0,0,0);
+  if(next<=now)next.setDate(next.getDate()+1);
+  setTimeout(()=>{
+    if(Notification.permission==="granted"){
+      const u=saved.get();const s=u?u.streak:0;
+      new Notification("HABITS 365",{body:"Day "+(s+1)+" is waiting. Don't break your streak.",tag:"daily"});
+    }
+    setInterval(()=>{
       if(Notification.permission==="granted"){
-        const u=saved.get();
-        const streak=u?u.streak:0;
-        new Notification("HABITS 365",{body:"Day "+(streak+1)+" is waiting. Don't break your streak. 🔒",icon:"/icon.png",tag:"daily"});
+        const u=saved.get();const s=u?u.streak:0;
+        new Notification("HABITS 365",{body:"Day "+(s+1)+" is waiting. Don't break your streak.",tag:"daily"});
       }
-      setInterval(()=>{
-        if(Notification.permission==="granted"){
-          const u=saved.get();const streak=u?u.streak:0;
-          new Notification("HABITS 365",{body:"Day "+(streak+1)+" is waiting. Don't break your streak. 🔒",icon:"/icon.png",tag:"daily"});
-        }
-      },86400000);
-    },delay);
-  }
+    },86400000);
+  },next-now);
 }
 
 function showPg(id,btn){
@@ -896,28 +839,27 @@ function renderCodes(){
   if(!genCodes.length){list.innerHTML='<div style="font-size:11px;color:var(--gray2);text-align:center;padding:12px">No codes yet</div>';return;}
   list.innerHTML=genCodes.map(c=>'<div class="code-item" style="'+(c.used?"opacity:.35":"")+'"><div><div class="code-val">'+c.code+'</div><div class="code-meta">'+c.name+" · "+(c.used?"Used":"Active")+'</div></div><button class="code-copy" onclick=\'navigator.clipboard.writeText("'+c.code+'").then(()=>{this.textContent="Copied";setTimeout(()=>this.textContent="Copy",1500)})\'>Copy</button></div>').join("");
 }
-function shareIG(){
-  downloadCard(true);
-  setTimeout(()=>{if(navigator.share){navigator.share({title:"Day "+document.getElementById("sc-day").textContent+" #365Locked",text:"Day "+document.getElementById("sc-day").textContent+" of the 365 Challenge. #365Locked @habits_365"});}else{ban("i","Card saved — open Instagram and add to your story");}},600);
-}
 function downloadCard(silent=false){
   const day=parseInt(document.getElementById("sc-day").textContent)||1;
   const cv=document.createElement("canvas");cv.width=1080;cv.height=1920;
   const ctx=cv.getContext("2d");
-  const draw=()=>{
-    ctx.fillStyle="#000";ctx.fillRect(0,0,1080,1920);
-    if(photo){const img=new Image();img.onload=()=>{ctx.globalAlpha=.45;ctx.drawImage(img,0,0,1080,1920);ctx.globalAlpha=1;finish();};img.src=photo;}
-    else{finish();}
-  };
   const finish=()=>{
-    ctx.fillStyle="rgba(0,0,0,.55)";ctx.fillRect(0,0,1080,1920);
-    ctx.fillStyle="#fff";ctx.font="800 40px sans-serif";ctx.letterSpacing="8px";ctx.fillText("#365LOCKED",60,100);
-    ctx.fillStyle="rgba(255,255,255,.28)";ctx.font="700 90px sans-serif";ctx.letterSpacing="4px";ctx.fillText("DAY",60,1720);
+    ctx.fillStyle="rgba(0,0,0,.18)";ctx.fillRect(0,0,1080,1920);
+    ctx.fillStyle="#fff";ctx.font="800 40px sans-serif";ctx.letterSpacing="8px";
+    ctx.fillText("#365LOCKED",60,100);
+    ctx.fillStyle="rgba(255,255,255,.28)";ctx.font="700 90px sans-serif";ctx.letterSpacing="4px";
+    ctx.fillText("DAY",60,1720);
     ctx.fillStyle="#e8ff00";ctx.font="900 480px sans-serif";ctx.letterSpacing="-20px";
     ctx.fillText(String(day),day<10?160:day<100?60:40,1900);
     if(!silent){const a=document.createElement("a");a.download="habits365_day"+day+".png";a.href=cv.toDataURL("image/png",1.0);a.click();}
   };
-  draw();
+  if(photo){
+    const img=new Image();
+    img.onload=()=>{ctx.drawImage(img,0,0,1080,1920);finish();};
+    img.src=photo;
+  }else{
+    ctx.fillStyle="#080808";ctx.fillRect(0,0,1080,1920);finish();
+  }
 }
 </script>
 </body>
