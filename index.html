@@ -306,32 +306,6 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
       <div class="field"><div class="fl">Email <span>for milestone notifications</span></div><input type="email" class="fi" id="email" placeholder="your@email.com" /></div>
     </div>
 
-    <!-- OPTIONAL REWARD UNLOCK -->
-    <div class="reward-unlock">
-      <div class="ru-top" onclick="toggleRU()">
-        <div>
-          <div class="ru-lbl">Unlock Rewards</div>
-          <div class="ru-hint" style="font-size:10px;color:var(--gray2);margin-top:2px">Have a purchase code? Unlock $20–$35 credit + free tee</div>
-        </div>
-        <div class="ru-st locked" id="ru-st">Optional</div>
-      </div>
-      <div class="ru-body" id="ru-body">
-        <div class="ru-desc">Enter the access code from your Habits 365 order confirmation to unlock milestone rewards. No code? You can still participate — <a href="https://habits365.com" target="_blank">shop to unlock rewards</a></div>
-        <div class="ru-rewards">
-          <div class="ru-reward"><div class="ru-reward-day">Day 30</div><div class="ru-reward-val">$20</div></div>
-          <div class="ru-reward"><div class="ru-reward-day">Day 60</div><div class="ru-reward-val">$35</div></div>
-          <div class="ru-reward"><div class="ru-reward-day">Day 90</div><div class="ru-reward-val">Free Tee</div></div>
-        </div>
-        <div class="ru-row" id="ru-row">
-          <input type="text" class="ru-in" id="acc-code" placeholder="H365-XXXXX" maxlength="10" onkeyup="this.value=this.value.toUpperCase()" />
-          <button class="btn-verify" onclick="verifyCode()">Verify</button>
-        </div>
-        <div class="ru-ok" id="ru-ok">
-          <div class="ru-ok-ic">✓</div>
-          <div><div class="ru-ok-tx">Rewards Unlocked</div><div class="ru-ok-sub" id="ru-ok-sub">You're eligible for all milestone rewards</div></div>
-        </div>
-      </div>
-    </div>
 
     <div class="pbar" id="pass-bar">
       <div><div class="pbl">Free passes remaining</div><div style="font-size:10px;color:var(--gray2);margin-top:2px;font-weight:500">Resets every 30 days</div></div>
