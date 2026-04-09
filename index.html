@@ -7,6 +7,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="HABITS 365">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/logo.png">
 <title>HABITS365 — 365 Challenge</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -14,6 +16,23 @@
 :root{--black:#000;--s2:#141414;--s3:#1c1c1c;--white:#fff;--off:#e8e8e8;--gray:#999;--gray2:#666;--border:#222;--b2:#2e2e2e;--accent:#e8ff00;--red:#ff4040;--green:#00cc66;--ig:#e1306c}
 html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-serif;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 .app{max-width:430px;margin:0 auto;min-height:100vh}
+
+/* INSTALL SCREEN */
+.install-screen{position:fixed;inset:0;background:var(--black);z-index:400;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;text-align:center}
+.install-screen.hidden{display:none}
+.is-logo{width:80px;height:80px;border-radius:18px;overflow:hidden;margin:0 auto 20px;border:1px solid var(--border)}
+.is-logo img{width:100%;height:100%;object-fit:cover}
+.is-title{font-family:"Barlow Condensed",sans-serif;font-size:28px;font-weight:900;letter-spacing:.06em;color:var(--white);margin-bottom:8px}
+.is-sub{font-size:14px;color:var(--gray2);font-weight:500;line-height:1.6;margin-bottom:36px;max-width:280px}
+.is-steps{width:100%;display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
+.is-step{background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:14px 16px;text-align:left;display:flex;align-items:flex-start;gap:12px}
+.is-step-num{font-family:"Barlow Condensed",sans-serif;font-size:20px;font-weight:900;color:var(--accent);flex-shrink:0;width:20px;line-height:1.2}
+.is-step-text{font-size:13px;color:var(--gray2);font-weight:500;line-height:1.6}
+.is-step-text strong{color:var(--white);font-weight:700}
+.is-cta{width:100%;padding:17px;background:var(--white);color:var(--black);border:none;border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:20px;font-weight:900;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+.is-skip{font-size:12px;color:var(--gray2);cursor:pointer;text-decoration:underline;background:none;border:none;font-family:"Barlow",sans-serif;font-weight:500}
+
+/* SPLASH */
 .splash{position:fixed;inset:0;background:var(--black);z-index:300;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;text-align:center;transition:opacity .4s}
 .splash-logo{font-family:"Barlow Condensed",sans-serif;font-size:32px;font-weight:900;letter-spacing:.08em;color:var(--white);margin-bottom:6px}
 .splash-tag{font-size:10px;color:var(--gray2);letter-spacing:.2em;text-transform:uppercase;font-weight:700;margin-bottom:44px}
@@ -224,7 +243,31 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 </head>
 <body>
 
-<div class="splash" id="splash">
+<!-- INSTALL SCREEN -->
+<div class="install-screen" id="install-screen">
+  <div class="is-logo"><img src="/logo.png" alt="Habits 365" /></div>
+  <div class="is-title">Add to Your Home Screen</div>
+  <div class="is-sub">Get the full app experience and never miss a check-in day.</div>
+  <div class="is-steps">
+    <div class="is-step">
+      <div class="is-step-num">1</div>
+      <div class="is-step-text"><strong>iPhone:</strong> Tap the <strong>Share button</strong> at the bottom of Safari → tap <strong>Add to Home Screen</strong> → tap Add</div>
+    </div>
+    <div class="is-step">
+      <div class="is-step-num">2</div>
+      <div class="is-step-text"><strong>Android:</strong> Tap the <strong>3-dot menu</strong> in Chrome → tap <strong>Add to Home Screen</strong> → tap Add</div>
+    </div>
+    <div class="is-step">
+      <div class="is-step-num">3</div>
+      <div class="is-step-text">Open the app from your <strong>home screen icon</strong> and come back here</div>
+    </div>
+  </div>
+  <button class="is-cta" onclick="dismissInstall()">I've Added It — Let's Go →</button>
+  <button class="is-skip" onclick="dismissInstall()">Skip for now</button>
+</div>
+
+<!-- SPLASH -->
+<div class="splash" id="splash" style="display:none">
   <div class="splash-logo">HABITS 365</div>
   <div class="splash-tag">#365Locked</div>
   <div class="splash-headline">YOU SAID<em>YOU WOULD.</em></div>
@@ -337,7 +380,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
         <button class="bp" style="margin-bottom:10px" onclick="downloadCard()">Save Card to Photos</button>
         <div class="cal-card">
           <div class="cal-card-title">NEVER MISS A DAY</div>
-          <div class="cal-card-sub">Add a daily reminder to your calendar so you never forget to check in.</div>
+          <div class="cal-card-sub">Add a daily 9am reminder so you never forget to check in.</div>
           <button class="cal-btn" onclick="addToCalendar()">Add Daily Reminder to Calendar</button>
         </div>
       </div>
@@ -454,10 +497,39 @@ async function api(path,opts={}){
 
 window.addEventListener("load",async()=>{
   if("serviceWorker" in navigator){try{await navigator.serviceWorker.register("/sw.js");}catch(e){}}
-  if(localStorage.getItem("h365_seen"))document.getElementById("splash").style.display="none";
-  const u=saved.get();
-  if(u&&u.handle){showReturningUser(u);await refreshParticipant(u.handle);}
+
+  // Check if install screen should show
+  const isStandalone=window.matchMedia("(display-mode: standalone)").matches||window.navigator.standalone;
+  const installDismissed=localStorage.getItem("h365_install_dismissed");
+
+  if(!isStandalone&&!installDismissed){
+    // Show install screen
+    document.getElementById("install-screen").classList.remove("hidden");
+  }else{
+    document.getElementById("install-screen").classList.add("hidden");
+    initApp();
+  }
 });
+
+function dismissInstall(){
+  localStorage.setItem("h365_install_dismissed","1");
+  document.getElementById("install-screen").classList.add("hidden");
+  initApp();
+}
+
+async function initApp(){
+  const seenSplash=localStorage.getItem("h365_seen");
+  const u=saved.get();
+  if(u&&u.handle){
+    document.getElementById("splash").style.display="none";
+    showReturningUser(u);
+    await refreshParticipant(u.handle);
+  }else if(seenSplash){
+    document.getElementById("splash").style.display="none";
+  }else{
+    document.getElementById("splash").style.display="flex";
+  }
+}
 
 function startChallenge(){
   const s=document.getElementById("splash");
@@ -467,38 +539,61 @@ function startChallenge(){
 }
 
 function addToCalendar(){
-  // Build recurring all-day ICS event
   const today=new Date();
-  const yr=today.getFullYear();
-  const mo=String(today.getMonth()+1).padStart(2,"0");
-  const dy=String(today.getDate()).padStart(2,"0");
-  const start=yr+mo+dy;
-  // End date 366 days from now
-  const end=new Date(today);
-  end.setDate(end.getDate()+366);
-  const eyr=end.getFullYear();
-  const emo=String(end.getMonth()+1).padStart(2,"0");
-  const edy=String(end.getDate()).padStart(2,"0");
-  const endStr=eyr+emo+edy;
-  const ics=[
-    "BEGIN:VCALENDAR",
-    "VERSION:2.0",
-    "PRODID:-//Habits365//365Challenge//EN",
-    "BEGIN:VEVENT",
-    "DTSTART;VALUE=DATE:"+start,
-    "DTEND;VALUE=DATE:"+start,
-    "RRULE:FREQ=DAILY;UNTIL="+endStr,
-    "SUMMARY:LOCK IN — Habits 365 Check-In",
-    "DESCRIPTION:Time to check in. Upload your photo. Build the streak. habits365-challenge.vercel.app",
-    "URL:https://habits365-challenge.vercel.app",
-    "END:VEVENT",
-    "END:VCALENDAR"
-  ].join("\r\n");
-  const blob=new Blob([ics],{type:"text/calendar;charset=utf-8"});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement("a");
-  a.href=url;a.download="habits365-daily.ics";a.click();
-  URL.revokeObjectURL(url);
+  const pad=(n)=>String(n).padStart(2,"0");
+  const dateStr=today.getFullYear()+pad(today.getMonth()+1)+pad(today.getDate());
+  const end=new Date(today);end.setDate(end.getDate()+366);
+  const endStr=end.getFullYear()+pad(end.getMonth()+1)+pad(end.getDate());
+  // 9am local time in UTC format
+  const startTime=dateStr+"T090000";
+  const endTime=dateStr+"T093000";
+  const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent);
+  const isAndroid=/Android/.test(navigator.userAgent);
+  if(isIOS||isAndroid){
+    // Try Google Calendar link first on Android, Apple on iOS
+    if(isIOS){
+      const ics=[
+        "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Habits365//EN",
+        "BEGIN:VEVENT",
+        "DTSTART:"+startTime,
+        "DTEND:"+endTime,
+        "RRULE:FREQ=DAILY;UNTIL="+endStr+"T235959Z",
+        "SUMMARY:LOCK IN — Habits 365 Check-In",
+        "DESCRIPTION:Time to check in. Open the app\\, upload your photo\\, build the streak. habits365-challenge.vercel.app",
+        "URL:https://habits365-challenge.vercel.app",
+        "END:VEVENT","END:VCALENDAR"
+      ].join("\r\n");
+      const blob=new Blob([ics],{type:"text/calendar;charset=utf-8"});
+      const url=URL.createObjectURL(blob);
+      window.location.href=url;
+    }else{
+      // Android — open Google Calendar
+      const gcalUrl="https://calendar.google.com/calendar/render?action=TEMPLATE"+
+        "&text=LOCK+IN+%E2%80%94+Habits+365+Check-In"+
+        "&dates="+startTime+"/"+endTime+
+        "&recur=RRULE:FREQ%3DDAILY;COUNT%3D365"+
+        "&details=Time+to+check+in.+Open+the+app%2C+upload+your+photo%2C+build+the+streak.+habits365-challenge.vercel.app"+
+        "&sf=true&output=xml";
+      window.open(gcalUrl,"_blank");
+    }
+  }else{
+    // Desktop — download ICS
+    const ics=[
+      "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Habits365//EN",
+      "BEGIN:VEVENT",
+      "DTSTART:"+startTime,
+      "DTEND:"+endTime,
+      "RRULE:FREQ=DAILY;UNTIL="+endStr+"T235959Z",
+      "SUMMARY:LOCK IN — Habits 365 Check-In",
+      "DESCRIPTION:Time to check in. Open the app\\, upload your photo\\, build the streak.",
+      "URL:https://habits365-challenge.vercel.app",
+      "END:VEVENT","END:VCALENDAR"
+    ].join("\r\n");
+    const blob=new Blob([ics],{type:"text/calendar;charset=utf-8"});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement("a");a.href=url;a.download="habits365-reminder.ics";a.click();
+    URL.revokeObjectURL(url);
+  }
 }
 
 function showReturningUser(u){
@@ -533,8 +628,7 @@ async function refreshParticipant(handle){
 
 function handlePhoto(e){
   const f=e.target.files[0];if(!f)return;
-  const img=new Image();
-  const url=URL.createObjectURL(f);
+  const img=new Image();const url=URL.createObjectURL(f);
   img.onload=()=>{
     const max=800;let w=img.width,h=img.height;
     if(w>max){h=Math.round(h*(max/w));w=max;}
@@ -733,7 +827,7 @@ function checkPw(){
 }
 function cancelAdmin(){document.getElementById("lock-screen").classList.add("hidden");window.location.hash="";}
 function adminLogout(){adminOk=false;showPg("checkin",document.querySelector(".nb"));document.querySelector(".nb").classList.add("on");window.location.hash="";}
-function checkHash(){if(window.location.hash==="#admin"||window.location.hash==="/#admin"){document.getElementById("splash").style.display="none";requireAdmin(null);}}
+function checkHash(){if(window.location.hash==="#admin"||window.location.hash==="/#admin"){document.getElementById("splash").style.display="none";document.getElementById("install-screen").classList.add("hidden");requireAdmin(null);}}
 checkHash();window.addEventListener("hashchange",checkHash);
 function logoTap(){logoTaps++;clearTimeout(logoTimer);logoTimer=setTimeout(()=>logoTaps=0,2000);if(logoTaps>=7){logoTaps=0;requireAdmin(null);}}
 
@@ -761,8 +855,7 @@ async function loadAdmin(){
         close.sort((a,b)=>a.dl-b.dl).map(({p,m,dl})=>{
           const md=MS_DATA[m]||{reward:""};
           return '<div class="alert-item"><div class="alert-days">'+dl+'<div style="font-size:9px;color:var(--gray2);font-weight:600;letter-spacing:.06em;text-transform:uppercase">days</div></div><div class="alert-info"><div class="alert-name">'+p.name+'</div><div class="alert-sub">@'+p.instagram_handle+' · Day '+p.current_streak+' streak</div></div><div class="alert-ms">Day '+m+'<br>'+md.reward+'</div></div>';
-        }).join('')+
-        '<div style="margin-top:10px;font-size:11px;color:var(--gray2);line-height:1.6;font-weight:500">Prepare their reward — create a Shopify discount code and have the IG feature ready.</div>';
+        }).join('')+'<div style="margin-top:10px;font-size:11px;color:var(--gray2);line-height:1.6;font-weight:500">Prepare their reward — create a Shopify discount code and have the IG feature ready.</div>';
       }
     }
 
