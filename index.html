@@ -348,12 +348,9 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
       </div>
     </div>
 
-    <!-- SUBTLE HOME SCREEN TIP — shown after submit -->
     <div id="home-tip" style="display:none">
       <div class="home-tip">
-        <div class="home-tip-text">
-          💡 <strong>Tip:</strong> Add this app to your home screen for quick daily access — <strong>iPhone:</strong> Share → Add to Home Screen · <strong>Android:</strong> Menu → Add to Home Screen
-        </div>
+        <div class="home-tip-text">💡 <strong>Tip:</strong> Add this app to your home screen for quick daily access — <strong>iPhone:</strong> Share → Add to Home Screen · <strong>Android:</strong> Menu → Add to Home Screen</div>
       </div>
     </div>
 
@@ -444,6 +441,8 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 const SBU="https://smhyobptjyvkuutotray.supabase.co";
 const SBK="sb_publishable_FmmSdKoCPw4O9JdN3wf1Kg_YlmJhiHF";
 const APW="365elite";
+const KV_PK="Pnnj4c";
+const KV_LIST="SYaL5C";
 const MS=[30,60,365];
 const MS_DATA={
   30:{tier:"Committed",reward:"$75",label:"Day 30 — Committed",rec:"$75 Credit + IG Feature"},
@@ -466,6 +465,88 @@ async function api(path,opts={}){
   if(!r.ok)throw new Error(await r.text());
   const t=await r.text();return t?JSON.parse(t):null;
 }
+
+// ── KLAVIYO FUNCTIONS ──────────────────────────────────────
+async function kvSubscribe(email,name,handle,startDate){
+  if(!email)return;
+  try{
+    await fetch("https://a.klaviyo.com/client/subscriptions/?company_id="+KV_PK,{
+      method:"POST",
+      headers:{"Content-Type":"application/json","revision":"2023-12-15"},
+      body:JSON.stringify({
+        data:{
+          type:"subscription",
+          attributes:{
+            profile:{
+              data:{
+                type:"profile",
+                attributes:{
+                  email,
+                  first_name:name.split(" ")[0]||name,
+                  last_name:name.split(" ").slice(1).join(" ")||"",
+                  properties:{
+                    instagram_handle:handle,
+                    challenge_start_date:startDate,
+                    current_streak:1,
+                    challenge_participant:true
+                  }
+                }
+              }
+            }
+          },
+          relationships:{list:{data:{type:"list",id:KV_LIST}}}
+        }
+      })
+    });
+  }catch(e){console.log("Klaviyo subscribe error",e);}
+}
+
+async function kvUpdateStreak(email,streak){
+  if(!email)return;
+  try{
+    await fetch("https://a.klaviyo.com/client/profiles/?company_id="+KV_PK,{
+      method:"POST",
+      headers:{"Content-Type":"application/json","revision":"2023-12-15"},
+      body:JSON.stringify({
+        data:{
+          type:"profile",
+          attributes:{
+            email,
+            properties:{current_streak:streak}
+          }
+        }
+      })
+    });
+  }catch(e){console.log("Klaviyo update error",e);}
+}
+
+async function kvMilestone(email,name,handle,day){
+  if(!email)return;
+  try{
+    const md=MS_DATA[day]||{};
+    await fetch("https://a.klaviyo.com/client/events/?company_id="+KV_PK,{
+      method:"POST",
+      headers:{"Content-Type":"application/json","revision":"2023-12-15"},
+      body:JSON.stringify({
+        data:{
+          type:"event",
+          attributes:{
+            metric:{data:{type:"metric",attributes:{name:"Challenge Milestone Reached"}}},
+            profile:{data:{type:"profile",attributes:{email,properties:{instagram_handle:handle}}}},
+            properties:{
+              milestone_day:day,
+              tier:md.tier||"",
+              reward:md.reward||"",
+              name
+            },
+            value:day
+          }
+        }
+      })
+    });
+  }catch(e){console.log("Klaviyo milestone error",e);}
+}
+// ──────────────────────────────────────────────────────────
 
 window.addEventListener("load",async()=>{
   if("serviceWorker" in navigator){try{await navigator.serviceWorker.register("/sw.js");}catch(e){}}
@@ -593,6 +674,7 @@ async function submitCheckin(){
 async function doSubmit(h,n,em,btn,mode){
   try{
     const td=today();let p=participant;
+    const isNew=!p&&!(await api("participants?instagram_handle=eq."+encodeURIComponent(h)+"&limit=1").then(r=>r&&r.length));
     if(!p){
       const ex=await api("participants?instagram_handle=eq."+encodeURIComponent(h)+"&limit=1");
       if(ex&&ex.length){p=ex[0];}
@@ -623,11 +705,31 @@ async function doSubmit(h,n,em,btn,mode){
     const upd={name:n,current_streak:streak,longest_streak:Math.max(p.longest_streak||0,streak),total_checkins:(p.total_checkins||0)+1,free_passes_used:usedPass?(p.free_passes_used||0)+1:p.free_passes_used,streak_reset:false};
     if(em)upd.email=em;if(dsr>=30)upd.free_pass_reset_date=td;
     await api("participants?id=eq."+p.id,{method:"PATCH",body:upd,prefer:"return=minimal"});
+
+    // ── KLAVIYO CALLS ──
+    const emailToUse=em||p.email||"";
+    if(emailToUse){
+      if(p.total_checkins===0){
+        // First ever check-in — subscribe to list
+        await kvSubscribe(emailToUse,n,h,td);
+      } else {
+        // Returning check-in — update streak
+        await kvUpdateStreak(emailToUse,streak);
+      }
+    }
+    // ──────────────────
+
     if(MS.includes(streak)){
       const me=await api("milestones?participant_id=eq."+p.id+"&milestone_day=eq."+streak+"&limit=1");
-      if(!me||!me.length)await api("milestones",{method:"POST",body:{participant_id:p.id,milestone_day:streak,reward_sent:false}});
+      if(!me||!me.length){
+        await api("milestones",{method:"POST",body:{participant_id:p.id,milestone_day:streak,reward_sent:false}});
+        // ── KLAVIYO MILESTONE EVENT ──
+        if(emailToUse)await kvMilestone(emailToUse,n,h,streak);
+        // ────────────────────────────
+      }
     }
-    saved.set({handle:h,name:n,email:em,streak});
+
+    saved.set({handle:h,name:n,email:emailToUse,streak});
     participant={...p,...upd};
     document.getElementById("streak-num").textContent=streak;
     document.getElementById("sc-day").textContent=streak;
@@ -667,7 +769,7 @@ function updateProgressUI(p){
     else{c.classList.remove("done");n.classList.remove("lit");i.textContent="🔒";t.classList.remove("lit");}
   });
   let prev=1,next=30,tier="Committed — Day 30",reward="$75";
-  if(s>=365){prev=365;next=365;tier="Legend — Complete";reward="Claim your box";}
+  if(s>=365){prev=365;next=365;tier="Legend — Complete";reward:"Claim your box";}
   else if(s>=60){prev=60;next=365;tier="Legend — Day 365";reward="$500 Mystery Box";}
   else if(s>=30){prev=30;next=60;tier="Locked In — Day 60";reward="$150";}
   const segPct=next===prev?100:Math.round(((s-prev)/(next-prev))*100);
