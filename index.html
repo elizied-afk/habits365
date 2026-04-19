@@ -13,7 +13,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-:root{--black:#000;--s2:#141414;--s3:#1c1c1c;--white:#fff;--off:#e8e8e8;--gray:#999;--gray2:#666;--border:#222;--b2:#2e2e2e;--accent:#e8ff00;--red:#ff4040;--green:#00cc66;--ig:#e1306c}
+:root{--black:#000;--s2:#141414;--s3:#1c1c1c;--white:#fff;--off:#e8e8e8;--gray:#999;--gray2:#666;--border:#222;--b2:#2e2e2e;--accent:#e8ff00;--red:#ff4040;--green:#00cc66}
 html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-serif;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 .app{max-width:430px;margin:0 auto;min-height:100vh}
 .splash{position:fixed;inset:0;background:var(--black);z-index:300;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;text-align:center;transition:opacity .4s}
@@ -39,8 +39,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .nav{display:flex;background:var(--black);border-bottom:1px solid var(--border)}
 .nb{flex:1;padding:15px 4px 13px;background:none;border:none;color:var(--gray2);font-family:"Barlow",sans-serif;font-size:10px;font-weight:700;cursor:pointer;letter-spacing:.12em;text-transform:uppercase;border-bottom:2px solid transparent;transition:color .2s}
 .nb.on{color:var(--white);border-bottom-color:var(--white)}
-.pg{display:none}
-.pg.on{display:block}
+.pg{display:none}.pg.on{display:block}
 .ban{margin:12px 20px;border-radius:2px;padding:12px 14px;display:none;align-items:flex-start;gap:10px}
 .ban.on{display:flex}
 .ban.s{background:rgba(0,204,102,.06);border:1px solid rgba(0,204,102,.2)}
@@ -56,9 +55,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .fl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);font-weight:700;display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
 .fl span{color:var(--red);font-size:9px;letter-spacing:0;text-transform:none;font-weight:500}
 .fi{width:100%;background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:14px 16px;color:var(--white);font-family:"Barlow",sans-serif;font-size:15px;font-weight:500;outline:none;transition:border-color .2s;-webkit-appearance:none}
-.fi:focus{border-color:var(--gray2)}
-.fi.err{border-color:var(--red)}
-.fi::placeholder{color:var(--b2)}
+.fi:focus{border-color:var(--gray2)}.fi.err{border-color:var(--red)}.fi::placeholder{color:var(--b2)}
 .pbar{margin:0 20px 14px;background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:11px 14px;display:none;justify-content:space-between;align-items:center}
 .pbar.on{display:flex}
 .pbl{font-size:10px;color:var(--gray2);text-transform:uppercase;letter-spacing:.1em;font-weight:700}
@@ -67,8 +64,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .pz-label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);font-weight:700;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
 .pz-label span{color:var(--red);font-size:9px;letter-spacing:0;text-transform:none;font-weight:500}
 .uz{width:100%;aspect-ratio:4/3;background:var(--s2);border:1px solid var(--border);border-radius:2px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;position:relative;transition:border-color .2s}
-.uz:active{border-color:var(--gray2)}
-.uz.err{border-color:var(--red)}
+.uz:active{border-color:var(--gray2)}.uz.err{border-color:var(--red)}
 .uz img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
 .uz-in{position:relative;z-index:1;text-align:center;padding:20px}
 .uz-ic{font-size:36px;margin-bottom:12px}
@@ -77,9 +73,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 #pi{display:none}
 .bw{padding:0 20px}
 .bp{width:100%;padding:17px;background:var(--white);color:var(--black);border:none;border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:20px;font-weight:900;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;transition:opacity .2s;margin-bottom:10px;display:block}
-.bp:hover{opacity:.88}
-.bp:active{opacity:.75}
-.bp:disabled{opacity:.25;cursor:not-allowed}
+.bp:hover{opacity:.88}.bp:active{opacity:.75}.bp:disabled{opacity:.25;cursor:not-allowed}
 .bg{width:100%;padding:14px;background:transparent;color:var(--off);border:1px solid var(--border);border-radius:2px;font-family:"Barlow",sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:border-color .2s;margin-bottom:10px;display:block;letter-spacing:.03em}
 .bg:hover{border-color:var(--gray2)}
 .bsm{font-size:10px;padding:5px 10px;border:1px solid var(--border);border-radius:2px;background:none;color:var(--gray);cursor:pointer;font-family:"Barlow",sans-serif;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:all .2s}
@@ -169,8 +163,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .atabs{display:flex;gap:0;margin-bottom:14px;border-bottom:1px solid var(--border)}
 .atab{flex:1;padding:10px 4px;background:none;border:none;color:var(--gray2);font-family:"Barlow",sans-serif;font-size:9px;font-weight:700;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;transition:all .2s;border-bottom:2px solid transparent;margin-bottom:-1px}
 .atab.on{color:var(--white);border-bottom-color:var(--white)}
-.asec{display:none}
-.asec.on{display:block}
+.asec{display:none}.asec.on{display:block}
 .photo-card{background:var(--s2);border:1px solid var(--border);border-radius:2px;margin-bottom:10px;overflow:hidden}
 .photo-card-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:var(--s3)}
 .photo-card-body{padding:12px 14px}
@@ -221,10 +214,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .lo-err{font-size:11px;color:var(--red);text-align:center;margin-bottom:10px;height:14px;font-weight:600}
 .lo-btns{width:100%;max-width:260px;display:flex;flex-direction:column;gap:8px}
 .loading{text-align:center;padding:32px 20px;color:var(--gray2);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
-.sp2{height:28px}
-.pad{padding:0 20px}
-.mt{margin-top:14px}
-.mb{margin-bottom:14px}
+.sp2{height:28px}.pad{padding:0 20px}.mt{margin-top:14px}.mb{margin-bottom:14px}
 </style>
 </head>
 <body>
@@ -259,7 +249,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
   <div class="hdr">
     <div class="logo-text" onclick="logoTap()">HABITS 365</div>
     <div class="hdr-r">
-      <div class="streak-pill" id="streak-pill"><div class="spn" id="streak-num">—</div><div class="spl">day streak</div></div>
+      <div class="streak-pill"><div class="spn" id="streak-num">—</div><div class="spl">day streak</div></div>
       <div class="htag">#365Locked</div>
     </div>
   </div>
@@ -329,10 +319,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
         <img class="sc-photo" id="sc-photo" src="" />
         <div class="sc-overlay"></div>
         <div class="sc-top"><div class="sc-hashtag">#365LOCKED</div></div>
-        <div class="sc-bot">
-          <div class="sc-day-word">DAY</div>
-          <div class="sc-day-num" id="sc-day">1</div>
-        </div>
+        <div class="sc-bot"><div class="sc-day-word">DAY</div><div class="sc-day-num" id="sc-day">1</div></div>
       </div>
       <div class="sc-instructions">
         <div class="sc-inst-title">Save to your phone</div>
@@ -347,13 +334,11 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
         </div>
       </div>
     </div>
-
     <div id="home-tip" style="display:none">
       <div class="home-tip">
-        <div class="home-tip-text">💡 <strong>Tip:</strong> Add this app to your home screen for quick daily access — <strong>iPhone:</strong> Share → Add to Home Screen · <strong>Android:</strong> Menu → Add to Home Screen</div>
+        <div class="home-tip-text">💡 <strong>Tip:</strong> Add this app to your home screen — <strong>iPhone:</strong> Share → Add to Home Screen · <strong>Android:</strong> Menu → Add to Home Screen</div>
       </div>
     </div>
-
     <div style="padding:10px 20px;font-size:11px;color:var(--gray2);text-align:center;line-height:1.6">One free pass per 30 days if you miss a day.</div>
     <div class="sp2"></div>
   </div>
@@ -429,7 +414,6 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
           </div>
           <div class="code-list" id="code-list"><div style="font-size:11px;color:var(--gray2);text-align:center;padding:12px">No codes yet</div></div>
         </div>
-        <div style="font-size:12px;color:var(--gray2);line-height:1.7;font-weight:500">Single-use. Send via DM or email.</div>
       </div>
       <button class="bg mt" onclick="loadAdmin()">Refresh</button>
     </div>
@@ -439,16 +423,12 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 
 <script>
 const SBU="https://smhyobptjyvkuutotray.supabase.co";
-const SBK="sb_publishable_FmmSdKoCPw4O9JdN3wf1Kg_YlmJhiHF";
+const SBK="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNtaHlvYnB0anl2a3V1dG90cmF5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNjkzODMsImV4cCI6MjA5MDc0NTM4M30.8iyEScJFJWo2RwcmuCIM6rDWboy-EqnvgC3TE3152Uo";
 const APW="365elite";
 const KV_PK="Pnnj4c";
 const KV_LIST="SYaL5C";
 const MS=[30,60,365];
-const MS_DATA={
-  30:{tier:"Committed",reward:"$75",label:"Day 30 — Committed",rec:"$75 Credit + IG Feature"},
-  60:{tier:"Locked In",reward:"$150",label:"Day 60 — Locked In",rec:"$150 Credit + Hall of Fame"},
-  365:{tier:"Legend",reward:"$500 Box",label:"Day 365 — Legend",rec:"$500 Mystery Box + Legacy Status"}
-};
+const MS_DATA={30:{tier:"Committed",reward:"$75",label:"Day 30 — Committed",rec:"$75 Credit + IG Feature"},60:{tier:"Locked In",reward:"$150",label:"Day 60 — Locked In",rec:"$150 Credit + Hall of Fame"},365:{tier:"Legend",reward:"$500 Box",label:"Day 365 — Legend",rec:"$500 Mystery Box + Legacy Status"}};
 let photo=null,photoB64=null,participant=null,adminOk=false,genCodes=[],logoTaps=0,logoTimer=null;
 
 const saved={
@@ -462,43 +442,19 @@ async function api(path,opts={}){
     headers:{"apikey":SBK,"Authorization":"Bearer "+SBK,"Content-Type":"application/json","Prefer":opts.prefer||"return=representation",...(opts.headers||{})},
     method:opts.method||"GET",body:opts.body?JSON.stringify(opts.body):undefined
   });
-  if(!r.ok)throw new Error(await r.text());
+  if(!r.ok){const t=await r.text();throw new Error(t);}
   const t=await r.text();return t?JSON.parse(t):null;
 }
 
-// ── KLAVIYO FUNCTIONS ──────────────────────────────────────
 async function kvSubscribe(email,name,handle,startDate){
   if(!email)return;
   try{
     await fetch("https://a.klaviyo.com/client/subscriptions/?company_id="+KV_PK,{
       method:"POST",
       headers:{"Content-Type":"application/json","revision":"2023-12-15"},
-      body:JSON.stringify({
-        data:{
-          type:"subscription",
-          attributes:{
-            profile:{
-              data:{
-                type:"profile",
-                attributes:{
-                  email,
-                  first_name:name.split(" ")[0]||name,
-                  last_name:name.split(" ").slice(1).join(" ")||"",
-                  properties:{
-                    instagram_handle:handle,
-                    challenge_start_date:startDate,
-                    current_streak:1,
-                    challenge_participant:true
-                  }
-                }
-              }
-            }
-          },
-          relationships:{list:{data:{type:"list",id:KV_LIST}}}
-        }
-      })
+      body:JSON.stringify({data:{type:"subscription",attributes:{profile:{data:{type:"profile",attributes:{email,first_name:name.split(" ")[0]||name,last_name:name.split(" ").slice(1).join(" ")||"",properties:{instagram_handle:handle,challenge_start_date:startDate,current_streak:1,challenge_participant:true}}}}},relationships:{list:{data:{type:"list",id:KV_LIST}}}}})
     });
-  }catch(e){console.log("Klaviyo subscribe error",e);}
+  }catch(e){console.log("kv subscribe err",e);}
 }
 
 async function kvUpdateStreak(email,streak){
@@ -507,17 +463,9 @@ async function kvUpdateStreak(email,streak){
     await fetch("https://a.klaviyo.com/client/profiles/?company_id="+KV_PK,{
       method:"POST",
       headers:{"Content-Type":"application/json","revision":"2023-12-15"},
-      body:JSON.stringify({
-        data:{
-          type:"profile",
-          attributes:{
-            email,
-            properties:{current_streak:streak}
-          }
-        }
-      })
+      body:JSON.stringify({data:{type:"profile",attributes:{email,properties:{current_streak:streak}}}})
     });
-  }catch(e){console.log("Klaviyo update error",e);}
+  }catch(e){console.log("kv update err",e);}
 }
 
 async function kvMilestone(email,name,handle,day){
@@ -527,26 +475,10 @@ async function kvMilestone(email,name,handle,day){
     await fetch("https://a.klaviyo.com/client/events/?company_id="+KV_PK,{
       method:"POST",
       headers:{"Content-Type":"application/json","revision":"2023-12-15"},
-      body:JSON.stringify({
-        data:{
-          type:"event",
-          attributes:{
-            metric:{data:{type:"metric",attributes:{name:"Challenge Milestone Reached"}}},
-            profile:{data:{type:"profile",attributes:{email,properties:{instagram_handle:handle}}}},
-            properties:{
-              milestone_day:day,
-              tier:md.tier||"",
-              reward:md.reward||"",
-              name
-            },
-            value:day
-          }
-        }
-      })
+      body:JSON.stringify({data:{type:"event",attributes:{metric:{data:{type:"metric",attributes:{name:"Challenge Milestone Reached"}}},profile:{data:{type:"profile",attributes:{email,properties:{instagram_handle:handle}}}},properties:{milestone_day:day,tier:md.tier||"",reward:md.reward||"",name},value:day}}})
     });
-  }catch(e){console.log("Klaviyo milestone error",e);}
+  }catch(e){console.log("kv milestone err",e);}
 }
-// ──────────────────────────────────────────────────────────
 
 window.addEventListener("load",async()=>{
   if("serviceWorker" in navigator){try{await navigator.serviceWorker.register("/sw.js");}catch(e){}}
@@ -573,19 +505,15 @@ function addToCalendar(){
   const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent);
   const isAndroid=/Android/.test(navigator.userAgent);
   if(isIOS){
-    const ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Habits365//EN","BEGIN:VEVENT","DTSTART:"+startTime,"DTEND:"+endTime,"RRULE:FREQ=DAILY;UNTIL="+endStr+"T235959Z","SUMMARY:LOCK IN — Habits 365 Check-In","DESCRIPTION:Time to check in. Open the app\\, upload your photo\\, build the streak. habits365-challenge.vercel.app","URL:https://habits365-challenge.vercel.app","END:VEVENT","END:VCALENDAR"].join("\r\n");
+    const ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Habits365//EN","BEGIN:VEVENT","DTSTART:"+startTime,"DTEND:"+endTime,"RRULE:FREQ=DAILY;UNTIL="+endStr+"T235959Z","SUMMARY:LOCK IN — Habits 365 Check-In","DESCRIPTION:Time to check in. habits365-challenge.vercel.app","URL:https://habits365-challenge.vercel.app","END:VEVENT","END:VCALENDAR"].join("\r\n");
     const blob=new Blob([ics],{type:"text/calendar;charset=utf-8"});
-    const url=URL.createObjectURL(blob);
-    window.location.href=url;
+    window.location.href=URL.createObjectURL(blob);
   }else if(isAndroid){
-    const gcalUrl="https://calendar.google.com/calendar/render?action=TEMPLATE&text=LOCK+IN+%E2%80%94+Habits+365+Check-In&dates="+startTime+"/"+endTime+"&recur=RRULE:FREQ%3DDAILY;COUNT%3D365&details=Time+to+check+in.+Open+the+app%2C+upload+your+photo%2C+build+the+streak.+habits365-challenge.vercel.app&sf=true&output=xml";
-    window.open(gcalUrl,"_blank");
+    window.open("https://calendar.google.com/calendar/render?action=TEMPLATE&text=LOCK+IN+%E2%80%94+Habits+365+Check-In&dates="+startTime+"/"+endTime+"&recur=RRULE:FREQ%3DDAILY;COUNT%3D365&details=habits365-challenge.vercel.app&sf=true&output=xml","_blank");
   }else{
-    const ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Habits365//EN","BEGIN:VEVENT","DTSTART:"+startTime,"DTEND:"+endTime,"RRULE:FREQ=DAILY;UNTIL="+endStr+"T235959Z","SUMMARY:LOCK IN — Habits 365 Check-In","DESCRIPTION:Time to check in. Open the app\\, upload your photo\\, build the streak.","URL:https://habits365-challenge.vercel.app","END:VEVENT","END:VCALENDAR"].join("\r\n");
+    const ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Habits365//EN","BEGIN:VEVENT","DTSTART:"+startTime,"DTEND:"+endTime,"RRULE:FREQ=DAILY;UNTIL="+endStr+"T235959Z","SUMMARY:LOCK IN — Habits 365 Check-In","END:VEVENT","END:VCALENDAR"].join("\r\n");
     const blob=new Blob([ics],{type:"text/calendar;charset=utf-8"});
-    const url=URL.createObjectURL(blob);
-    const a=document.createElement("a");a.href=url;a.download="habits365-reminder.ics";a.click();
-    URL.revokeObjectURL(url);
+    const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="habits365.ics";a.click();
   }
 }
 
@@ -609,14 +537,13 @@ async function refreshParticipant(handle){
     const rows=await api("participants?instagram_handle=eq."+encodeURIComponent(handle)+"&limit=1");
     if(!rows||!rows.length)return;
     const p=rows[0];participant=p;
-    const u=saved.get()||{};
-    u.streak=p.current_streak;u.name=p.name;saved.set(u);
+    const u=saved.get()||{};u.streak=p.current_streak;u.name=p.name;saved.set(u);
     document.getElementById("ru-streak").textContent=p.current_streak;
     document.getElementById("streak-num").textContent=p.current_streak;
     document.getElementById("pass-count").textContent=Math.max(0,1-(p.free_passes_used||0));
     document.getElementById("pass-bar").classList.add("on");
     updateProgressUI(p);checkClaim(p);loadHistory(p.id);
-  }catch(e){}
+  }catch(e){console.log("refresh err",e);}
 }
 
 function handlePhoto(e){
@@ -643,12 +570,7 @@ function fmtDate(d){return new Date(d).toLocaleDateString("en-US",{month:"short"
 
 function ban(type,msg){
   ["s","e","w","i","s2","e2"].forEach(t=>{const el=document.getElementById("b-"+t);if(el)el.classList.remove("on");});
-  if(type){
-    ["b-"+type,"b-"+type+"2"].forEach(id=>{
-      const el=document.getElementById(id);const tel=document.getElementById(id+"-t");
-      if(el&&tel){tel.textContent=msg;el.classList.add("on");}
-    });
-  }
+  if(type){["b-"+type,"b-"+type+"2"].forEach(id=>{const el=document.getElementById(id);const tel=document.getElementById(id+"-t");if(el&&tel){tel.textContent=msg;el.classList.add("on");}});}
 }
 
 async function submitCheckinReturning(){
@@ -674,7 +596,6 @@ async function submitCheckin(){
 async function doSubmit(h,n,em,btn,mode){
   try{
     const td=today();let p=participant;
-    const isNew=!p&&!(await api("participants?instagram_handle=eq."+encodeURIComponent(h)+"&limit=1").then(r=>r&&r.length));
     if(!p){
       const ex=await api("participants?instagram_handle=eq."+encodeURIComponent(h)+"&limit=1");
       if(ex&&ex.length){p=ex[0];}
@@ -686,49 +607,28 @@ async function doSubmit(h,n,em,btn,mode){
     }
     if(em&&!p.email)await api("participants?id=eq."+p.id,{method:"PATCH",body:{email:em},prefer:"return=minimal"});
     const dup=await api("checkins?participant_id=eq."+p.id+"&checkin_date=eq."+td+"&limit=1");
-    if(dup&&dup.length){
-      ban("w","Already checked in today — come back tomorrow!");
-      btn.disabled=false;btn.textContent=mode==="r"?"Lock In Today":"Lock In Day 1";return;
-    }
+    if(dup&&dup.length){ban("w","Already checked in today — come back tomorrow!");btn.disabled=false;btn.textContent=mode==="r"?"Lock In Today":"Lock In Day 1";return;}
     const last=await api("checkins?participant_id=eq."+p.id+"&order=checkin_date.desc&limit=1");
     let streak=p.current_streak,usedPass=false,reset=false,dsr=0;
     if(last&&last.length){
       const d=diff(last[0].checkin_date,td);
       if(d===1){streak+=1;}
-      else if(d===2){
-        const prd=p.free_pass_reset_date||p.start_date;dsr=diff(prd,td);
-        const pu=dsr>=30?0:(p.free_passes_used||0);
-        if(pu<1){streak+=1;usedPass=true;}else{streak=1;reset=true;}
-      }else{streak=1;reset=true;}
+      else if(d===2){const prd=p.free_pass_reset_date||p.start_date;dsr=diff(prd,td);const pu=dsr>=30?0:(p.free_passes_used||0);if(pu<1){streak+=1;usedPass=true;}else{streak=1;reset=true;}}
+      else{streak=1;reset=true;}
     }else{streak=1;}
     await api("checkins",{method:"POST",body:{participant_id:p.id,checkin_date:td,day_number:streak,used_free_pass:usedPass,photo_url:"uploaded",photo_data:photoB64,photo_status:"approved"}});
     const upd={name:n,current_streak:streak,longest_streak:Math.max(p.longest_streak||0,streak),total_checkins:(p.total_checkins||0)+1,free_passes_used:usedPass?(p.free_passes_used||0)+1:p.free_passes_used,streak_reset:false};
     if(em)upd.email=em;if(dsr>=30)upd.free_pass_reset_date=td;
     await api("participants?id=eq."+p.id,{method:"PATCH",body:upd,prefer:"return=minimal"});
-
-    // ── KLAVIYO CALLS ──
     const emailToUse=em||p.email||"";
     if(emailToUse){
-      if(p.total_checkins===0){
-        // First ever check-in — subscribe to list
-        await kvSubscribe(emailToUse,n,h,td);
-      } else {
-        // Returning check-in — update streak
-        await kvUpdateStreak(emailToUse,streak);
-      }
+      if(p.total_checkins===0){await kvSubscribe(emailToUse,n,h,td);}
+      else{await kvUpdateStreak(emailToUse,streak);}
     }
-    // ──────────────────
-
     if(MS.includes(streak)){
       const me=await api("milestones?participant_id=eq."+p.id+"&milestone_day=eq."+streak+"&limit=1");
-      if(!me||!me.length){
-        await api("milestones",{method:"POST",body:{participant_id:p.id,milestone_day:streak,reward_sent:false}});
-        // ── KLAVIYO MILESTONE EVENT ──
-        if(emailToUse)await kvMilestone(emailToUse,n,h,streak);
-        // ────────────────────────────
-      }
+      if(!me||!me.length){await api("milestones",{method:"POST",body:{participant_id:p.id,milestone_day:streak,reward_sent:false}});if(emailToUse)await kvMilestone(emailToUse,n,h,streak);}
     }
-
     saved.set({handle:h,name:n,email:emailToUse,streak});
     participant={...p,...upd};
     document.getElementById("streak-num").textContent=streak;
@@ -754,8 +654,7 @@ async function doSubmit(h,n,em,btn,mode){
     ["prev-img","prev-img-r"].forEach(id=>{const el=document.getElementById(id);if(el){el.src="";el.style.display="none";}});
     ["uz-in","uz-in-r"].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display="block";});
   }catch(e){ban("e","Submission failed: "+e.message);}
-  btn.disabled=false;
-  btn.textContent=mode==="r"?"Lock In Today":"Lock In Day 1";
+  btn.disabled=false;btn.textContent=mode==="r"?"Lock In Today":"Lock In Day 1";
 }
 
 function updateProgressUI(p){
@@ -769,7 +668,7 @@ function updateProgressUI(p){
     else{c.classList.remove("done");n.classList.remove("lit");i.textContent="🔒";t.classList.remove("lit");}
   });
   let prev=1,next=30,tier="Committed — Day 30",reward="$75";
-  if(s>=365){prev=365;next=365;tier="Legend — Complete";reward:"Claim your box";}
+  if(s>=365){prev=365;next=365;tier="Legend — Complete";reward="Claim your box";}
   else if(s>=60){prev=60;next=365;tier="Legend — Day 365";reward="$500 Mystery Box";}
   else if(s>=30){prev=30;next=60;tier="Locked In — Day 60";reward="$150";}
   const segPct=next===prev?100:Math.round(((s-prev)/(next-prev))*100);
@@ -801,7 +700,7 @@ async function claimReward(){
   try{
     await api("milestones?id=eq."+document.getElementById("claim-btn").dataset.mid,{method:"PATCH",body:{reward_sent:true},prefer:"return=minimal"});
     document.getElementById("claim-wrap").classList.remove("on");
-    ban("s","Reward claimed! We will reach out to @"+participant.instagram_handle+" within 48hrs.");
+    ban("s","Reward claimed! We will reach out within 48hrs.");
   }catch(e){ban("e","Could not claim — try again");}
 }
 
@@ -810,11 +709,7 @@ async function loadHistory(pid){
     const rows=await api("checkins?participant_id=eq."+pid+"&order=checkin_date.desc&limit=10");
     const el=document.getElementById("hist-list");
     if(!rows||!rows.length){el.innerHTML='<div class="loading">No check-ins yet</div>';return;}
-    el.innerHTML=rows.map(c=>{
-      const cls=c.photo_status==="flagged"?"hist-flag":"hist-ok";
-      const lbl=c.photo_status==="flagged"?"Flagged":"Submitted";
-      return '<div class="hist-item"><div><div class="hist-day">Day '+c.day_number+'</div><div class="hist-date">'+fmtDate(c.checkin_date)+(c.used_free_pass?" · Pass used":"")+'</div></div><span class="'+cls+'">'+lbl+'</span></div>';
-    }).join("");
+    el.innerHTML=rows.map(c=>'<div class="hist-item"><div><div class="hist-day">Day '+c.day_number+'</div><div class="hist-date">'+fmtDate(c.checkin_date)+(c.used_free_pass?" · Pass used":"")+'</div></div><span class="'+(c.photo_status==="flagged"?"hist-flag":"hist-ok")+'">'+(c.photo_status==="flagged"?"Flagged":"Submitted")+'</span></div>').join("");
   }catch(e){}
 }
 
@@ -848,14 +743,16 @@ function logoTap(){logoTaps++;clearTimeout(logoTimer);logoTimer=setTimeout(()=>l
 
 async function loadAdmin(){
   try{
-    const all=await api("participants?select=*&order=current_streak.desc");
-    const tod=await api("checkins?checkin_date=eq."+today()+"&select=id");
-    const mil=await api("milestones?reward_sent=eq.false&order=unlocked_at.desc&limit=20");
-    const allPhotos=await api("checkins?photo_data=not.is.null&order=created_at.desc&limit=50&select=*");
-    const legends=all?all.filter(p=>p.current_streak>=365):[];
-    const flaggedCount=allPhotos?allPhotos.filter(c=>c.photo_status==="flagged").length:0;
-    document.getElementById("s-total").textContent=all?all.length:0;
-    document.getElementById("s-today").textContent=tod?tod.length:0;
+    const [all,tod,mil,allPhotos]=await Promise.all([
+      api("participants?select=*&order=current_streak.desc"),
+      api("checkins?checkin_date=eq."+today()+"&select=id"),
+      api("milestones?reward_sent=eq.false&select=*&limit=20"),
+      api("checkins?photo_data=not.is.null&order=created_at.desc&limit=50&select=id,participant_id,checkin_date,day_number,photo_data,photo_status,used_free_pass,created_at")
+    ]);
+    const legends=(all||[]).filter(p=>p.current_streak>=365);
+    const flaggedCount=(allPhotos||[]).filter(c=>c.photo_status==="flagged").length;
+    document.getElementById("s-total").textContent=(all||[]).length;
+    document.getElementById("s-today").textContent=(tod||[]).length;
     document.getElementById("s-elite").textContent=legends.length;
     document.getElementById("s-pending").textContent=flaggedCount;
 
@@ -865,26 +762,23 @@ async function loadAdmin(){
       const close=[];
       all.forEach(p=>{MS.forEach(m=>{const dl=m-p.current_streak;if(dl>0&&dl<=5)close.push({p,m,dl});});});
       if(!close.length){ma.innerHTML='<div style="font-size:11px;color:var(--gray2);text-align:center;padding:20px">No one within 5 days of a milestone</div>';}
-      else{
-        ma.innerHTML='<div style="font-size:9px;text-transform:uppercase;letter-spacing:.16em;color:var(--accent);font-weight:700;margin-bottom:8px">Close to milestone</div>'+
-        close.sort((a,b)=>a.dl-b.dl).map(({p,m,dl})=>{
-          const md=MS_DATA[m]||{reward:""};
-          return '<div class="alert-item"><div class="alert-days">'+dl+'<div style="font-size:9px;color:var(--gray2);font-weight:600;letter-spacing:.06em;text-transform:uppercase">days</div></div><div class="alert-info"><div class="alert-name">'+p.name+'</div><div class="alert-sub">@'+p.instagram_handle+' · Day '+p.current_streak+' streak</div></div><div class="alert-ms">Day '+m+'<br>'+md.reward+'</div></div>';
-        }).join('')+'<div style="margin-top:10px;font-size:11px;color:var(--gray2);line-height:1.6;font-weight:500">Prepare their reward — create a Shopify discount code and have the IG feature ready.</div>';
-      }
+      else{ma.innerHTML=close.sort((a,b)=>a.dl-b.dl).map(({p,m,dl})=>'<div class="alert-item"><div class="alert-days">'+dl+'<div style="font-size:9px;color:var(--gray2);font-weight:600;text-transform:uppercase">days</div></div><div class="alert-info"><div class="alert-name">'+p.name+'</div><div class="alert-sub">@'+p.instagram_handle+' · Day '+p.current_streak+'</div></div><div class="alert-ms">Day '+m+'<br>'+(MS_DATA[m]||{}).reward+'</div></div>').join("");}
     }
 
     const pr=document.getElementById("photo-review-list");
-    if(!allPhotos||!allPhotos.length){pr.innerHTML='<div class="loading">No photos submitted yet</div>';}
+    if(!allPhotos||!allPhotos.length){pr.innerHTML='<div class="loading">No photos yet</div>';}
     else{
       const pids=[...new Set(allPhotos.map(c=>c.participant_id))];
-      const parts=await api("participants?id=in.("+pids.join(",")+")");
-      const pm={};parts.forEach(p=>pm[p.id]=p);
-      pr.innerHTML='<div style="font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--gray2);font-weight:700;margin-bottom:10px">'+allPhotos.length+' photos submitted</div>'+
+      const parts=await api("participants?id=in.("+pids.join(",")+")&select=id,name,instagram_handle");
+      const pm={};(parts||[]).forEach(p=>pm[p.id]=p);
+      pr.innerHTML='<div style="font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--gray2);font-weight:700;margin-bottom:10px">'+allPhotos.length+' photos</div>'+
       allPhotos.map(c=>{
-        const p=pm[c.participant_id]||{};
-        const isFlagged=c.photo_status==="flagged";
-        return '<div class="photo-card" style="'+(isFlagged?"border-color:rgba(255,64,64,.4)":"")+'">'+(c.photo_data?'<img class="photo-card-img" src="'+c.photo_data+'" loading="lazy" />':`<div class="photo-card-img" style="display:flex;align-items:center;justify-content:center;color:var(--gray2);font-size:11px">NO PHOTO</div>`)+'<div class="photo-card-body"><div class="photo-card-name">'+(isFlagged?'<span style="color:var(--red)">⚑ </span>':'')+(p.name||"Unknown")+' — Day '+c.day_number+'</div><div class="photo-card-meta">@'+(p.instagram_handle||"?")+" · "+fmtDate(c.checkin_date)+(c.used_free_pass?" · pass used":"")+'</div><div class="photo-card-actions">'+(!isFlagged?'<button class="btn-flag" onclick="reviewPhoto(\''+c.id+'\',\'flagged\')">✕ Flag</button>':'<button class="btn-approve" onclick="reviewPhoto(\''+c.id+'\',\'approved\')">✓ Unflag</button>')+'</div></div></div>';
+        const p=pm[c.participant_id]||{};const isFlagged=c.photo_status==="flagged";
+        return '<div class="photo-card" style="'+(isFlagged?"border-color:rgba(255,64,64,.4)":"")+'">'+
+          (c.photo_data?'<img class="photo-card-img" src="'+c.photo_data+'" loading="lazy" />':`<div class="photo-card-img" style="display:flex;align-items:center;justify-content:center;color:var(--gray2);font-size:11px">NO PHOTO</div>`)+
+          '<div class="photo-card-body"><div class="photo-card-name">'+(isFlagged?'<span style="color:var(--red)">⚑ </span>':'')+(p.name||"Unknown")+' — Day '+c.day_number+'</div>'+
+          '<div class="photo-card-meta">@'+(p.instagram_handle||"?")+" · "+fmtDate(c.checkin_date)+'</div>'+
+          '<div class="photo-card-actions">'+(!isFlagged?'<button class="btn-flag" onclick="reviewPhoto(\''+c.id+'\',\'flagged\')">✕ Flag</button>':'<button class="btn-approve" onclick="reviewPhoto(\''+c.id+'\',\'approved\')">✓ Unflag</button>')+'</div></div></div>';
       }).join("");
     }
 
@@ -892,13 +786,9 @@ async function loadAdmin(){
     if(!mil||!mil.length){ae.innerHTML='<div class="loading">No pending rewards</div>';}
     else{
       const mpids=[...new Set(mil.map(m=>m.participant_id))];
-      const mparts=await api("participants?id=in.("+mpids.join(",")+")");
-      const mpm={};mparts.forEach(p=>mpm[p.id]=p);
-      ae.innerHTML=mil.map(m=>{
-        const p=mpm[m.participant_id]||{};
-        const md=MS_DATA[m.milestone_day]||{label:"Day "+m.milestone_day,rec:""};
-        return '<div class="ar"><div class="ard"></div><div style="flex:1"><div class="arn">@'+(p.instagram_handle||"?")+" — "+md.label+'</div><div class="ari">'+(p.email||"no email")+" · "+md.rec+'</div></div><button class="bsm" onclick="markSent(\''+m.id+'\')">Mark Sent</button></div>';
-      }).join("");
+      const mparts=await api("participants?id=in.("+mpids.join(",")+")&select=id,name,instagram_handle,email");
+      const mpm={};(mparts||[]).forEach(p=>mpm[p.id]=p);
+      ae.innerHTML=mil.map(m=>{const p=mpm[m.participant_id]||{};const md=MS_DATA[m.milestone_day]||{label:"Day "+m.milestone_day,rec:""};return '<div class="ar"><div class="ard"></div><div style="flex:1"><div class="arn">@'+(p.instagram_handle||"?")+" — "+md.label+'</div><div class="ari">'+(p.email||"no email")+" · "+md.rec+'</div></div><button class="bsm" onclick="markSent(\''+m.id+'\')">Mark Sent</button></div>';}).join("");
     }
 
     const pe=document.getElementById("admin-parts");
@@ -911,21 +801,23 @@ async function loadAdmin(){
       const ca=dtn>0&&dtn<=5?' <span style="color:var(--accent);font-weight:700">· '+dtn+'d to milestone</span>':"";
       return '<div class="pr"><div class="pav">'+ini(p.name)+'</div><div class="pin"><div class="pna">'+p.name+'</div><div class="pme">@'+p.instagram_handle+" · "+(p.email||"no email")+'</div><div class="pme">'+p.total_checkins+' check-ins'+flagged+ca+'</div><span class="tier '+tier+'">'+tl+'</span></div><div><div class="pst">'+p.current_streak+'</div><div class="psl">days</div></div></div>';
     }).join("");
-  }catch(e){document.getElementById("milestone-alerts").innerHTML='<div class="loading">Error loading — tap Refresh</div>';}
+  }catch(e){
+    document.getElementById("milestone-alerts").innerHTML='<div class="loading">Error: '+e.message+'</div>';
+  }
 }
 
 async function reviewPhoto(id,status){
   try{
     await api("checkins?id=eq."+id,{method:"PATCH",body:{photo_status:status},prefer:"return=minimal"});
-    if(status==="flagged"){const rows=await api("checkins?id=eq."+id+"&select=participant_id");if(rows&&rows.length)await api("participants?id=eq."+rows[0].participant_id,{method:"PATCH",body:{flagged:true},prefer:"return=minimal"});}
-    if(status==="approved"){const rows=await api("checkins?id=eq."+id+"&select=participant_id");if(rows&&rows.length)await api("participants?id=eq."+rows[0].participant_id,{method:"PATCH",body:{flagged:false},prefer:"return=minimal"});}
+    const rows=await api("checkins?id=eq."+id+"&select=participant_id");
+    if(rows&&rows.length)await api("participants?id=eq."+rows[0].participant_id,{method:"PATCH",body:{flagged:status==="flagged"},prefer:"return=minimal"});
     loadAdmin();
   }catch(e){alert("Failed — try again");}
 }
 
 async function markSent(id){
   try{await api("milestones?id=eq."+id,{method:"PATCH",body:{reward_sent:true},prefer:"return=minimal"});loadAdmin();}
-  catch(e){alert("Failed — try again");}
+  catch(e){alert("Failed");}
 }
 
 function genCode(){
@@ -939,7 +831,7 @@ function genCode(){
 function renderCodes(){
   const list=document.getElementById("code-list");
   if(!genCodes.length){list.innerHTML='<div style="font-size:11px;color:var(--gray2);text-align:center;padding:12px">No codes yet</div>';return;}
-  list.innerHTML=genCodes.map(c=>'<div class="code-item" style="'+(c.used?"opacity:.35":"")+'"><div><div class="code-val">'+c.code+'</div><div class="code-meta">'+c.name+" · "+(c.used?"Used":"Active")+'</div></div><button class="code-copy" onclick=\'navigator.clipboard.writeText("'+c.code+'").then(()=>{this.textContent="Copied";setTimeout(()=>this.textContent="Copy",1500)})\'>Copy</button></div>').join("");
+  list.innerHTML=genCodes.map(c=>'<div class="code-item"><div><div class="code-val">'+c.code+'</div><div class="code-meta">'+c.name+'</div></div><button class="code-copy" onclick=\'navigator.clipboard.writeText("'+c.code+'").then(()=>{this.textContent="Copied";setTimeout(()=>this.textContent="Copy",1500)})\'>Copy</button></div>').join("");
 }
 
 function downloadCard(){
@@ -948,9 +840,9 @@ function downloadCard(){
   const ctx=cv.getContext("2d");
   const finish=()=>{
     ctx.fillStyle="rgba(0,0,0,.18)";ctx.fillRect(0,0,1080,1920);
-    ctx.fillStyle="#fff";ctx.font="800 40px sans-serif";ctx.letterSpacing="8px";ctx.fillText("#365LOCKED",60,100);
-    ctx.fillStyle="rgba(255,255,255,.28)";ctx.font="700 90px sans-serif";ctx.letterSpacing="4px";ctx.fillText("DAY",60,1720);
-    ctx.fillStyle="#e8ff00";ctx.font="900 480px sans-serif";ctx.letterSpacing="-20px";
+    ctx.fillStyle="#fff";ctx.font="800 40px sans-serif";ctx.fillText("#365LOCKED",60,100);
+    ctx.fillStyle="rgba(255,255,255,.28)";ctx.font="700 90px sans-serif";ctx.fillText("DAY",60,1720);
+    ctx.fillStyle="#e8ff00";ctx.font="900 480px sans-serif";
     ctx.fillText(String(day),day<10?160:day<100?60:40,1900);
     const a=document.createElement("a");a.download="habits365_day"+day+".png";a.href=cv.toDataURL("image/png",1.0);a.click();
   };
