@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="/logo.png">
 <title>HABITS365 — 365 Challenge</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
+<style>habits365-challenge.vercel.app/#admin
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{--black:#000;--s2:#141414;--s3:#1c1c1c;--white:#fff;--off:#e8e8e8;--gray:#999;--gray2:#666;--border:#222;--b2:#2e2e2e;--accent:#e8ff00;--red:#ff4040;--green:#00cc66}
 html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-serif;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
@@ -747,7 +747,7 @@ async function loadAdmin(){
       api("participants?select=*&order=current_streak.desc"),
       api("checkins?checkin_date=eq."+today()+"&select=id"),
       api("milestones?reward_sent=eq.false&select=*&limit=20"),
-      api("checkins?photo_data=not.is.null&order=created_at.desc&limit=50&select=id,participant_id,checkin_date,day_number,photo_data,photo_status,used_free_pass,created_at")
+      api("checkins?photo_data=not.is.null&order=created_at.desc&limit=10&select=id,participant_id,checkin_date,day_number,photo_data,photo_status,used_free_pass,created_at")
     ]);
     const legends=(all||[]).filter(p=>p.current_streak>=365);
     const flaggedCount=(allPhotos||[]).filter(c=>c.photo_status==="flagged").length;
