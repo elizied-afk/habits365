@@ -27,7 +27,8 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .splash-tier-day{font-size:10px;color:var(--gray2);letter-spacing:.12em;text-transform:uppercase;font-weight:700}
 .splash-tier-name{font-family:"Barlow Condensed",sans-serif;font-size:16px;font-weight:900;color:var(--white)}
 .splash-tier-reward{font-family:"Barlow Condensed",sans-serif;font-size:16px;font-weight:900;color:var(--accent)}
-.splash-cta{width:100%;max-width:300px;padding:18px;background:var(--white);color:var(--black);border:none;border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:22px;font-weight:900;cursor:pointer;letter-spacing:.08em;text-transform:uppercase}
+.splash-cta{width:100%;max-width:300px;padding:18px;background:var(--white);color:var(--black);border:none;border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:22px;font-weight:900;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;-webkit-appearance:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.splash-cta:active{opacity:.8}
 .splash-note{font-size:11px;color:var(--gray2);margin-top:12px;font-weight:500}
 .hdr{padding:18px 20px 16px;display:flex;justify-content:space-between;align-items:center;background:var(--black);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
 .logo-text{font-family:"Barlow Condensed",sans-serif;font-size:22px;font-weight:900;letter-spacing:.08em;color:var(--white);cursor:pointer}
@@ -262,7 +263,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
     <div class="splash-tier"><div><div class="splash-tier-day">Day 60</div><div class="splash-tier-name">Locked In</div></div><div class="splash-tier-reward">$150 Credit</div></div>
     <div class="splash-tier" style="border-color:rgba(232,255,0,.2)"><div><div class="splash-tier-day">Day 365</div><div class="splash-tier-name">Legend</div></div><div class="splash-tier-reward">$500 Box</div></div>
   </div>
-  <button class="splash-cta" onclick="startChallenge()">Start Your 365 →</button>
+  <button type="button" class="splash-cta" onclick="startChallenge()" ontouchend="startChallenge()">Start Your 365 →</button>
   <div class="splash-note">Free to join · No purchase required</div>
 </div>
 
@@ -537,7 +538,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
   </div>
 </div>
 
-<script>
+  <script>
 const SBU="https://smhyobptjyvkuutotray.supabase.co";
 const SBK="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNtaHlvYnB0anl2a3V1dG90cmF5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNjkzODMsImV4cCI6MjA5MDc0NTM4M30.8iyEScJFJWo2RwcmuCIM6rDWboy-EqnvgC3TE3152Uo";
 const APW="365elite";
@@ -579,7 +580,7 @@ async function kvMilestone(email,name,handle,day){
 
 window.addEventListener("load",async()=>{
   if("serviceWorker" in navigator){try{await navigator.serviceWorker.register("/sw.js");}catch(e){}}
-  if(localStorage.getItem("h365_seen"))document.getElementById("splash").style.display="none";
+  if(localStorage.getItem("h365_seen")){const sp=document.getElementById("splash");if(sp)sp.style.display="none";}
   const u=saved.get();
   if(u&&u.handle){showReturningUser(u);await refreshParticipant(u.handle);}
 });
@@ -838,7 +839,7 @@ function checkPw(){
 }
 function cancelAdmin(){document.getElementById("lock-screen").classList.add("hidden");window.location.hash="";}
 function adminLogout(){adminOk=false;showPg("checkin",document.querySelector(".nb"));document.querySelector(".nb").classList.add("on");window.location.hash="";}
-function checkHash(){if(window.location.hash==="#admin"||window.location.hash==="/#admin"){document.getElementById("splash").style.display="none";requireAdmin(null);}}
+function checkHash(){if(window.location.hash==="#admin"||window.location.hash==="/#admin"){const sp=document.getElementById("splash");if(sp)sp.style.display="none";requireAdmin(null);}}
 checkHash();window.addEventListener("hashchange",checkHash);
 function logoTap(){logoTaps++;clearTimeout(logoTimer);logoTimer=setTimeout(()=>logoTaps=0,2000);if(logoTaps>=7){logoTaps=0;requireAdmin(null);}}
 
@@ -1006,3 +1007,6 @@ function downloadCard(){
     drawOverlay();
   }
 }
+</script>
+</body>
+</html>
