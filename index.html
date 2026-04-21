@@ -586,9 +586,15 @@ window.addEventListener("load",async()=>{
 
 function startChallenge(){
   const s=document.getElementById("splash");
-  s.style.opacity="0";s.style.pointerEvents="none";
-  setTimeout(()=>s.style.display="none",400);
+  if(!s)return;
+  s.style.opacity="0";
+  s.style.pointerEvents="none";
   localStorage.setItem("h365_seen","1");
+  setTimeout(()=>{
+    s.style.display="none";
+    document.body.style.overflow="auto";
+    window.scrollTo(0,0);
+  },400);
 }
 
 function addToCalendar(){
