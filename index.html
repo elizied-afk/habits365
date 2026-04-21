@@ -76,6 +76,14 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .rules-list{display:flex;flex-direction:column;gap:4px}
 .rules-item{font-size:12px;color:var(--off);font-weight:500;line-height:1.5;display:flex;align-items:flex-start;gap:6px}
 .rules-item::before{content:"→";color:var(--red);font-weight:700;flex-shrink:0;margin-top:1px}
+.confirm-box{padding:0 20px;margin-bottom:14px}
+.confirm-item{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;background:var(--s2);border:1px solid var(--border);border-radius:2px;margin-bottom:8px;cursor:pointer;transition:border-color .2s}
+.confirm-item:hover{border-color:var(--gray2)}
+.confirm-item input[type="checkbox"]{margin-top:3px;width:16px;height:16px;accent-color:var(--accent);cursor:pointer;flex-shrink:0}
+.confirm-text{font-size:12px;color:var(--off);line-height:1.5;font-weight:500}
+.confirm-text strong{color:var(--accent);font-weight:700}
+.confirm-text .req{color:var(--red);font-weight:400;font-size:11px}
+.confirm-text .opt{color:var(--gray2);font-weight:400;font-size:11px}
 .bw{padding:0 20px}
 .bp{width:100%;padding:17px;background:var(--white);color:var(--black);border:none;border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:20px;font-weight:900;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;transition:opacity .2s;margin-bottom:10px;display:block}
 .bp:hover{opacity:.88}.bp:active{opacity:.75}.bp:disabled{opacity:.25;cursor:not-allowed}
@@ -88,6 +96,11 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .ru-name{font-family:"Barlow Condensed",sans-serif;font-size:38px;font-weight:900;color:var(--white);margin-bottom:2px;line-height:1}
 .ru-meta{font-size:12px;color:var(--gray2);font-weight:500}
 .ru-meta em{color:var(--accent);font-style:normal;font-weight:700}
+.ru-points{display:flex;gap:14px;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
+.ru-point-item{flex:1}
+.ru-point-num{font-family:"Barlow Condensed",sans-serif;font-size:22px;font-weight:900;color:var(--white);line-height:1}
+.ru-point-num.acc{color:var(--accent)}
+.ru-point-lbl{font-size:9px;color:var(--gray2);letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-top:3px}
 .sp{display:none;padding:16px 20px 0}
 .sp-lb{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray2);font-weight:700;margin-bottom:10px}
 .sc{width:100%;aspect-ratio:9/16;background:#000;border-radius:8px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:28px 24px;border:1px solid var(--border)}
@@ -158,6 +171,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .hist-date{font-size:11px;color:var(--gray2);font-weight:500}
 .hist-ok{font-size:9px;font-weight:800;padding:2px 7px;border-radius:2px;letter-spacing:.08em;text-transform:uppercase;background:rgba(0,204,102,.1);color:var(--green);border:1px solid rgba(0,204,102,.2)}
 .hist-flag{font-size:9px;font-weight:800;padding:2px 7px;border-radius:2px;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,64,64,.1);color:var(--red);border:1px solid rgba(255,64,64,.2)}
+.hist-bonus{font-size:9px;font-weight:800;padding:2px 7px;border-radius:2px;letter-spacing:.08em;text-transform:uppercase;background:rgba(232,255,0,.1);color:var(--accent);border:1px solid rgba(232,255,0,.2);margin-right:4px}
 .pt{padding:22px 20px 0}
 .stl{font-family:"Barlow Condensed",sans-serif;font-size:40px;font-weight:900;letter-spacing:-.01em;color:var(--white);margin-bottom:3px}
 .ssb{font-size:12px;color:var(--gray2);font-weight:600;margin-bottom:18px}
@@ -165,8 +179,8 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .ac{background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:14px}
 .an{font-family:"Barlow Condensed",sans-serif;font-size:44px;font-weight:900;line-height:1;color:var(--white);margin-bottom:3px}
 .al{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--gray2);font-weight:700}
-.atabs{display:flex;gap:0;margin-bottom:14px;border-bottom:1px solid var(--border)}
-.atab{flex:1;padding:10px 4px;background:none;border:none;color:var(--gray2);font-family:"Barlow",sans-serif;font-size:9px;font-weight:700;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;transition:all .2s;border-bottom:2px solid transparent;margin-bottom:-1px}
+.atabs{display:flex;gap:0;margin-bottom:14px;border-bottom:1px solid var(--border);overflow-x:auto}
+.atab{flex:1;padding:10px 4px;background:none;border:none;color:var(--gray2);font-family:"Barlow",sans-serif;font-size:9px;font-weight:700;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;transition:all .2s;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap}
 .atab.on{color:var(--white);border-bottom-color:var(--white)}
 .asec{display:none}.asec.on{display:block}
 .photo-card{background:var(--s2);border:1px solid var(--border);border-radius:2px;margin-bottom:10px;overflow:hidden}
@@ -174,6 +188,11 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .photo-card-body{padding:12px 14px}
 .photo-card-name{font-size:13px;font-weight:700;color:var(--white);margin-bottom:2px}
 .photo-card-meta{font-size:11px;color:var(--gray2);margin-bottom:10px}
+.photo-card-badges{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px}
+.photo-badge{font-size:9px;font-weight:800;padding:2px 6px;border-radius:2px;letter-spacing:.06em;text-transform:uppercase}
+.pb-gear{background:rgba(232,255,0,.1);color:var(--accent);border:1px solid rgba(232,255,0,.2)}
+.pb-posted{background:rgba(0,204,102,.08);color:var(--green);border:1px solid rgba(0,204,102,.2)}
+.pb-nogear{background:rgba(255,255,255,.04);color:var(--gray2);border:1px solid var(--border)}
 .photo-card-actions{display:flex;gap:8px}
 .btn-approve{flex:1;padding:10px;background:rgba(0,204,102,.1);color:var(--green);border:1px solid rgba(0,204,102,.25);border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:15px;font-weight:900;cursor:pointer;letter-spacing:.06em;text-transform:uppercase}
 .btn-flag{flex:1;padding:10px;background:rgba(255,64,64,.08);color:var(--red);border:1px solid rgba(255,64,64,.2);border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:15px;font-weight:900;cursor:pointer;letter-spacing:.06em;text-transform:uppercase}
@@ -198,6 +217,15 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .alert-name{font-size:13px;font-weight:700;color:var(--white)}
 .alert-sub{font-size:10px;color:var(--gray2);margin-top:1px}
 .alert-ms{font-size:10px;font-weight:800;color:var(--accent);text-align:right;white-space:nowrap}
+.lb-item{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--s2);border:1px solid var(--border);border-radius:2px;margin-bottom:6px}
+.lb-rank{font-family:"Barlow Condensed",sans-serif;font-size:20px;font-weight:900;color:var(--white);min-width:32px}
+.lb-rank.top{color:var(--accent)}
+.lb-info{flex:1;min-width:0}
+.lb-name{font-size:13px;font-weight:700;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lb-meta{font-size:10px;color:var(--gray2);font-weight:500;margin-top:1px}
+.lb-points{text-align:right}
+.lb-p-num{font-family:"Barlow Condensed",sans-serif;font-size:20px;font-weight:900;color:var(--accent);line-height:1}
+.lb-p-lbl{font-size:9px;color:var(--gray2);font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
 .codegen{background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:14px;margin-bottom:12px}
 .codegen-title{font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:var(--gray2);font-weight:700;margin-bottom:10px}
 .codegen-row{display:flex;gap:8px;margin-bottom:10px}
@@ -228,7 +256,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
   <div class="splash-logo">HABITS 365</div>
   <div class="splash-tag">#365Locked</div>
   <div class="splash-headline">YOU SAID<em>YOU WOULD.</em></div>
-  <div class="splash-sub">One check-in. Every day. Wear the brand. Build the streak.</div>
+  <div class="splash-sub">One check-in. Every day. Build the streak.</div>
   <div class="splash-tiers">
     <div class="splash-tier"><div><div class="splash-tier-day">Day 30</div><div class="splash-tier-name">Committed</div></div><div class="splash-tier-reward">$75 Credit</div></div>
     <div class="splash-tier"><div><div class="splash-tier-day">Day 60</div><div class="splash-tier-name">Locked In</div></div><div class="splash-tier-reward">$150 Credit</div></div>
@@ -270,6 +298,20 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
         <div class="ru-greeting">Welcome back</div>
         <div class="ru-name" id="ru-name">—</div>
         <div class="ru-meta">Day streak: <em id="ru-streak">—</em> &nbsp;·&nbsp; <span id="ru-handle" style="color:var(--gray2)"></span></div>
+        <div class="ru-points">
+          <div class="ru-point-item">
+            <div class="ru-point-num acc" id="ru-points">0</div>
+            <div class="ru-point-lbl">Total Points</div>
+          </div>
+          <div class="ru-point-item">
+            <div class="ru-point-num" id="ru-gear-days">0</div>
+            <div class="ru-point-lbl">Gear Days</div>
+          </div>
+          <div class="ru-point-item">
+            <div class="ru-point-num" id="ru-checkins">0</div>
+            <div class="ru-point-lbl">Check-ins</div>
+          </div>
+        </div>
       </div>
       <div class="ban s" id="b-s"><div class="bd g"></div><div class="bt g" id="b-s-t"></div></div>
       <div class="ban e" id="b-e"><div class="bd r"></div><div class="bt r" id="b-e-t"></div></div>
@@ -280,26 +322,39 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
         <div class="pbn" id="pass-count">1</div>
       </div>
 
-      <!-- RULES CARD -->
       <div class="rules-card" style="margin-top:12px">
         <div class="rules-title">⚠️ Entry Rules — Read Before Uploading</div>
         <div class="rules-list">
-         <div class="rules-item">Photo must be taken TODAY — live photos only. No old or saved photos.</div>
-<div class="rules-item">You must be active — gym, workout, walk, or any physical activity.</div>
-<div class="rules-item">You must be wearing Habits 365 gear.</div>
-<div class="rules-item">Post your story card and tag @habits_365 — entry does not count until you do.</div>
+          <div class="rules-item">Photo must be taken <strong>TODAY</strong> — live photos only. No old or saved photos.</div>
+          <div class="rules-item">You must be <strong>active</strong> — gym, workout, walk, or any physical activity counts.</div>
+          <div class="rules-item">Post your story card and tag <strong>@habits_365</strong> — entry does not count until you do.</div>
+          <div class="rules-item"><strong style="color:var(--accent)">Bonus:</strong> Wearing Habits 365 gear = 2x points on the leaderboard.</div>
+        </div>
+      </div>
 
-      <div class="photo-zone mt">
+      <div class="photo-zone">
         <div class="pz-label">Today's Photo <span>* Must be taken TODAY — no old photos</span></div>
         <div class="uz" id="uz-r" onclick="document.getElementById('pi').click()">
           <div class="uz-in" id="uz-in-r">
             <div class="uz-ic">📸</div>
-            <div class="uz-tx">Tap to take or upload photo</div>
-            <div class="uz-hint">TODAY only · Live photo · Active in Habits 365 gear<br>Old photos = disqualified</div>
+            <div class="uz-tx">Tap to take photo</div>
+            <div class="uz-hint">TODAY only · Live photo<br>Old photos = disqualified</div>
           </div>
           <img id="prev-img-r" style="display:none" />
         </div>
       </div>
+
+      <div class="confirm-box">
+        <label class="confirm-item">
+          <input type="checkbox" id="wearing-r" />
+          <span class="confirm-text">I'm wearing <strong>Habits 365 gear</strong> today <span class="opt">(earn 2x points)</span></span>
+        </label>
+        <label class="confirm-item">
+          <input type="checkbox" id="posted-r" />
+          <span class="confirm-text">I will post my story and tag <strong style="color:var(--white)">@habits_365</strong> <span class="req">(required)</span></span>
+        </label>
+      </div>
+
       <div class="bw mb">
         <button class="bp" id="submit-btn-r" onclick="submitCheckinReturning()">Lock In Today</button>
         <button class="bg" style="font-size:12px;padding:10px" onclick="switchToNewUser()">Not you? Switch account</button>
@@ -320,14 +375,13 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
         <div class="field"><div class="fl">Email <span>for milestone rewards</span></div><input type="email" class="fi" id="email" placeholder="your@email.com" /></div>
       </div>
 
-      <!-- RULES CARD FOR NEW USERS -->
-      <div class="rules-card" style="margin:0 20px 14px">
+      <div class="rules-card">
         <div class="rules-title">⚠️ Entry Rules — Read Before Uploading</div>
         <div class="rules-list">
           <div class="rules-item">Photo must be taken <strong>TODAY</strong> — brand new, live photo only. No old or saved photos.</div>
-          <div class="rules-item">You must be <strong>active</strong> — at the gym, working out, on a walk, or doing something physical.</div>
-          <div class="rules-item">You must be wearing <strong>Habits 365 gear</strong>.</div>
+          <div class="rules-item">You must be <strong>active</strong> — gym, workout, walk, or any physical activity counts.</div>
           <div class="rules-item">You must <strong>post your story card and tag @habits_365</strong> for the entry to count.</div>
+          <div class="rules-item"><strong style="color:var(--accent)">Bonus:</strong> Wearing Habits 365 gear = 2x points on the leaderboard.</div>
         </div>
       </div>
 
@@ -336,12 +390,24 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
         <div class="uz" id="uz" onclick="document.getElementById('pi').click()">
           <div class="uz-in" id="uz-in">
             <div class="uz-ic">📸</div>
-            <div class="uz-tx">Tap to take or upload photo</div>
-            <div class="uz-hint">TODAY only · Live photo · Active in Habits 365 gear<br>Old photos = disqualified</div>
+            <div class="uz-tx">Tap to take photo</div>
+            <div class="uz-hint">TODAY only · Live photo<br>Old photos = disqualified</div>
           </div>
           <img id="prev-img" style="display:none" />
         </div>
       </div>
+
+      <div class="confirm-box">
+        <label class="confirm-item">
+          <input type="checkbox" id="wearing-n" />
+          <span class="confirm-text">I'm wearing <strong>Habits 365 gear</strong> today <span class="opt">(earn 2x points)</span></span>
+        </label>
+        <label class="confirm-item">
+          <input type="checkbox" id="posted-n" />
+          <span class="confirm-text">I will post my story and tag <strong style="color:var(--white)">@habits_365</strong> <span class="req">(required)</span></span>
+        </label>
+      </div>
+
       <div class="bw mb">
         <button class="bp" id="submit-btn" onclick="submitCheckin()">Lock In Day 1</button>
       </div>
@@ -393,6 +459,10 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
         <div class="prog-big"><em>Day Streak</em><span id="prog-streak">—</span></div>
         <div class="prog-right"><div class="prog-stat" id="prog-total">—</div><div class="prog-stat-l">Check-ins</div></div>
       </div>
+      <div style="display:flex;gap:12px;margin-top:8px;margin-bottom:12px">
+        <div style="flex:1"><div style="font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:var(--accent);line-height:1" id="prog-points">0</div><div style="font-size:9px;color:var(--gray2);letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-top:3px">Total Points</div></div>
+        <div style="flex:1"><div style="font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:var(--white);line-height:1" id="prog-gear">0</div><div style="font-size:9px;color:var(--gray2);letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-top:3px">Gear Days</div></div>
+      </div>
       <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
     </div>
     <div class="ms-grid">
@@ -440,12 +510,14 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
       </div>
       <div class="atabs">
         <button class="atab on" onclick="showATab('alerts',this)">Alerts</button>
+        <button class="atab" onclick="showATab('leaderboard',this)">Leaders</button>
         <button class="atab" onclick="showATab('photos',this)">Photos</button>
         <button class="atab" onclick="showATab('rewards',this)">Rewards</button>
         <button class="atab" onclick="showATab('people',this)">People</button>
         <button class="atab" onclick="showATab('codes',this)">Codes</button>
       </div>
       <div class="asec on" id="at-alerts"><div id="milestone-alerts"><div class="loading">Loading</div></div></div>
+      <div class="asec" id="at-leaderboard"><div id="leaderboard-list"><div class="loading">Loading</div></div></div>
       <div class="asec" id="at-photos"><div id="photo-review-list"><div class="loading">Loading</div></div></div>
       <div class="asec" id="at-rewards"><div id="admin-alerts"><div class="loading">Loading</div></div></div>
       <div class="asec" id="at-people"><div id="admin-parts"><div class="loading">Loading</div></div></div>
@@ -495,9 +567,9 @@ async function kvSubscribe(email,name,handle,startDate){
   try{await fetch("https://a.klaviyo.com/client/subscriptions/?company_id="+KV_PK,{method:"POST",headers:{"Content-Type":"application/json","revision":"2023-12-15"},body:JSON.stringify({data:{type:"subscription",attributes:{profile:{data:{type:"profile",attributes:{email,first_name:name.split(" ")[0]||name,last_name:name.split(" ").slice(1).join(" ")||"",properties:{instagram_handle:handle,challenge_start_date:startDate,current_streak:1,challenge_participant:true}}}}},relationships:{list:{data:{type:"list",id:KV_LIST}}}}})});}catch(e){}
 }
 
-async function kvUpdateStreak(email,streak){
+async function kvUpdateStreak(email,streak,points){
   if(!email)return;
-  try{await fetch("https://a.klaviyo.com/client/profiles/?company_id="+KV_PK,{method:"POST",headers:{"Content-Type":"application/json","revision":"2023-12-15"},body:JSON.stringify({data:{type:"profile",attributes:{email,properties:{current_streak:streak}}}})});}catch(e){}
+  try{await fetch("https://a.klaviyo.com/client/profiles/?company_id="+KV_PK,{method:"POST",headers:{"Content-Type":"application/json","revision":"2023-12-15"},body:JSON.stringify({data:{type:"profile",attributes:{email,properties:{current_streak:streak,total_points:points}}}})});}catch(e){}
 }
 
 async function kvMilestone(email,name,handle,day){
@@ -539,6 +611,9 @@ function showReturningUser(u){
   document.getElementById("ru-handle").textContent="@"+(u.handle||"");
   document.getElementById("ru-streak").textContent=u.streak||"—";
   document.getElementById("streak-num").textContent=u.streak||"—";
+  document.getElementById("ru-points").textContent=u.totalPoints||0;
+  document.getElementById("ru-gear-days").textContent=u.gearDays||0;
+  document.getElementById("ru-checkins").textContent=u.totalCheckins||0;
 }
 
 function switchToNewUser(){
@@ -552,9 +627,15 @@ async function refreshParticipant(handle){
     const rows=await api("participants?instagram_handle=eq."+encodeURIComponent(handle)+"&limit=1");
     if(!rows||!rows.length)return;
     const p=rows[0];participant=p;
-    const u=saved.get()||{};u.streak=p.current_streak;u.name=p.name;saved.set(u);
+    const u=saved.get()||{};
+    u.streak=p.current_streak;u.name=p.name;
+    u.totalPoints=p.total_points||0;u.gearDays=p.gear_days||0;u.totalCheckins=p.total_checkins||0;
+    saved.set(u);
     document.getElementById("ru-streak").textContent=p.current_streak;
     document.getElementById("streak-num").textContent=p.current_streak;
+    document.getElementById("ru-points").textContent=p.total_points||0;
+    document.getElementById("ru-gear-days").textContent=p.gear_days||0;
+    document.getElementById("ru-checkins").textContent=p.total_checkins||0;
     document.getElementById("pass-count").textContent=Math.max(0,1-(p.free_passes_used||0));
     document.getElementById("pass-bar").classList.add("on");
     updateProgressUI(p);checkClaim(p);loadHistory(p.id);
@@ -590,9 +671,12 @@ function ban(type,msg){
 
 async function submitCheckinReturning(){
   if(!photo){document.getElementById("uz-r").classList.add("err");ban("e","Upload your photo first — must be taken TODAY");return;}
+  const posted=document.getElementById("posted-r").checked;
+  if(!posted){ban("e","You must confirm you will post your story and tag @habits_365");return;}
+  const wearing=document.getElementById("wearing-r").checked;
   const u=saved.get();if(!u)return;
   const btn=document.getElementById("submit-btn-r");btn.disabled=true;btn.textContent="Submitting...";
-  await doSubmit(u.handle,u.name,u.email||"",btn,"r");
+  await doSubmit(u.handle,u.name,u.email||"",btn,"r",wearing,posted);
 }
 
 async function submitCheckin(){
@@ -604,18 +688,21 @@ async function submitCheckin(){
   document.getElementById("uname").classList.toggle("err",!n);if(!n)err=true;
   document.getElementById("uz").classList.toggle("err",!photo);if(!photo)err=true;
   if(err){ban("e2","Fill in all fields and upload your photo — must be taken TODAY");return;}
+  const posted=document.getElementById("posted-n").checked;
+  if(!posted){ban("e2","You must confirm you will post your story and tag @habits_365");return;}
+  const wearing=document.getElementById("wearing-n").checked;
   const btn=document.getElementById("submit-btn");btn.disabled=true;btn.textContent="Submitting...";
-  await doSubmit(h,n,em,btn,"new");
+  await doSubmit(h,n,em,btn,"new",wearing,posted);
 }
 
-async function doSubmit(h,n,em,btn,mode){
+async function doSubmit(h,n,em,btn,mode,wearing,posted){
   try{
     const td=today();let p=participant;
     if(!p){
       const ex=await api("participants?instagram_handle=eq."+encodeURIComponent(h)+"&limit=1");
       if(ex&&ex.length){p=ex[0];}
       else{
-        const body={name:n,instagram_handle:h,start_date:td,current_streak:0,total_checkins:0,free_passes_used:0,free_pass_reset_date:td,access_verified:false};
+        const body={name:n,instagram_handle:h,start_date:td,current_streak:0,total_checkins:0,free_passes_used:0,free_pass_reset_date:td,access_verified:false,total_points:0,gear_days:0};
         if(em)body.email=em;
         const c=await api("participants",{method:"POST",body});p=c[0];
       }
@@ -631,14 +718,17 @@ async function doSubmit(h,n,em,btn,mode){
       else if(d===2){const prd=p.free_pass_reset_date||p.start_date;dsr=diff(prd,td);const pu=dsr>=30?0:(p.free_passes_used||0);if(pu<1){streak+=1;usedPass=true;}else{streak=1;reset=true;}}
       else{streak=1;reset=true;}
     }else{streak=1;}
-    await api("checkins",{method:"POST",body:{participant_id:p.id,checkin_date:td,day_number:streak,used_free_pass:usedPass,photo_url:"uploaded",photo_data:photoB64,photo_status:"approved"}});
-    const upd={name:n,current_streak:streak,longest_streak:Math.max(p.longest_streak||0,streak),total_checkins:(p.total_checkins||0)+1,free_passes_used:usedPass?(p.free_passes_used||0)+1:p.free_passes_used,streak_reset:false};
+    const pointsEarned=wearing?2:1;
+    await api("checkins",{method:"POST",body:{participant_id:p.id,checkin_date:td,day_number:streak,used_free_pass:usedPass,photo_url:"uploaded",photo_data:photoB64,photo_status:"approved",wearing_gear:wearing,story_posted:posted,points_earned:pointsEarned}});
+    const newPoints=(p.total_points||0)+pointsEarned;
+    const newGearDays=(p.gear_days||0)+(wearing?1:0);
+    const upd={name:n,current_streak:streak,longest_streak:Math.max(p.longest_streak||0,streak),total_checkins:(p.total_checkins||0)+1,free_passes_used:usedPass?(p.free_passes_used||0)+1:p.free_passes_used,streak_reset:false,total_points:newPoints,gear_days:newGearDays};
     if(em)upd.email=em;if(dsr>=30)upd.free_pass_reset_date=td;
     await api("participants?id=eq."+p.id,{method:"PATCH",body:upd,prefer:"return=minimal"});
     const emailToUse=em||p.email||"";
-    if(emailToUse){if(p.total_checkins===0){await kvSubscribe(emailToUse,n,h,td);}else{await kvUpdateStreak(emailToUse,streak);}}
+    if(emailToUse){if(p.total_checkins===0){await kvSubscribe(emailToUse,n,h,td);}else{await kvUpdateStreak(emailToUse,streak,newPoints);}}
     if(MS.includes(streak)){const me=await api("milestones?participant_id=eq."+p.id+"&milestone_day=eq."+streak+"&limit=1");if(!me||!me.length){await api("milestones",{method:"POST",body:{participant_id:p.id,milestone_day:streak,reward_sent:false}});if(emailToUse)await kvMilestone(emailToUse,n,h,streak);}}
-    saved.set({handle:h,name:n,email:emailToUse,streak});
+    saved.set({handle:h,name:n,email:emailToUse,streak,totalPoints:newPoints,gearDays:newGearDays,totalCheckins:(p.total_checkins||0)+1});
     participant={...p,...upd};
     document.getElementById("streak-num").textContent=streak;
     document.getElementById("sc-day").textContent=streak;
@@ -652,7 +742,10 @@ async function doSubmit(h,n,em,btn,mode){
     document.getElementById("ru-name").textContent=n;
     document.getElementById("ru-handle").textContent="@"+h;
     document.getElementById("ru-streak").textContent=streak;
-    let msg="Day "+streak+" locked in! Remember to post your story card and tag @habits_365.";
+    document.getElementById("ru-points").textContent=newPoints;
+    document.getElementById("ru-gear-days").textContent=newGearDays;
+    document.getElementById("ru-checkins").textContent=(p.total_checkins||0)+1;
+    let msg="Day "+streak+" locked in! +"+pointsEarned+" point"+(pointsEarned>1?"s":"")+(wearing?" (2x gear bonus)":"")+". Now post your story card and tag @habits_365.";
     if(usedPass)msg+=" Free pass used.";
     if(reset)msg="Streak reset — Day 1. Keep going. Post your story card and tag @habits_365.";
     if(MS.includes(streak))msg+=" Milestone reached — check My Progress!";
@@ -662,6 +755,7 @@ async function doSubmit(h,n,em,btn,mode){
     photo=null;photoB64=null;
     ["prev-img","prev-img-r"].forEach(id=>{const el=document.getElementById(id);if(el){el.src="";el.style.display="none";}});
     ["uz-in","uz-in-r"].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display="block";});
+    ["wearing-r","posted-r","wearing-n","posted-n"].forEach(id=>{const el=document.getElementById(id);if(el)el.checked=false;});
   }catch(e){ban("e","Submission failed: "+e.message);}
   btn.disabled=false;btn.textContent=mode==="r"?"Lock In Today":"Lock In Day 1";
 }
@@ -670,6 +764,8 @@ function updateProgressUI(p){
   const s=p.current_streak||0;
   document.getElementById("prog-streak").textContent=s;
   document.getElementById("prog-total").textContent=p.total_checkins||0;
+  document.getElementById("prog-points").textContent=p.total_points||0;
+  document.getElementById("prog-gear").textContent=p.gear_days||0;
   document.getElementById("prog-fill").style.width=Math.min(100,(s/365)*100)+"%";
   MS.forEach(m=>{const c=document.getElementById("ms"+m),n=document.getElementById("ms"+m+"n"),i=c.querySelector(".ms-icon"),t=c.querySelector(".ms-tier");if(s>=m){c.classList.add("done");n.classList.add("lit");i.textContent="✓";t.classList.add("lit");}else{c.classList.remove("done");n.classList.remove("lit");i.textContent="🔒";t.classList.remove("lit");}});
   let prev=1,next=30,tier="Committed — Day 30",reward="$75";
@@ -704,7 +800,11 @@ async function loadHistory(pid){
     const rows=await api("checkins?participant_id=eq."+pid+"&order=checkin_date.desc&limit=10");
     const el=document.getElementById("hist-list");
     if(!rows||!rows.length){el.innerHTML='<div class="loading">No check-ins yet</div>';return;}
-    el.innerHTML=rows.map(c=>'<div class="hist-item"><div><div class="hist-day">Day '+c.day_number+'</div><div class="hist-date">'+fmtDate(c.checkin_date)+(c.used_free_pass?" · Pass used":"")+'</div></div><span class="'+(c.photo_status==="flagged"?"hist-flag":"hist-ok")+'">'+(c.photo_status==="flagged"?"Flagged":"Submitted")+'</span></div>').join("");
+    el.innerHTML=rows.map(c=>{
+      const gearBadge=c.wearing_gear?'<span class="hist-bonus">2x</span>':'';
+      const statusBadge=c.photo_status==="flagged"?'<span class="hist-flag">Flagged</span>':'<span class="hist-ok">Submitted</span>';
+      return '<div class="hist-item"><div><div class="hist-day">Day '+c.day_number+'</div><div class="hist-date">'+fmtDate(c.checkin_date)+(c.used_free_pass?" · Pass used":"")+(c.points_earned?" · +"+c.points_earned+"pt":"")+'</div></div><div>'+gearBadge+statusBadge+'</div></div>';
+    }).join("");
   }catch(e){}
 }
 
@@ -739,10 +839,10 @@ function logoTap(){logoTaps++;clearTimeout(logoTimer);logoTimer=setTimeout(()=>l
 async function loadAdmin(){
   try{
     const [all,tod,mil,allPhotos]=await Promise.all([
-      api("participants?select=*&order=current_streak.desc"),
+      api("participants?select=*&order=total_points.desc.nullslast"),
       api("checkins?checkin_date=eq."+today()+"&select=id"),
       api("milestones?reward_sent=eq.false&select=*&limit=20"),
-      api("checkins?photo_data=not.is.null&order=created_at.desc&limit=10&select=id,participant_id,checkin_date,day_number,photo_data,photo_status,used_free_pass")
+      api("checkins?photo_data=not.is.null&order=created_at.desc&limit=10&select=id,participant_id,checkin_date,day_number,photo_data,photo_status,used_free_pass,wearing_gear,story_posted")
     ]);
     const legends=(all||[]).filter(p=>p.current_streak>=365);
     const flaggedCount=(allPhotos||[]).filter(c=>c.photo_status==="flagged").length;
@@ -757,7 +857,18 @@ async function loadAdmin(){
       const close=[];
       all.forEach(p=>{MS.forEach(m=>{const dl=m-p.current_streak;if(dl>0&&dl<=5)close.push({p,m,dl});});});
       if(!close.length){ma.innerHTML='<div style="font-size:11px;color:var(--gray2);text-align:center;padding:20px">No one within 5 days of a milestone</div>';}
-      else{ma.innerHTML=close.sort((a,b)=>a.dl-b.dl).map(({p,m,dl})=>'<div class="alert-item"><div class="alert-days">'+dl+'<div style="font-size:9px;color:var(--gray2);font-weight:600;text-transform:uppercase">days</div></div><div class="alert-info"><div class="alert-name">'+p.name+'</div><div class="alert-sub">@'+p.instagram_handle+' · Day '+p.current_streak+'</div></div><div class="alert-ms">Day '+m+'<br>'+(MS_DATA[m]||{}).reward+'</div></div>').join("");}
+      else{ma.innerHTML=close.sort((a,b)=>a.dl-b.dl).map(({p,m,dl})=>'<div class="alert-item"><div class="alert-days">'+dl+'<div style="font-size:9px;color:var(--gray2);font-weight:600;text-transform:uppercase">days</div></div><div class="alert-info"><div class="alert-name">'+p.name+'</div><div class="alert-sub">@'+p.instagram_handle+' · Day '+p.current_streak+' · '+(p.total_points||0)+' pts</div></div><div class="alert-ms">Day '+m+'<br>'+(MS_DATA[m]||{}).reward+'</div></div>').join("");}
+    }
+
+    const lb=document.getElementById("leaderboard-list");
+    if(!all||!all.length){lb.innerHTML='<div class="loading">No participants yet</div>';}
+    else{
+      const sorted=[...all].sort((a,b)=>(b.total_points||0)-(a.total_points||0)).slice(0,50);
+      lb.innerHTML='<div style="font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--gray2);font-weight:700;margin-bottom:10px">Top 50 by total points</div>'+
+        sorted.map((p,i)=>{
+          const gearPct=p.total_checkins>0?Math.round((p.gear_days||0)/p.total_checkins*100):0;
+          return '<div class="lb-item"><div class="lb-rank'+(i<3?' top':'')+'">'+(i+1)+'</div><div class="lb-info"><div class="lb-name">'+p.name+'</div><div class="lb-meta">@'+p.instagram_handle+' · '+p.current_streak+' day streak · '+gearPct+'% gear</div></div><div class="lb-points"><div class="lb-p-num">'+(p.total_points||0)+'</div><div class="lb-p-lbl">pts</div></div></div>';
+        }).join("");
     }
 
     const pr=document.getElementById("photo-review-list");
@@ -769,10 +880,15 @@ async function loadAdmin(){
       pr.innerHTML='<div style="font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--gray2);font-weight:700;margin-bottom:10px">'+allPhotos.length+' most recent photos</div>'+
       allPhotos.map(c=>{
         const p=pm[c.participant_id]||{};const isFlagged=c.photo_status==="flagged";
+        const badges=[];
+        if(c.wearing_gear)badges.push('<span class="photo-badge pb-gear">Wearing Gear 2x</span>');
+        else badges.push('<span class="photo-badge pb-nogear">No Gear</span>');
+        if(c.story_posted)badges.push('<span class="photo-badge pb-posted">Story Confirmed</span>');
         return '<div class="photo-card" style="'+(isFlagged?"border-color:rgba(255,64,64,.4)":"")+'">'+
           (c.photo_data?'<img class="photo-card-img" src="'+c.photo_data+'" loading="lazy" />':`<div class="photo-card-img" style="display:flex;align-items:center;justify-content:center;color:var(--gray2);font-size:11px">NO PHOTO</div>`)+
           '<div class="photo-card-body"><div class="photo-card-name">'+(isFlagged?'<span style="color:var(--red)">⚑ </span>':'')+(p.name||"Unknown")+' — Day '+c.day_number+'</div>'+
           '<div class="photo-card-meta">@'+(p.instagram_handle||"?")+" · "+fmtDate(c.checkin_date)+'</div>'+
+          '<div class="photo-card-badges">'+badges.join("")+'</div>'+
           '<div class="photo-card-actions">'+(!isFlagged?'<button class="btn-flag" onclick="reviewPhoto(\''+c.id+'\',\'flagged\')">✕ Flag</button>':'<button class="btn-approve" onclick="reviewPhoto(\''+c.id+'\',\'approved\')">✓ Unflag</button>')+'</div></div></div>';
       }).join("");
     }
@@ -794,7 +910,8 @@ async function loadAdmin(){
       const flagged=p.flagged?' <span style="color:var(--red);font-weight:700">· Flagged</span>':"";
       const dtn=p.current_streak<30?30-p.current_streak:p.current_streak<60?60-p.current_streak:p.current_streak<365?365-p.current_streak:0;
       const ca=dtn>0&&dtn<=5?' <span style="color:var(--accent);font-weight:700">· '+dtn+'d to milestone</span>':"";
-      return '<div class="pr"><div class="pav">'+ini(p.name)+'</div><div class="pin"><div class="pna">'+p.name+'</div><div class="pme">@'+p.instagram_handle+" · "+(p.email||"no email")+'</div><div class="pme">'+p.total_checkins+' check-ins'+flagged+ca+'</div><span class="tier '+tier+'">'+tl+'</span></div><div><div class="pst">'+p.current_streak+'</div><div class="psl">days</div></div></div>';
+      const gearPct=p.total_checkins>0?Math.round((p.gear_days||0)/p.total_checkins*100):0;
+      return '<div class="pr"><div class="pav">'+ini(p.name)+'</div><div class="pin"><div class="pna">'+p.name+'</div><div class="pme">@'+p.instagram_handle+" · "+(p.email||"no email")+'</div><div class="pme">'+p.total_checkins+' check-ins · '+(p.total_points||0)+' pts · '+gearPct+'% gear'+flagged+ca+'</div><span class="tier '+tier+'">'+tl+'</span></div><div><div class="pst">'+p.current_streak+'</div><div class="psl">days</div></div></div>';
     }).join("");
   }catch(e){
     document.getElementById("milestone-alerts").innerHTML='<div class="loading">Error: '+e.message+'</div>';
