@@ -193,6 +193,7 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .photo-badge{font-size:9px;font-weight:800;padding:2px 6px;border-radius:2px;letter-spacing:.06em;text-transform:uppercase}
 .pb-gear{background:rgba(232,255,0,.1);color:var(--accent);border:1px solid rgba(232,255,0,.2)}
 .pb-posted{background:rgba(0,204,102,.08);color:var(--green);border:1px solid rgba(0,204,102,.2)}
+.pb-confirmed{background:rgba(0,204,102,.15);color:var(--green);border:1px solid rgba(0,204,102,.35);font-weight:900}
 .pb-nogear{background:rgba(255,255,255,.04);color:var(--gray2);border:1px solid var(--border)}
 .photo-card-actions{display:flex;gap:8px}
 .btn-approve{flex:1;padding:10px;background:rgba(0,204,102,.1);color:var(--green);border:1px solid rgba(0,204,102,.25);border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-size:15px;font-weight:900;cursor:pointer;letter-spacing:.06em;text-transform:uppercase}
@@ -249,6 +250,11 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
 .lo-btns{width:100%;max-width:260px;display:flex;flex-direction:column;gap:8px}
 .loading{text-align:center;padding:32px 20px;color:var(--gray2);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
 .sp2{height:28px}.pad{padding:0 20px}.mt{margin-top:14px}.mb{margin-bottom:14px}
+.finished-confirm{display:none;padding:18px 20px;background:rgba(0,204,102,.08);border:1px solid rgba(0,204,102,.3);border-radius:2px;margin:0 20px 10px;text-align:center}
+.finished-confirm.on{display:block}
+.finished-title{font-family:"Barlow Condensed",sans-serif;font-size:22px;font-weight:900;color:var(--green);margin-bottom:4px;letter-spacing:.04em}
+.finished-sub{font-size:12px;color:var(--off);font-weight:500;line-height:1.5}
+.btn-finished{background:var(--accent)!important;color:var(--black)!important}
 </style>
 </head>
 <body>
@@ -430,6 +436,11 @@ html,body{background:var(--black);color:var(--white);font-family:"Barlow",sans-s
       </div>
       <div class="bw mt">
         <button class="bp" style="margin-bottom:10px" onclick="downloadCard()">Save Card to Photos</button>
+        <button class="bp btn-finished" id="finished-btn" style="margin-bottom:10px" onclick="markFinished()">✓ I Posted to My Story</button>
+        <div class="finished-confirm" id="finished-confirm">
+          <div class="finished-title">✓ ENTRY LOCKED</div>
+          <div class="finished-sub">You're confirmed for today. See you tomorrow.</div>
+        </div>
         <div class="cal-card">
           <div class="cal-card-title">NEVER MISS A DAY</div>
           <div class="cal-card-sub">Add a daily 9am reminder so you never forget to check in.</div>
@@ -547,6 +558,7 @@ const KV_LIST="SYaL5C";
 const MS=[30,60,365];
 const MS_DATA={30:{tier:"Committed",reward:"$75",label:"Day 30 — Committed",rec:"$75 Credit + IG Feature"},60:{tier:"Locked In",reward:"$150",label:"Day 60 — Locked In",rec:"$150 Credit + Hall of Fame"},365:{tier:"Legend",reward:"$500 Box",label:"Day 365 — Legend",rec:"$500 Mystery Box + Legacy Status"}};
 let photo=null,photoB64=null,participant=null,adminOk=false,genCodes=[],logoTaps=0,logoTimer=null;
+window.lastCardPhoto=null;
 
 const saved={
   get:()=>{try{return JSON.parse(localStorage.getItem("h365_user")||"null");}catch{return null;}},
@@ -624,7 +636,7 @@ function showReturningUser(u){
 }
 
 function switchToNewUser(){
-  saved.clear();participant=null;photo=null;photoB64=null;
+  saved.clear();participant=null;photo=null;photoB64=null;window.lastCardPhoto=null;
   document.getElementById("returning-view").style.display="none";
   document.getElementById("new-user-view").style.display="block";
 }
@@ -658,6 +670,7 @@ function handlePhoto(e){
     const cv=document.createElement("canvas");cv.width=w;cv.height=h;
     cv.getContext("2d").drawImage(img,0,0,w,h);
     photo=cv.toDataURL("image/jpeg",.75);photoB64=photo;
+    window.lastCardPhoto=photo;
     URL.revokeObjectURL(url);
     ["prev-img","prev-img-r"].forEach(id=>{const el=document.getElementById(id);if(el){el.src=photo;el.style.display="block";}});
     ["uz-in","uz-in-r"].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display="none";});
@@ -726,7 +739,8 @@ async function doSubmit(h,n,em,btn,mode,wearing,posted){
       else{streak=1;reset=true;}
     }else{streak=1;}
     const pointsEarned=wearing?2:1;
-    await api("checkins",{method:"POST",body:{participant_id:p.id,checkin_date:td,day_number:streak,used_free_pass:usedPass,photo_url:"uploaded",photo_data:photoB64,photo_status:"approved",wearing_gear:wearing,story_posted:posted,points_earned:pointsEarned}});
+    const newCheckin=await api("checkins",{method:"POST",body:{participant_id:p.id,checkin_date:td,day_number:streak,used_free_pass:usedPass,photo_url:"uploaded",photo_data:photoB64,photo_status:"approved",wearing_gear:wearing,story_posted:posted,story_confirmed:false,points_earned:pointsEarned}});
+    window.currentCheckinId=newCheckin&&newCheckin[0]?newCheckin[0].id:null;
     const newPoints=(p.total_points||0)+pointsEarned;
     const newGearDays=(p.gear_days||0)+(wearing?1:0);
     const upd={name:n,current_streak:streak,longest_streak:Math.max(p.longest_streak||0,streak),total_checkins:(p.total_checkins||0)+1,free_passes_used:usedPass?(p.free_passes_used||0)+1:p.free_passes_used,streak_reset:false,total_points:newPoints,gear_days:newGearDays};
@@ -742,6 +756,8 @@ async function doSubmit(h,n,em,btn,mode,wearing,posted){
     if(photo){document.getElementById("sc-photo").src=photo;document.getElementById("sc-photo").style.display="block";}
     document.getElementById("story-preview").style.display="block";
     document.getElementById("home-tip").style.display="block";
+    const finBtn=document.getElementById("finished-btn");const finConf=document.getElementById("finished-confirm");
+    if(finBtn)finBtn.style.display="block";if(finConf)finConf.classList.remove("on");
     document.getElementById("story-preview").scrollIntoView({behavior:"smooth"});
     updateProgressUI({...p,...upd});
     document.getElementById("returning-view").style.display="block";
@@ -752,19 +768,36 @@ async function doSubmit(h,n,em,btn,mode,wearing,posted){
     document.getElementById("ru-points").textContent=newPoints;
     document.getElementById("ru-gear-days").textContent=newGearDays;
     document.getElementById("ru-checkins").textContent=(p.total_checkins||0)+1;
-    let msg="Day "+streak+" locked in! +"+pointsEarned+" point"+(pointsEarned>1?"s":"")+(wearing?" (2x gear bonus)":"")+". Now post your story card and tag @habits_365.";
+    let msg="Day "+streak+" locked in! +"+pointsEarned+" point"+(pointsEarned>1?"s":"")+(wearing?" (2x gear bonus)":"")+". Now save your story card, post it, and tap the confirm button.";
     if(usedPass)msg+=" Free pass used.";
     if(reset)msg="Streak reset — Day 1. Keep going. Post your story card and tag @habits_365.";
     if(MS.includes(streak))msg+=" Milestone reached — check My Progress!";
     ban("s",msg);
     if(MS.includes(streak))checkClaim(participant);
     loadHistory(participant.id);
-    photo=null;photoB64=null;
-    ["prev-img","prev-img-r"].forEach(id=>{const el=document.getElementById(id);if(el){el.src="";el.style.display="none";}});
-    ["uz-in","uz-in-r"].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display="block";});
     ["wearing-r","posted-r","wearing-n","posted-n"].forEach(id=>{const el=document.getElementById(id);if(el)el.checked=false;});
   }catch(e){ban("e","Submission failed: "+e.message);}
   btn.disabled=false;btn.textContent=mode==="r"?"Lock In Today":"Lock In Day 1";
+}
+
+async function markFinished(){
+  if(!participant)return;
+  const btn=document.getElementById("finished-btn");
+  btn.disabled=true;btn.textContent="Confirming...";
+  try{
+    const td=today();
+    if(window.currentCheckinId){
+      await api("checkins?id=eq."+window.currentCheckinId,{method:"PATCH",body:{story_confirmed:true},prefer:"return=minimal"});
+    }else{
+      await api("checkins?participant_id=eq."+participant.id+"&checkin_date=eq."+td,{method:"PATCH",body:{story_confirmed:true},prefer:"return=minimal"});
+    }
+    btn.style.display="none";
+    document.getElementById("finished-confirm").classList.add("on");
+    loadHistory(participant.id);
+  }catch(e){
+    btn.disabled=false;btn.textContent="✓ I Posted to My Story";
+    alert("Could not confirm — try again");
+  }
 }
 
 function updateProgressUI(p){
@@ -809,7 +842,7 @@ async function loadHistory(pid){
     if(!rows||!rows.length){el.innerHTML='<div class="loading">No check-ins yet</div>';return;}
     el.innerHTML=rows.map(c=>{
       const gearBadge=c.wearing_gear?'<span class="hist-bonus">2x</span>':'';
-      const statusBadge=c.photo_status==="flagged"?'<span class="hist-flag">Flagged</span>':'<span class="hist-ok">Submitted</span>';
+      const statusBadge=c.story_confirmed?'<span class="hist-ok">Posted ✓</span>':c.photo_status==="flagged"?'<span class="hist-flag">Flagged</span>':'<span class="hist-ok">Submitted</span>';
       return '<div class="hist-item"><div><div class="hist-day">Day '+c.day_number+'</div><div class="hist-date">'+fmtDate(c.checkin_date)+(c.used_free_pass?" · Pass used":"")+(c.points_earned?" · +"+c.points_earned+"pt":"")+'</div></div><div>'+gearBadge+statusBadge+'</div></div>';
     }).join("");
   }catch(e){}
@@ -849,7 +882,7 @@ async function loadAdmin(){
       api("participants?select=*&order=total_points.desc.nullslast"),
       api("checkins?checkin_date=eq."+today()+"&select=id"),
       api("milestones?reward_sent=eq.false&select=*&limit=20"),
-      api("checkins?photo_data=not.is.null&order=created_at.desc&limit=10&select=id,participant_id,checkin_date,day_number,photo_data,photo_status,used_free_pass,wearing_gear,story_posted")
+      api("checkins?photo_data=not.is.null&order=created_at.desc&limit=10&select=id,participant_id,checkin_date,day_number,photo_data,photo_status,used_free_pass,wearing_gear,story_posted,story_confirmed")
     ]);
     const legends=(all||[]).filter(p=>p.current_streak>=365);
     const flaggedCount=(allPhotos||[]).filter(c=>c.photo_status==="flagged").length;
@@ -890,7 +923,8 @@ async function loadAdmin(){
         const badges=[];
         if(c.wearing_gear)badges.push('<span class="photo-badge pb-gear">Wearing Gear 2x</span>');
         else badges.push('<span class="photo-badge pb-nogear">No Gear</span>');
-        if(c.story_posted)badges.push('<span class="photo-badge pb-posted">Story Confirmed</span>');
+        if(c.story_confirmed)badges.push('<span class="photo-badge pb-confirmed">✓ POSTED STORY</span>');
+        else if(c.story_posted)badges.push('<span class="photo-badge pb-posted">Story Agreed</span>');
         return '<div class="photo-card" style="'+(isFlagged?"border-color:rgba(255,64,64,.4)":"")+'">'+
           (c.photo_data?'<img class="photo-card-img" src="'+c.photo_data+'" loading="lazy" />':`<div class="photo-card-img" style="display:flex;align-items:center;justify-content:center;color:var(--gray2);font-size:11px">NO PHOTO</div>`)+
           '<div class="photo-card-body"><div class="photo-card-name">'+(isFlagged?'<span style="color:var(--red)">⚑ </span>':'')+(p.name||"Unknown")+' — Day '+c.day_number+'</div>'+
@@ -954,6 +988,7 @@ function renderCodes(){
 
 function downloadCard(){
   const day=parseInt(document.getElementById("sc-day").textContent)||1;
+  const cardPhoto=window.lastCardPhoto||photo||photoB64;
   const cv=document.createElement("canvas");cv.width=1080;cv.height=1920;
   const ctx=cv.getContext("2d");
   const drawOverlay=()=>{
@@ -979,7 +1014,7 @@ function downloadCard(){
     a.href=cv.toDataURL("image/png",1.0);
     a.click();
   };
-  if(photo){
+  if(cardPhoto){
     const img=new Image();
     img.onload=()=>{
       const ratio=img.width/img.height;
@@ -1000,7 +1035,7 @@ function downloadCard(){
       ctx.fillRect(0,0,1080,1920);
       drawOverlay();
     };
-    img.src=photo;
+    img.src=cardPhoto;
   }else{
     ctx.fillStyle="#080808";
     ctx.fillRect(0,0,1080,1920);
