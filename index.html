@@ -949,17 +949,54 @@ function downloadCard(){
   const day=parseInt(document.getElementById("sc-day").textContent)||1;
   const cv=document.createElement("canvas");cv.width=1080;cv.height=1920;
   const ctx=cv.getContext("2d");
-  const finish=()=>{
-    ctx.fillStyle="rgba(0,0,0,.18)";ctx.fillRect(0,0,1080,1920);
-    ctx.fillStyle="#fff";ctx.font="800 40px sans-serif";ctx.fillText("#365LOCKED",60,100);
-    ctx.fillStyle="rgba(255,255,255,.28)";ctx.font="700 90px sans-serif";ctx.fillText("DAY",60,1720);
-    ctx.fillStyle="#e8ff00";ctx.font="900 480px sans-serif";
-    ctx.fillText(String(day),day<10?160:day<100?60:40,1900);
-    const a=document.createElement("a");a.download="habits365_day"+day+".png";a.href=cv.toDataURL("image/png",1.0);a.click();
+  const drawOverlay=()=>{
+    const grad=ctx.createLinearGradient(0,0,0,1920);
+    grad.addColorStop(0,"rgba(0,0,0,.35)");
+    grad.addColorStop(0.5,"rgba(0,0,0,.15)");
+    grad.addColorStop(1,"rgba(0,0,0,.6)");
+    ctx.fillStyle=grad;
+    ctx.fillRect(0,0,1080,1920);
+    ctx.fillStyle="#fff";
+    ctx.font="800 44px -apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif";
+    ctx.fillText("#365LOCKED",60,110);
+    ctx.fillStyle="rgba(255,255,255,.4)";
+    ctx.font="700 80px -apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif";
+    ctx.fillText("DAY",60,1620);
+    ctx.fillStyle="#e8ff00";
+    const dayStr=String(day);
+    const fontSize=dayStr.length===1?420:dayStr.length===2?360:280;
+    ctx.font="900 "+fontSize+"px -apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif";
+    ctx.fillText(dayStr,60,1850);
+    const a=document.createElement("a");
+    a.download="habits365_day"+day+".png";
+    a.href=cv.toDataURL("image/png",1.0);
+    a.click();
   };
-  if(photo){const img=new Image();img.onload=()=>{ctx.drawImage(img,0,0,1080,1920);finish();};img.src=photo;}
-  else{ctx.fillStyle="#080808";ctx.fillRect(0,0,1080,1920);finish();}
+  if(photo){
+    const img=new Image();
+    img.onload=()=>{
+      const ratio=img.width/img.height;
+      const canvasRatio=1080/1920;
+      let sw=img.width,sh=img.height,sx=0,sy=0;
+      if(ratio>canvasRatio){
+        sw=img.height*canvasRatio;
+        sx=(img.width-sw)/2;
+      }else{
+        sh=img.width/canvasRatio;
+        sy=(img.height-sh)/2;
+      }
+      ctx.drawImage(img,sx,sy,sw,sh,0,0,1080,1920);
+      drawOverlay();
+    };
+    img.onerror=()=>{
+      ctx.fillStyle="#080808";
+      ctx.fillRect(0,0,1080,1920);
+      drawOverlay();
+    };
+    img.src=photo;
+  }else{
+    ctx.fillStyle="#080808";
+    ctx.fillRect(0,0,1080,1920);
+    drawOverlay();
+  }
 }
-</script>
-</body>
-</html>
